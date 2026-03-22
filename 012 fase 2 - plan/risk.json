@@ -1,0 +1,47 @@
+[
+  {
+    "id": "RI1",
+    "risk": "Simulerte data blir lite realistiske",
+    "probability": "Middels",
+    "impact": "Høy",
+    "mitigation": "Dokumentere datagenerator, kalibrere sesongvariasjon mot litteratur.",
+    "contingency": "Justere datagenerator og kjøre analysen på nytt.",
+    "owner": "Begge"
+  },
+  {
+    "id": "RI2",
+    "risk": "Uklart valg mellom servicegrad-constraint og stockout-kostnader",
+    "probability": "Middels",
+    "impact": "Middels",
+    "mitigation": "Låse valg innen M3, skrive tydelig målfunkjon.",
+    "contingency": "Kjøre en mini-test med begge varianter.",
+    "owner": "Begge"
+  },
+  {
+    "id": "RI3",
+    "risk": "Kostnadsparametere blir svakt begrunnet",
+    "probability": "Middels",
+    "impact": "Middels",
+    "mitigation": "Forankre parametere i litteratur, definere intervall.",
+    "contingency": "Rapportere resultater som intervall + sensitivitetsanalyse.",
+    "owner": "Begge"
+  },
+  {
+    "id": "RI4",
+    "risk": "Tidsmangel i data- og analysefasen",
+    "probability": "Middels",
+    "impact": "Høy",
+    "mitigation": "Prioritere kjerneleveranser (baseline + modell).",
+    "contingency": "Redusere antall kategorier/scenarier.",
+    "owner": "Begge"
+  },
+  {
+    "id": "RI5",
+    "risk": "Tekniske problemer i implementering (Excel/Python)",
+    "probability": "Middels",
+    "impact": "Middels",
+    "mitigation": "Små iterasjoner, versjonskontroll, jevnlig testkjøring.",
+    "contingency": "Forenkle modellen (Excel-basert), dokumentere tydelig.",
+    "owner": "Begge"
+  }
+]

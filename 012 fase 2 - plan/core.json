@@ -1,0 +1,27 @@
+{
+  "project_name": "Lagerstyring og beslutningsstøtte i logistikk",
+  "client": "ARK Bokhandel AS",
+  "project_code": "LOG650-G02",
+  "start_date": "2026-01-12",
+  "end_date": "2026-05-31",
+  "team": [
+    {
+      "name": "Anne Helene Moen Hagen",
+      "role": "Prosjektleder / Analytiker"
+    },
+    {
+      "name": "Astrid Alexandra Grepstad",
+      "role": "Prosjektleder / Analytiker"
+    }
+  ],
+  "sponsors": [
+    "Bård Inge Austigard Pettersen",
+    "Per Kristian Rekdal"
+  ],
+  "objectives": [
+    "Bestemme optimal bestillingsmengde basert på historisk etterspørsel.",
+    "Redusere lagerkostnader for ARK Bokhandel AS.",
+    "Begrense risikoen for utsolgte varer i kortsiktig planlegging.",
+    "Utvikle en kvantitativ modell for beslutningsstøtte."
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "milestones": [
+    {
+      "id": "M1",
+      "description": "Problemstilling og proposal godkjent",
+      "due_date": "2026-02-23",
+      "status": "Fullført"
+    },
+    {
+      "id": "M2",
+      "description": "Litteraturgrunnlag og teoriramme etablert",
+      "due_date": "2026-03-09",
+      "status": "Fullført"
+    },
+    {
+      "id": "M3",
+      "description": "Forskningsdesign og metode fastsatt",
+      "due_date": "2026-03-09",
+      "status": "Fullført"
+    },
+    {
+      "id": "M4",
+      "description": "Datagrunnlag (simulerte data) ferdigstilt",
+      "due_date": "2026-04-07",
+      "status": "Planlagt"
+    },
+    {
+      "id": "M5",
+      "description": "Kvantitativ analyse gjennomført",
+      "due_date": "2026-04-27",
+      "status": "Planlagt"
+    },
+    {
+      "id": "M6",
+      "description": "Resultater tolket og diskutert",
+      "due_date": "2026-05-07",
+      "status": "Planlagt"
+    },
+    {
+      "id": "M7",
+      "description": "Fullstendig oppgaveutkast ferdigstilt",
+      "due_date": "2026-05-21",
+      "status": "Planlagt"
+    },
+    {
+      "id": "M8",
+      "description": "Endelig innlevering",
+      "due_date": "2026-05-31",
+      "status": "Planlagt"
+    }
+  ],
+  "phases": [
+    {
+      "name": "Prosjektledelse og planlegging",
+      "start": "2026-01-12",
+      "end": "2026-02-18",
+      "status": "Fullført"
+    },
+    {
+      "name": "Teori og metode",
+      "start": "2026-02-09",
+      "end": "2026-03-09",
+      "status": "Fullført"
+    },
+    {
+      "name": "Data og analyse",
+      "start": "2026-03-09",
+      "end": "2026-04-27",
+      "status": "Pågår"
+    },
+    {
+      "name": "Resultater og rapport",
+      "start": "2026-04-27",
+      "end": "2026-05-31",
+      "status": "Planlagt"
+    }
+  ]
+}

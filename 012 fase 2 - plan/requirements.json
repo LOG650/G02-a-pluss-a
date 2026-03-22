@@ -1,0 +1,44 @@
+[
+  {
+    "id": "R1",
+    "description": "Analysen skal baseres på kvantitative metoder innen logistikk.",
+    "type": "Funksjonelt",
+    "priority": "Høy",
+    "owner": "Prosjektledere"
+  },
+  {
+    "id": "R2",
+    "description": "Beslutningsmodellen skal være etterprøvbar og tydelig dokumentert.",
+    "type": "Funksjonelt",
+    "priority": "Høy",
+    "owner": "Prosjektledere"
+  },
+  {
+    "id": "R3",
+    "description": "Resultatene skal kunne sammenlignes mot en definert baseline.",
+    "type": "Funksjonelt",
+    "priority": "Høy",
+    "owner": "Prosjektledere"
+  },
+  {
+    "id": "R4",
+    "description": "Bruk av kunstig intelligens skal være transparent og etisk forsvarlig.",
+    "type": "Etisk",
+    "priority": "Middels",
+    "owner": "Prosjektledere"
+  },
+  {
+    "id": "R5",
+    "description": "Analysen skal være etterprøvbar med tydelig dokumentasjon av data og antakelser.",
+    "type": "Kvalitet",
+    "priority": "Høy",
+    "owner": "Prosjektledere"
+  },
+  {
+    "id": "R6",
+    "description": "Sluttleveransen skal være en sammenhengende akademisk rapport.",
+    "type": "Leveranse",
+    "priority": "Høy",
+    "owner": "Prosjektledere"
+  }
+]
