@@ -2,6 +2,7 @@
   {
     "id": "RI1",
     "risk": "Simulerte data blir lite realistiske",
+    "type": "Metodisk",
     "probability": "Middels",
     "impact": "Høy",
     "mitigation": "Dokumentere datagenerator, kalibrere sesongvariasjon mot litteratur.",
@@ -11,6 +12,7 @@
   {
     "id": "RI2",
     "risk": "Uklart valg mellom servicegrad-constraint og stockout-kostnader",
+    "type": "Metodisk",
     "probability": "Middels",
     "impact": "Middels",
     "mitigation": "Låse valg innen M3, skrive tydelig målfunkjon.",
@@ -20,6 +22,7 @@
   {
     "id": "RI3",
     "risk": "Kostnadsparametere blir svakt begrunnet",
+    "type": "Metodisk",
     "probability": "Middels",
     "impact": "Middels",
     "mitigation": "Forankre parametere i litteratur, definere intervall.",
@@ -29,6 +32,7 @@
   {
     "id": "RI4",
     "risk": "Tidsmangel i data- og analysefasen",
+    "type": "Prosjekt",
     "probability": "Middels",
     "impact": "Høy",
     "mitigation": "Prioritere kjerneleveranser (baseline + modell).",
@@ -38,6 +42,7 @@
   {
     "id": "RI5",
     "risk": "Tekniske problemer i implementering (Excel/Python)",
+    "type": "Teknisk",
     "probability": "Middels",
     "impact": "Middels",
     "mitigation": "Små iterasjoner, versjonskontroll, jevnlig testkjøring.",

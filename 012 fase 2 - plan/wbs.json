@@ -2,44 +2,48 @@
   {
     "id": "1.0",
     "name": "Prosjektledelse og plan",
+    "type": "Phase",
     "children": [
-      { "id": "1.1", "name": "Prosjektavklaring" },
-      { "id": "1.2", "name": "Godkjent proposal (M1)" },
-      { "id": "1.3", "name": "Prosjektstyringsplan" }
+      { "id": "1.1", "name": "Prosjektavklaring", "type": "Task" },
+      { "id": "1.2", "name": "Godkjent proposal (M1)", "type": "Task" },
+      { "id": "1.3", "name": "Prosjektstyringsplan", "type": "Task" }
     ]
   },
   {
     "id": "2.0",
     "name": "Teori og metode",
+    "type": "Phase",
     "children": [
-      { "id": "2.1", "name": "Litteraturgrunnlag" },
-      { "id": "2.2", "name": "Teoriramme" },
-      { "id": "2.3", "name": "Metode/forskningsdesign (M3)" }
+      { "id": "2.1", "name": "Litteraturgrunnlag", "type": "Task" },
+      { "id": "2.2", "name": "Teoriramme", "type": "Task" },
+      { "id": "2.3", "name": "Metode/forskningsdesign (M3)", "type": "Task" }
     ]
   },
   {
     "id": "3.0",
     "name": "Data og analyse",
+    "type": "Phase",
     "children": [
-      { "id": "3.1", "name": "Dataspesifikasjon" },
-      { "id": "3.2", "name": "Datagrunnlag ferdigstilt (M4)" },
-      { "id": "3.3", "name": "Datadokumentasjon" },
-      { "id": "3.4", "name": "Baseline-løsning" },
-      { "id": "3.5", "name": "Kvantitativ modell" },
-      { "id": "3.6", "name": "Analysepakke (M5)" },
-      { "id": "3.7", "name": "Sensitivitetsanalyse" }
+      { "id": "3.1", "name": "Dataspesifikasjon", "type": "Task" },
+      { "id": "3.2", "name": "Datagrunnlag ferdigstilt (M4)", "type": "Task" },
+      { "id": "3.3", "name": "Datadokumentasjon", "type": "Task" },
+      { "id": "3.4", "name": "Baseline-løsning", "type": "Task" },
+      { "id": "3.5", "name": "Kvantitativ modell", "type": "Task" },
+      { "id": "3.6", "name": "Analysepakke (M5)", "type": "Task" },
+      { "id": "3.7", "name": "Sensitivitetsanalyse", "type": "Task" }
     ]
   },
   {
     "id": "4.0",
     "name": "Resultater og rapport",
+    "type": "Phase",
     "children": [
-      { "id": "4.1", "name": "Resultatpresentasjon" },
-      { "id": "4.2", "name": "Diskusjon og anbefaling (M6)" },
-      { "id": "4.3", "name": "Fullstendig oppgaveutkast (M7)" },
-      { "id": "4.4", "name": "Reproduserbarhet/vedlegg" },
-      { "id": "4.5", "name": "Kvalitetssikret sluttrapport" },
-      { "id": "4.6", "name": "Endelig innlevering (M8)" }
+      { "id": "4.1", "name": "Resultatpresentasjon", "type": "Task" },
+      { "id": "4.2", "name": "Diskusjon og anbefaling (M6)", "type": "Task" },
+      { "id": "4.3", "name": "Fullstendig oppgaveutkast (M7)", "type": "Task" },
+      { "id": "4.4", "name": "Reproduserbarhet/vedlegg", "type": "Task" },
+      { "id": "4.5", "name": "Kvalitetssikret sluttrapport", "type": "Task" },
+      { "id": "4.6", "name": "Endelig innlevering (M8)", "type": "Task" }
     ]
   }
 ]
