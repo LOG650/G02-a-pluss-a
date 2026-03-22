@@ -1,0 +1,7 @@
+Leverandør,Kategori,Ledetid (dager),Ledetid varians,Kapasitet (maks/måned),Enhetspris,Fast bestillingskostnad,Risiko (stockout),Transportkostnad
+Forlagssentralen,Norsk krim,3,Lav,800,185,250,Lav,15
+Ekstern leverandør,Norsk krim,10,Middels,400,155,450,Middels,85
+Forlagssentralen,Norske barnebøker,3,Lav,600,145,250,Lav,15
+Ekstern leverandør,Norske barnebøker,12,Høy,300,120,500,Høy,95
+Forlagssentralen,Engelsk fiksjon,5,Middels,500,210,300,Lav,20
+Ekstern leverandør,Engelsk fiksjon,8,Lav,1200,135,600,Middels,120
