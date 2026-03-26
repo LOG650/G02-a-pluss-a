@@ -1,0 +1,37 @@
+År,Måned,Startlager,Etterspørsel,Salg,Restordre (stockout),Sluttlager,Svinn,Kategori,Dato_Sortering,Kostnad_Lagerkostnad,Kostnad_Stockout-kostnad,Bestilt_kvantum,Dato_bestilt,Dato_mottatt,Leverandør_navn,Supp_Ledetid (dager),Supp_Ledetid varians,Supp_Kapasitet (maks/måned),Supp_Enhetspris,Supp_Fast bestillingskostnad,Supp_Risiko (stockout),Supp_Transportkostnad
+2025,Januar,350,523,342,181,0,8,Engelsk fiksjon,2025-01-01,10,120,311,2025-01-13,2025-02-20,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,Januar,411,247,247,0,153,11,Norske barnebøker,2025-01-01,6,75,399,2025-01-14,2025-02-22,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Januar,510,332,332,0,175,3,Norsk krim,2025-01-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Februar,552,237,237,0,299,16,Norske barnebøker,2025-02-01,6,75,0,,,,3,Lav,600,145,250,Lav,15
+2025,Februar,311,372,303,69,0,8,Engelsk fiksjon,2025-02-01,10,120,428,2025-02-14,2025-03-24,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,Februar,525,335,335,0,187,3,Norsk krim,2025-02-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Mars,428,263,263,0,154,11,Engelsk fiksjon,2025-03-01,10,120,393,2025-03-04,2025-04-26,Forlagssentralen,5,Middels,500,210,300,Lav,20
+2025,Mars,299,260,260,0,30,9,Norske barnebøker,2025-03-01,6,75,311,2025-03-07,2025-04-23,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Mars,587,382,382,0,201,4,Norsk krim,2025-03-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,April,547,373,373,0,162,12,Engelsk fiksjon,2025-04-01,10,120,365,2025-04-02,2025-05-28,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,April,584,365,365,0,216,3,Norsk krim,2025-04-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,April,341,230,230,0,102,9,Norske barnebøker,2025-04-01,6,75,374,2025-04-13,2025-05-22,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Mai,476,286,286,0,175,15,Norske barnebøker,2025-05-01,6,75,355,2025-05-15,2025-06-22,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Mai,527,245,245,0,269,13,Engelsk fiksjon,2025-05-01,10,120,0,,,,5,Middels,500,210,300,Lav,20
+2025,Mai,577,417,417,0,156,4,Norsk krim,2025-05-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Juni,534,416,416,0,115,3,Norsk krim,2025-06-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Juni,530,257,257,0,257,16,Norske barnebøker,2025-06-01,6,75,0,,,,3,Lav,600,145,250,Lav,15
+2025,Juni,269,252,252,0,12,5,Engelsk fiksjon,2025-06-01,10,120,354,2025-06-07,2025-07-18,Forlagssentralen,5,Middels,500,210,300,Lav,20
+2025,Juli,257,363,250,113,0,7,Norske barnebøker,2025-07-01,6,75,305,2025-07-05,2025-08-22,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Juli,366,439,358,81,0,8,Engelsk fiksjon,2025-07-01,10,120,431,2025-07-10,2025-08-26,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,Juli,569,430,430,0,136,3,Norsk krim,2025-07-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,August,590,485,485,0,102,3,Norsk krim,2025-08-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,August,305,330,297,33,0,8,Norske barnebøker,2025-08-01,6,75,326,2025-08-13,2025-09-22,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,August,431,479,420,59,0,11,Engelsk fiksjon,2025-08-01,10,120,396,2025-08-08,2025-09-20,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,September,326,284,284,0,33,9,Norske barnebøker,2025-09-01,6,75,346,2025-09-12,2025-10-24,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,September,396,270,270,0,117,9,Engelsk fiksjon,2025-09-01,10,120,366,2025-09-06,2025-10-25,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,September,551,402,402,0,146,3,Norsk krim,2025-09-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Oktober,519,413,413,0,103,3,Norsk krim,2025-10-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Oktober,379,349,349,0,20,10,Norske barnebøker,2025-10-01,6,75,311,2025-10-02,2025-11-28,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,Oktober,483,195,195,0,276,12,Engelsk fiksjon,2025-10-01,10,120,0,,,,5,Middels,500,210,300,Lav,20
+2025,November,331,274,274,0,49,8,Norske barnebøker,2025-11-01,6,75,308,2025-11-01,2025-12-25,Forlagssentralen,3,Lav,600,145,250,Lav,15
+2025,November,276,287,269,18,0,7,Engelsk fiksjon,2025-11-01,10,120,336,2025-11-10,2025-12-21,Forlagssentralen,5,Middels,500,210,300,Lav,20
+2025,November,455,362,362,0,91,2,Norsk krim,2025-11-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Desember,464,508,461,47,0,3,Norsk krim,2025-12-01,8,95,0,,,,3,Lav,800,185,250,Lav,15
+2025,Desember,336,382,327,55,0,9,Engelsk fiksjon,2025-12-01,10,120,359,2025-12-01,2025-13-25,Ekstern leverandør,8,Lav,1200,135,600,Middels,120
+2025,Desember,357,383,348,35,0,9,Norske barnebøker,2025-12-01,6,75,346,2025-12-02,2025-13-25,Forlagssentralen,3,Lav,600,145,250,Lav,15
