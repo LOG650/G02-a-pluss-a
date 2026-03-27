@@ -147,8 +147,9 @@ Avgrensing er en svært viktig måte å snevre inn en problemstilling. Her forkl
 
 ### 1.4 Antagelser
 Antagelser er en måte å presisere en problemstilling på. En antagelser er ikke det samme som avgrensing. En avgrensing snevrer inn omfanget, mens en antagelse presiserer situasjonen som analyseres. Man må forklare hvorfor man har tatt antagelsen, og hvilke konsekvenser den får på aktualiteten til analysen.
-«Vi antar at antall innkommende ordrer er Poissonfordelt fordi…dette gjør at…»
-«Vi antar at vi kan se vekk fra effekten av prisene i Sverige fordi…dette gjør at…»
+- **Datakvalitet:** Det antas at datakvaliteten i det utleverte datasettet er tilfredsstillende og har blitt gjenstand for intern kvalitetssikring hos leverandøren før utlevering. Dette er nødvendig da det ikke foreligger direkte kilder eller dokumentasjon som beskriver feilrater eller nøyaktighetsgrad i rådataene.
+- «Vi antar at antall innkommende ordrer er Poissonfordelt fordi…dette gjør at…»
+- «Vi antar at vi kan se vekk fra effekten av prisene i Sverige fordi…dette gjør at…»
 
 ---
 
@@ -209,6 +210,9 @@ Eksempel:
 
 ### 5.2 Data
 Her beskriver du hvilke data du har brukt, hvordan du har fått tak i de og hvordan leser evt. kan få tak i dataene om nødvendig.
+
+**Datakvalitet:**
+Da det ikke foreligger eksplisitt dokumentasjon på datakvaliteten fra kilden, legges det til grunn en antagelse om at dataene er gjenstand for intern kvalitetssikring hos leverandøren før utlevering. Eventuelle inkonsistenser oppdaget under vaskeprosessen (som datoformater og manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag.
 
 Hvordan er data samlet inn:
 - Tidsperiode

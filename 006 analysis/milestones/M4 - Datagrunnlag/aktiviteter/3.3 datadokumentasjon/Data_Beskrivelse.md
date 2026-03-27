@@ -28,3 +28,9 @@ Figurene i denne mappen dokumenterer datakvaliteten og de viktigste trendene fø
 - **Etterspørsel:** Den underliggende etterspørselen i markedet.
 - **Lagerbeholdning:** Antall enheter tilgjengelig på lager ved dagens slutt.
 - **Kostnadsparametere:** Enhetskostnader, lagerholdskostnad og mangelkostnad.
+
+## 5. Datakvalitet og antagelser
+Siden det ikke foreligger direkte kilder som beskriver datakvaliteten i detalj, er følgende antagelser lagt til grunn for analysen:
+- **Kvalitetssikring fra kilde:** Det antas at datasettet er gjenstand for intern kvalitetssikring hos leverandøren før utlevering.
+- **Konsistens:** Dataene anses som representative for de faktiske forholdene i den gitte perioden, med unntak av de avvikene som er håndtert i vaskeprosessen (se avsnitt 2).
+- **Fullstendighet:** Det antas at det simulerte datasettet inneholder alle relevante variabler som kreves for å gjennomføre en meningsfull analyse av etterspørsel og lagerstyring.
