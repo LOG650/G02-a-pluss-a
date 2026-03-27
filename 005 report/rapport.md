@@ -223,46 +223,62 @@ For å validere datagrunnlaget og avdekke mønstre før analyse, er det gjennomf
 #### Kategori- og etterspørselsfordeling
 Figur 3 viser den totale fordelingen mellom kategoriene, noe som gir innsikt i hvilke segmenter som har størst volum.
 
-<img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 3: Kategorifordeling totalt" style="width: 70%; height: auto;">
-
-*Figur 3: Fordeling av salgsvolum per kategori.*
+<div align="center">
+  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 3: Kategorifordeling totalt" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 3: Fordeling av salgsvolum per kategori.</em>
+</div>
 
 #### Etterspørsel, salg og lager
 Figur 1 og 2 illustrerer forholdet mellom den underliggende etterspørselen og det faktiske salget (som begrenses av lagerbeholdningen). Dette viser tydelig perioder med "stockouts".
 
-<img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+<div align="center">
+  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid.</em>
+</div>
 
-*Figur 1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid.*
-
-<img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 2: Stockouts over tid" style="width: 70%; height: auto;">
-
-*Figur 2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager.*
+<div align="center">
+  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 2: Stockouts over tid" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager.</em>
+</div>
 
 #### Kostnader og svinn
 For å forstå de økonomiske konsekvensene av lagerstyringen, er det analysert kostnads-tradeoffs og svinn i figur 4 og 5.
 
-<img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 4: Kostnads-tradeoff" style="width: 70%; height: auto;">
+<div align="center">
+  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 4: Kostnads-tradeoff" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 4: Analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
+</div>
 
-*Figur 4: Analyse av forholdet mellom lagerholdskostnader og mangelkostnader.*
-
-<img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 5: Svinn total oversikt" style="width: 70%; height: auto;">
-
-*Figur 5: Total oversikt over registrert svinn.*
+<div align="center">
+  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 5: Svinn total oversikt" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 5: Total oversikt over registrert svinn.</em>
+</div>
 
 #### Sesongvariasjoner og trender
 Figur 7, 8 og 9 dokumenterer de historiske trendene og sesongmønstrene som er kritiske for nøyaktig prognosebygging.
 
-<img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 7: Totalt salg per år" style="width: 70%; height: auto;">
+<div align="center">
+  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 7: Totalt salg per år" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 7: Utvikling i totalt salgsvolum per år.</em>
+</div>
 
-*Figur 7: Utvikling i totalt salgsvolum per år.*
+<div align="center">
+  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 8: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger." style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 8: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger.</em>
+</div>
 
-<img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 8: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger." style="width: 70%; height: auto;">
-
-*Figur 8: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger.*
-
-<img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 9: Sesongvariasjoner salg" style="width: 70%; height: auto;">
-
-*Figur 9: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene.*
+<div align="center">
+  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 9: Sesongvariasjoner salg" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 9: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene.</em>
+</div>
 
 Hvordan er data samlet inn:
 - Tidsperiode: Datasettet dekker perioden fra 2022 til 2025.
