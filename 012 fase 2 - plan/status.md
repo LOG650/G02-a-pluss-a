@@ -1,6 +1,6 @@
 # Statusrapport - LOG650 Gruppe A + A
 
-**Rapportdato:** 2026-03-22  
+**Rapportdato:** 2026-03-27  
 **Prosjekt:** Lagerstyring og beslutningsstøtte i logistikk (ARK Bokhandel AS)  
 **Prosjektfase:** Fase 3 - Data og analyse  
 **Rapportør:** Prosjektledelsen (Astrid & Anne Helene)
@@ -10,10 +10,10 @@
 ## 1. Overordnet Status (Health Check)
 | Område | Status | Kommentar |
 | :--- | :---: | :--- |
-| **Fremdrift (Tid)** | 🟢 | Fase 2 fullført på plan. Fase 3 er i gang. |
-| **Omfang (Scope)** | 🟢 | Problemstilling og metodisk rammeverk er låst (M1-M3). |
+| **Fremdrift (Tid)** | 🟢 | M4 fullført før plan. Fase 3.4 påbegynt. |
+| **Omfang (Scope)** | 🟢 | Datagrunnlag låst og verifisert (M4). |
 | **Ressurser** | 🟢 | God kapasitet og effektiv arbeidsfordeling i gruppen. |
-| **Risiko** | 🟡 | Kritisk fase for datagenerering (M4) er påbegynt. |
+| **Risiko** | 🟢 | Datakvalitet (RI1) er bekreftet gjennom M4-leveransen. |
 
 ---
 
@@ -31,7 +31,7 @@ gantt
     M3 - Forskningsdesign :milestone, 2026-03-09, 0d
     section Fase 3 - Analyse
     Data og analyse (PÅGÅR) :active, 2026-03-09, 2026-04-27
-    M4 - Data ferdigstilt :milestone, 2026-04-07, 0d
+    M4 - Data ferdigstilt :done, milestone, 2026-03-27, 0d
     M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
     Resultater og rapport : 2026-04-27, 2026-05-31
@@ -43,21 +43,19 @@ gantt
 ---
 
 ## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Milepæl M2:** Litteraturgrunnlag og teoriramme ferdigstilt. Definert sentrale begreper som lagerholdskostnader og servicegrad.
-- [x] **Milepæl M3:** Forskningsdesign og metode fastsatt. Valg av simuleringsmodell og evalueringskriterier er låst.
-- [x] **Intern Fagfellevurdering:** Gjennomført kameratsjekk av metodekapittelet.
-- [x] **Oppsett av analyseverktøy:** Verifisert Python/Excel-miljø for simulering.
+- [x] **Milepæl M4:** Datagrunnlag (simulerte data) ferdigstilt og verifisert.
+- [x] **Fase 3.4 - Baseline-løsning:** Etablert baseline-parametere (s, Q) for alle tre bokkategorier (Engelsk fiksjon, Norsk krim, Norske barnebøker).
+- [x] **Dokumentasjon:** Opprettet `006 analysis\Baseline_Resultater.md` med oversikt over baseline-tall og kostnadsparametere i NOK.
+- [x] **Analyseverktøy:** Utviklet Python-skript for sammenligning mellom baseline og optimalisert modell.
 
 ---
 
 ## 3. Aktiviteter i arbeid (Neste periode)
-- **Ferdigstille Milepæl M4 (Frist: 07.04.26):**
-    - Utvikle datagenerator for simulerte salgsdata.
-    - Legge inn sesongvariasjoner (skolestart, jul, påske).
-    - Gjennomføre plausibilitetssjekk av generert data mot realistiske bokhandeltall.
-- **Påbegynne Fase 3.4 - Baseline-løsning:**
-    - Implementere enkel bestillingsregel (historisk snitt) for sammenligning.
-- **Dokumentasjon:** Oppdatere datadokumentasjon og antakelser løpende.
+- **Milepæl M5 - Kvantitativ analyse (Påbegynnes):**
+    - Utvikle stokastisk optimaliseringsmodell (EOQ + sikkerhetslager-optimalisering).
+    - Gjennomføre sammenlignende analyse mellom baseline og optimalisert modell for alle kategorier.
+    - Beregne potensielle kostnadsbesparelser og forbedring i servicegrad.
+- **Rapportering:** Starte på utkastet til analysedelen i `rapport.md`.
 
 ---
 
@@ -65,22 +63,20 @@ gantt
 | ID | Sak | Status | Ansvarlig | Frist |
 | :--- | :--- | :--- | :--- | :--- |
 | S1 | Valg av stockout-kostnad vs. servicegrad | **Løst** | Begge | - |
-| S2 | Fastsette realistiske kostnadsparametere | Pågår | Begge | 01.04.26 |
-| S3 | Kalibrering av sesongvariasjoner i datagenerator | Pågår | Begge | 07.04.26 |
-| S4 | Optimalisering av WBS/Gantt i MS Project | Fullført | Begge | - |
+| S2 | Fastsette realistiske kostnadsparametere | **Løst** | Begge | - |
+| S3 | Kalibrering av sesongvariasjoner i datagenerator | **Løst** | Begge | - |
+| S4 | Optimalisering av WBS/Gantt i MS Project | **Fullført** | Begge | - |
 
 ---
 
 ## 5. Risikovurdering
-Det største fokusområdet nå er **RI1: Datakvalitet**. Siden vi benytter simulerte data, er vi avhengige av at disse er robuste nok til å gi meningsfulle resultater i den kvantitative modellen. 
-- *Tiltak:* Vi planlegger en ekstra intern review av datagrunnlaget rett før M4 for å sikre validitet.
+Risikoen for datakvalitet (**RI1**) er nå betydelig redusert etter fullføring av M4. Fokus flyttes nå til **RI2: Modellkompleksitet** – sikre at optimaliseringsmodellen er robust, men samtidig enkel nok til å tolkes i rapporten.
 
 ---
 
 ## 6. Ressursbruk og økonomi
-- Arbeidet følger estimert tidsbruk for Fase 3.
-- Begge prosjektmedlemmer har avsatt tilstrekkelig tid i de kommende to ukene for å nå M4.
-- Ingen eksterne kostnader påløpt.
+- Arbeidet ligger foran skjema for Fase 3.
+- God flyt i samarbeidet; ingen flaskehalser identifisert.
 
 ---
 *Neste statusmøte: Mandag 2026-03-30 kl. 12:00 på Teams.*
