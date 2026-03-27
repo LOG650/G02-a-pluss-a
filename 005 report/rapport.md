@@ -98,6 +98,17 @@ Dato:      
 ---
 
 ## 3.0 Teori
+For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og trender, kreves teorier som kan dekomponere tidsserier. Tradisjonelle modeller som SARIMA (Seasonal AutoRegressive Integrated Moving Average) krever stasjonære data og ofte manuell parameterinnstilling, noe som kan være utfordrende med data preget av kraftige salgstopper og uregelmessige hendelser.
+
+I nyere tid har additive modeller som Facebooks "Prophet" vunnet frem som et robust alternativ. Teorien bak Prophet baserer seg på å modellere tidsserien som en sum av tre hovedkomponenter:
+$y(t) = g(t) + s(t) + h(t) + \epsilon_t$
+Hvor:
+- $g(t)$ representerer trend (ikke-periodiske endringer i etterspørselen).
+- $s(t)$ representerer sesongvariasjoner (daglig, ukentlig, årlig).
+- $h(t)$ representerer effekten av helligdager eller spesielle hendelser (f.eks. påske).
+- $\epsilon_t$ er feilleddet (støy som ikke fanges opp av modellen).
+
+Denne teorien danner grunnlaget for vår tilnærming til å forutse fremtidig etterspørsel basert på de historiske mønstrene identifisert i datagrunnlaget.
 
 ---
 
@@ -108,6 +119,21 @@ Dato:      
 ## 5.0 Metode og data
 
 ### 5.1 Metode
+For dette prosjektet er det valgt å benytte **Prophet** som hovedmodell for etterspørselsprognosering. Valget av denne modellen er basert på en drøfting av behovene i bokbransjen og datasettets egenskaper:
+
+**1. Robusthet mot sesongvariasjoner:**
+Dataene viser sterke sesongsvingninger på tvers av alle kategorier. Prophet er designet for å håndtere sesongvariasjoner på flere nivåer (månedlig, årlig) uten behov for omfattende datatransformasjoner som differensiering.
+
+**2. Eksplisitt håndtering av helligdager (Holiday Effects):**
+Salgsmønstrene for spesielt "Norsk krim" og "Norske barnebøker" viser tydelige topper knyttet til påske, sommerferie og jul. Prophet tillater direkte inkludering av disse effektene, noe som er kritisk for å unngå "stockouts" i perioder med unormalt høy etterspørsel.
+
+**3. Automatisk trenddeteksjon:**
+Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant for å fange opp skift i popularitet for ulike sjangre, for eksempel økt etterspørsel etter engelsk fiksjon drevet av sosiale medier (BookTok).
+
+**4. Prediksjon på faktisk etterspørsel:**
+Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer vi at modellen lærer det reelle behovet i markedet, uavhengig av historiske lagerbegrensninger.
+
+Metoden innebærer å trene modellen på historiske salgsdata (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
 
 ### 5.2 Data
 Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lagerdata for ARK Bokhandel AS. Dataene dekker tre hovedkategorier av bøker med ulike etterspørselsmønstre:
@@ -175,6 +201,19 @@ Da det ikke foreligger eksplisitt dokumentasjon på datakvaliteten fra kilden, l
 ---
 
 ## 7.0 Analyse
+Gjennomgangen av det vaskede datasettet (2021-2025) har avdekket distinkte mønstre for de tre bokkategoriene som er kritiske for valget av prognosemodell:
+
+**Engelsk fiksjon:**
+Denne kategorien preges av en relativt stabil etterspørsel gjennom året, men med markerte topper i **juni/juli** (sommerlesing) og **desember** (julesalg). Historikken viser hyppige og omfattende restordrer (stockouts), spesielt i juni 2021 hvor etterspørselen oversteg salget med nesten 300 enheter. Dette indikerer et stort forbedringspotensial ved mer nøyaktige prognoser.
+
+**Norsk krim:**
+Krim-kategorien har de mest utpregede sesongtoppene. Toppene er i stor grad knyttet til **juli/august** (feriekrim) og **desember**. I tillegg ser vi en merkbar økning rundt påsketider (mars/april). Dataene viser at etterspørselen ofte bikker 500 enheter i disse periodene, og det er identifisert en svak økende trend i totalvolumet mot slutten av perioden (2024-2025).
+
+**Norske barnebøker:**
+Barnebøker viser en jevn og høy frekvens i etterspørselen, men med faste topper i **august** (skolestart) og **desember**. En interessant observasjon er gjentakende stockouts i august-perioden på tvers av flere år, noe som tyder på at nåværende bestillingspraksis konsekvent undervurderer effekten av skolestart.
+
+**Oppsummering av sesongvariasjoner:**
+Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å fange opp de brede sommertoppene og de spisse juletoppene. Ved å benytte en modell som dekomponerer disse sesongene, kan man redusere de observerte stockout-periodene betydelig.
 
 ---
 
