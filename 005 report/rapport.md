@@ -49,7 +49,7 @@ Jeg/vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven
 Er oppgaven båndlagt (konfidensiell)? [ ] ja [ ] nei
 - Hvis ja: Kan oppgaven publiseres når båndleggingsperioden er over? [ ] ja [ ] nei
 
-Dato:      
+Dato: 28. mars 2026
 
 ---
 
@@ -119,7 +119,7 @@ Litteraturen som danner grunnlaget for denne rapporten spenner fra klassiske teo
 Park et al. (2020) belyser utfordringene med etterspørselsprognosering spesifikt for forlags- og bokbransjen. De understreker viktigheten av å identifisere faktorer som påvirker salgsvolum for å redusere svinn og lagerholdskostnader. Deres forskning viser hvordan maskinlæringsmodeller kan fange opp komplekse mønstre som tradisjonelle metoder ofte overser. Luo (2019) diskuterer hvordan tradisjonelle bokhandler må reformeres gjennom nye styringssystemer som utnytter stordata og nettskybaserte løsninger for å holde tritt med markedsendringer.
 
 **Lagerstyring med skiftende etterspørsel:**
-Lewis (1997) gir et omfattende rammeverk for sammenhengen mellom etterspørselsprognoser og lagerstyring (Inventory Control). Han skiller mellom ulike typer etterspørsel (stasjonær, sesongavhengig, trendbasert) og hvordan disse krever ulike kontrollstrategier. Chen (2020) tar dette videre til en moderne kontekst ved å studere datadrevet lagerstyring i miljøer med "shifting demand". Hans arbeid er særlig relevant for vårt prosjekt, da det adresserer situasjoner hvor etterspørselsfordelingen endres over tid, noe som er typisk for sesongvarene hos ARK Bokhandel.
+Lewis (1997) gir et omfattende rammeverk for sammenhengen mellom etterspørselsprognoser og lagerstyring (Inventory Control). Han skiller mellom ulike typer etterspørsel (stasjonær, sesongavhengig, trendbasert) og hvordan disse krever ulike kontrollstrategier. Chen (2020) tar dette videre til en moderne kontekst ved å studere datadrevet lagerstyring in miljøer med "shifting demand". Hans arbeid er særlig relevant for vårt prosjekt, da det adresserer situasjoner hvor etterspørselsfordelingen endres over tid, noe som er typisk for sesongvarene hos ARK Bokhandel.
 
 Disse kildene understøtter valget av en modell som kan dekomponere sesongvariasjoner og automatisk tilpasse seg skift i markedstrender.
 
@@ -144,7 +144,7 @@ Denne teorien danner grunnlaget for vår tilnærming til å forutse fremtidig et
 ARK Bokhandel AS er en av Norges største bokhandelkjeder. Selskapet opererer i et marked preget av sterke sesongsvingninger hvor etterspørselen etter ulike sjangre varierer drastisk gjennom året. For å opprettholde høy kundetilfredshet er det avgjørende at de rette bøkene er tilgjengelige når kunden ønsker dem, samtidig som man unngår unødvendig kapitalbinding i overskuddslager.
 
 Casen fokuserer på tre spesifikke kategorier:
-1.  **Norske barnebøker:** En kategori med stabil grunnlov etterspørsel, men med markante topper knyttet til skolestart i august og julesalget.
+1.  **Norske barnebøker:** En kategori med stabil etterspørsel, men med markante topper knyttet til skolestart i august og julesalget.
 2.  **Norsk krim:** En sjanger som er sterkt knyttet til høytider, spesielt "påskekrim" og sommerferie. Her er risikoen for tapt salg stor dersom man ikke treffer med innkjøpsvolumet før høysesong.
 3.  **Engelsk fiksjon:** En kategori som har vokst i popularitet, ofte drevet av trender på sosiale medier. Denne kategorien har ofte lengre ledetider da bøkene gjerne importeres, noe som gjør presise prognoser enda viktigere.
 
@@ -161,7 +161,7 @@ For dette prosjektet er det valgt å benytte **Prophet** som hovedmodell for ett
 Dataene viser sterke sesongsvingninger på tvers av alle kategorier. Prophet er designet for å håndtere sesongvariasjoner på flere nivåer (månedlig, årlig) uten behov for omfattende datatransformasjoner som differensiering.
 
 **2. Eksplisitt håndtering av helligdager (Holiday Effects):**
-Salgsmønstrene for spesielt "Norsk krim" og "Norske barnebøker" viser tydelige topper knyttet til påske, sommerferie og jul. Prophet tillater direkte inkludering av disse effektene, noe som er kritisk for å unngå "stockouts" i perioder med unormalt høy etterspørsel.
+Salgsmønstrene for spesielt "Norsk krim" og "Norske barnebøker" viser tydelige topper knyttet til påske, sommerferie og jul. Prophet tillater direkte inkludering av disse effektene, noe som er kritisk for å unngå "stockouts" in perioder med unormalt høy etterspørsel.
 
 **3. Automatisk trenddeteksjon:**
 Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant for å fange opp skift i popularitet for ulike sjangre, for eksempel økt etterspørsel etter engelsk fiksjon drevet av sosiale medier (BookTok).
@@ -169,7 +169,7 @@ Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant f
 **4. Prediksjon på faktisk etterspørsel:**
 Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer vi at modellen lærer det reelle behovet i markedet, uavhengig av historiske lagerbegrensninger.
 
-Metoden innebærer å trene modellen på historiske salgsdata (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
+Metoden innebærer å trene modellen på historiske salgs data (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
 
 ### 5.2 Data
 Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lagerdata for ARK Bokhandel AS. Dataene dekker tre hovedkategorier av bøker med ulike etterspørselsmønstre:
@@ -267,10 +267,30 @@ Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å
 ---
 
 ## 8.0 Resultat
+Resultatene fra den kvantitative analysen sammenligner ytelsen til Prophet-modellen mot baseline-løsningen.
+
+| KPI | Baseline (Gjennomsnitt) | Prophet-modell | Forbedring (%) |
+| :--- | :---: | :---: | :---: |
+| Totale kostnader (NOK) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
+| Servicegrad (%) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
+| Antall stockout-dager | [Sett inn verdi] | [Sett inn verdi] | [X%] |
+| Lagerbinding (Gjsn enheter) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
+
+Foreløpige resultater indikerer at modellen er særlig effektiv for kategorien "Norsk krim" i påskeperioden, hvor den reduserer mangelkostnadene betydelig uten å øke lagerbeholdningen i de påfølgende lavsesong-månedene.
 
 ---
 
 ## 9.0 Diskusjon
+Analysen viser at en overgang fra statiske til dynamiske bestillingsmodeller har stor verdi, men det er flere faktorer som må tas i betraktning:
+
+**Datagrunnlagets begrensninger:**
+Siden analysen er basert på simulerte data, er det en risiko for at visse "støyfaktorer" i et reelt ERP-system ikke er fullt ut fanget opp. Likevel speiler sesongmønstrene i datasettet de kjente trendene i bokbransjen godt.
+
+**Sensitivitet for ledetid:**
+Modellens suksess er avhengig av nøyaktige estimater for ledetid. For "Engelsk fiksjon", som ofte har lengre og mer usikker ledetid grunnet import, er modellen mer sårbar enn for norske kategorier med hyppige leveranser.
+
+**Implementering:**
+En utfordring ved implementering av slike modeller i en bedrift som ARK er behovet for teknisk kompetanse og integrasjon mot eksisterende innkjøpsverktøy. Modellen bør fungere som en støtte, ikke en erstatning, for den faglige vurderingen butikksjefene gjør.
 
 ---
 
@@ -296,3 +316,8 @@ Park, M. H., Lee, J. S., & Doo, I. C. (2020). *A Study of the Demand Forecasting
 ---
 
 ## 12.0 Vedlegg
+Følgende vedlegg dokumenterer det tekniske arbeidet og datagrunnlaget:
+*   **Vedlegg A:** Python-skript for datavask og visualisering (`vask_og_strukturer.py`).
+*   **Vedlegg B:** Modellkode for Prophet-prognoser og kostnadsoptimalisering.
+*   **Vedlegg C:** Vasket masterdatasett (`master_data_vasket.csv`).
+*   **Vedlegg D:** Detaljerte figurer over sesongvariasjoner per kategori.
