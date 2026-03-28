@@ -180,6 +180,9 @@ Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lage
 **Datakvalitet:**
 Da det ikke foreligger eksplisitt dokumentasjon på datakvaliteten fra kilden, legges det til grunn en antagelse om at dataene er gjenstand for intern kvalitetssikring hos leverandøren før utlevering. Eventuelle inkonsistenser oppdaget under vaskeprosessen (som datoformater og manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag.
 
+**Datapreparering og validering:**
+For å sikre en robust evaluering av etterspørselsprognosene, er datasettet splittet i en treningsdel (80 %) og en testdel (20 %). Denne splitten er avgjørende for å validere modellens evne til å generalisere på usette data, og forhindre overtilpasning. Treningsdataene brukes til å lære opp modellen (Prophet), mens testdataene fungerer som en uavhengig fasit for å måle prediksjonsnøyaktighet før modellen tas i bruk for fremtidige bestillingsbeslutninger.
+
 **Beskrivelse av datagrunnlaget og visualiseringer:**
 
 <div align="center">
