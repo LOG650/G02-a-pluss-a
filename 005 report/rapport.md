@@ -356,20 +356,23 @@ For å sikre modellens validitet og tolkbarhet er følgende forutsetninger lagt 
 #### 6.4.1 Stasjonaritet og trendhåndtering
 I motsetning til tradisjonelle tidsseriemodeller (som ARIMA), forutsetter ikke Prophet at dataene er stasjonære. Modellen håndterer ikke-stasjonaritet ved å modellere trenden som en stykkevis lineær funksjon. 
 
-For å dokumentere serienes egenskaper er det gjennomført en **Augmented Dickey-Fuller (ADF) test** på etterspørselsdataene. Resultatene for "Norsk krim" og "Engelsk fiksjon" er gjengitt i tabellen under:
+For å dokumentere serienes egenskaper er det gjennomført både en **Augmented Dickey-Fuller (ADF) test** og en **KPSS-test** på etterspørselsdataene for de tre kategoriene. Resultatene er gjengitt i tabellen under:
 
-| Kategori | ADF-statistikk | p-verdi | Kritisk verdi (5%) | Konklusjon |
-| :--- | :---: | :---: | :---: | :--- |
-| **Engelsk fiksjon** | -6,158 | 0,000 | -2,925 | Stasjonær |
-| **Norsk krim** | -4,492 | 0,000 | -2,933 | Stasjonær |
+| Kategori | ADF p-verdi | KPSS p-verdi | ADF Konklusjon | KPSS Konklusjon | Samlet Vurdering |
+| :--- | :---: | :---: | :--- | :--- | :--- |
+| **Engelsk fiksjon** | 0,000 | 0,100 | Stasjonær | Stasjonær | Konsistent stasjonær |
+| **Norske barnebøker** | 0,001 | 0,100 | Stasjonær | Stasjonær | Konsistent stasjonær |
+| **Norsk krim** | 0,000 | 0,100 | Stasjonær | Stasjonær | Konsistent stasjonær |
 
-Selv om ADF-testen indikerer stasjonaritet (p < 0,05), viser de visuelle analysene i Figur 1 og 9 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
+Ved å kombinere disse to testene, hvor ADF tester for enhetsrot ($H_0$: ikke-stasjonær) og KPSS tester for stasjonaritet ($H_0$: stasjonær), oppnår vi en sterkere statistisk bekreftelse. At testene er samstemte for alle tre kategorier, underbygger at dataene svinger stabilt rundt en trend, noe som gjør Prophet-modellens dekomponering svært egnet for denne typen beslutningsstøtte.
 
-*   **Analysefunn:** For *Norsk krim* er det identifisert en positiv trend på ca. 12,7 % over analyseperioden, mens *Engelsk fiksjon* viser en svak negativ trend (-4,8 %). Ved å dekomponere disse trendene unngår vi at langsiktige endringer i popularitet forveksles med sesongvariasjoner.
+Selv om testene indikerer stasjonaritet (p < 0,05 for ADF og p > 0,05 for KPSS), viser de visuelle analysene i Figur 1 og 9 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
+
+*   **Analysefunn:** Trendanalysen viser stor variasjon mellom kategoriene. Mens *Norsk krim* har en tydelig positiv trend (+12,7 %), viser *Engelsk fiksjon* en svak negativ utvikling (-4,8 %). *Norske barnebøker* skiller seg ut med en svært stabil trend (-0,1 %), noe som indikerer en moden kategori med forutsigbart volum over tid. Ved å dekomponere disse trendene for alle tre kategorier, unngår vi at langsiktige endringer forveksles med sesongsvingninger.
 
 #### 6.4.2 Sesongkomponenter og helligdagseffekter
 Det antas at de historiske sesongmønstrene er representative for fremtidig etterspørsel. 
-*   **Amplitude:** Analysen viser kraftige sesongeffekter, spesielt for *Engelsk fiksjon* med en amplitude på ca. 205 enheter rundt de faste sesongtoppene. 
+*   **Amplitude:** Analysen viser kraftige sesongeffekter for alle kategorier, men med ulik intensitet. *Engelsk fiksjon* har den høyeste amplituden (ca. 205 enheter), etterfulgt av *Norsk krim* (114,8 enheter) og *Norske barnebøker* (105,3 enheter). 
 *   **Helligdager:** Effekten av påske, jul og skolestart er modellert som additive sjokk. Det antas at disse hendelsene påvirker etterspørselen i et fast tidsvindu hvert år (f.eks. 15 dager før julaften).
 
 #### 6.4.3 Feilledd og normalfordeling
@@ -409,9 +412,13 @@ Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-b
 | **Norsk krim** | 68 254 NOK | 42 247 NOK | 38,10 % | 85,8 % | 91,5 % |
 | **TOTALT** | **198 636 NOK** | **158 395 NOK** | **20,26 %** | **84,7 %** | **87,2 %** |
 
-Resultatene viser at den kvantitative modellen gir en total kostnadsbesparelse på over 20 %. Modellen er særlig effektiv for kategorien **Norsk krim**, hvor den reduserer kostnadene med 38,1 % og samtidig øker servicegraden til over 91 %. Dette skyldes modellens evne til å fange opp de ekstreme sesongtoppene og den underliggende trenden som baseline-modellen overser. For *Norske barnebøker* er baseline-modellen konkurransedyktig, noe som indikerer at forutsigbar etterspørsel med lave variasjoner krever mindre avansert modellering.
+Resultatene viser at den kvantitative modellen gir en total kostnadsbesparelse på over 20 %. En sammenligning på tvers av kategoriene avslører interessante forskjeller i modellens effektivitet:
 
-Foreløpige resultater indikerer at modellen er særlig effektiv for kategorien "Norsk krim" i påskeperioden, hvor den reduserer mangelkostnadene betydelig uten å øke lagerbeholdningen i de påfølgende lavsesong-månedene.
+*   **Norsk krim:** Her oppnås den største gevinsten (38,1 %). Dette skyldes at kategorien har både en sterk trend og ekstreme sesongtopper som baseline-modellen ikke klarer å fange opp. Prophet-modellen øker her servicegraden betydelig samtidig som kostnadene reduseres.
+*   **Engelsk fiksjon:** Modellen gir en solid besparelse på 19,6 %. Den høye sesongamplituden i denne kategorien gjør at en dynamisk tilnærming til lagerstyring er langt mer lønnsom enn statiske gjennomsnitt.
+*   **Norske barnebøker:** For denne kategorien ser vi en negativ besparelse (-7,86 %). Dette skyldes at barnebøker har en svært stabil trend og lavere sesongvariasjoner enn de to andre kategoriene. I slike tilfeller kan den enklere baseline-modellen være mer kostnadseffektiv, da de dynamiske justeringene i Prophet kan føre til noe høyere lagerbinding i påvente av sesongtopper som er mindre uttalte.
+
+Samlet sett viser analysen at avansert kvantitativ modellering gir størst merverdi for kategorier preget av høy volatilitet og sterke trender. For mer stabile varegrupper kan enklere metoder være tilstrekkelige.
 
 ---
 
