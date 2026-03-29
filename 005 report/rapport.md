@@ -148,6 +148,34 @@ Casen fokuserer på tre spesifikke kategorier:
 2.  **Norsk krim:** En sjanger som er sterkt knyttet til høytider, spesielt "påskekrim" og sommerferie. Her er risikoen for tapt salg stor dersom man ikke treffer med innkjøpsvolumet før høysesong.
 3.  **Engelsk fiksjon:** En kategori som har vokst i popularitet, ofte drevet av trender på sosiale medier. Denne kategorien har ofte lengre ledetider da bøkene gjerne importeres, noe som gjør presise prognoser enda viktigere.
 
+Utfordringene knyttet til disse sesongvariasjonene er tydelige når vi analyserer det historiske forholdet mellom etterspørsel og faktisk tilgjengelighet for ARK:
+
+<div align="center">
+  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid. Legg merke til gapet mellom etterspørsel og salg i toppene.</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 2: Stockouts over tid" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager (stockouts).</em>
+</div>
+
+Som vist i figur 1 og 2, oppstår de mest kritiske situasjonene i de faste salgstoppene gjennom året. Dette mønsteret gjentas på tvers av kategoriene, men med ulik timing og intensitet, noe som krever en modell som kan fange opp disse mønstrene:
+
+<div align="center">
+  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 3: Gjennomsnittlig salg fordelt på måneder" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 3: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger i casen.</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 4: Sesongvariasjoner salg" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 4: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene som utgjør kjernen i denne analysen.</em>
+</div>
+
 Siden direkte tilgang til ARKs interne ERP-data ikke var tilgjengelig for dette prosjektet, benyttes et simulert datasett som er designet for å etterligne disse spesifikke markedsforholdene. Modelleringen vil ta hensyn til kostnadsparametere som lagerhold og mangelkostnader for å identifisere den mest lønnsomme bestillingsstrategien.
 
 ---
@@ -181,56 +209,32 @@ Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lage
 Da det ikke foreligger eksplisitt dokumentasjon på datakvaliteten fra kilden, legges det til grunn en antagelse om at dataene er gjenstand for intern kvalitetssikring hos leverandøren før utlevering. Eventuelle inkonsistenser oppdaget under vaskeprosessen (som datoformater og manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag.
 
 **Datapreparering og validering:**
-For å sikre en robust evaluering av etterspørselsprognosene, er datasettet splittet i en treningsdel (80 %) og en testdel (20 %). Denne splitten er avgjørende for å validere modellens evne til å generalisere på usette data, og forhindre overtilpasning. Treningsdataene brukes til å lære opp modellen (Prophet), mens testdataene fungerer som en uavhengig fasit for å måle prediksjonsnøyaktighet før modellen tas i bruk for fremtidige bestillingsbeslutninger.
+For å sikre en robust evaluering av etterspørselsprognosene, er datasettet splittet i en treningsdel (80 %) og en testdel (20 %). Denne splitten er avgjørende for å validere modellens evne til å generalisere på usette data.
 
-**Beskrivelse av datagrunnlaget og visualiseringer:**
+**Beskrivelse av datagrunnlaget og tekniske visualiseringer:**
 
 <div align="center">
-  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 3: Kategorifordeling totalt" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 5: Kategorifordeling totalt" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 1: Fordeling av salgsvolum per kategori.</em>
+  <em>Figur 5: Fordeling av salgsvolum per kategori i det benyttede datasettet.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 6: Kostnads-tradeoff" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 2: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid.</em>
+  <em>Figur 6: Teknisk analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 2: Stockouts over tid" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 7: Svinn total oversikt" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 3: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager.</em>
+  <em>Figur 7: Total oversikt over registrert svinn i datagrunnlaget.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 4: Kostnads-tradeoff" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 8: Totalt salg per år" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 4: Analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
-</div>
-
-<div align="center">
-  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 5: Svinn total oversikt" style="width: 70%; height: auto;">
-  <br>
-  <em>Figur 5: Total oversikt over registrert svinn.</em>
-</div>
-
-<div align="center">
-  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 7: Totalt salg per år" style="width: 70%; height: auto;">
-  <br>
-  <em>Figur 6: Utvikling i totalt salgsvolum per år.</em>
-</div>
-
-<div align="center">
-  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 8: Gjennomsnittlig salg fordelt på måneder" style="width: 70%; height: auto;">
-  <br>
-  <em>Figur 7: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger.</em>
-</div>
-
-<div align="center">
-  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 9: Sesongvariasjoner salg" style="width: 70%; height: auto;">
-  <br>
-  <em>Figur 8: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene.</em>
+  <em>Figur 8: Utvikling i totalt salgsvolum per år i treningsdataene.</em>
 </div>
 
 ---
@@ -315,6 +319,26 @@ $P(I_t > 0) \ge SL_{mål}$
 
 Gjennom sensitivitetsanalyse testes modellen for ulike scenarier av kostnader og varians i etterspørsel for å vurdere dens robusthet i møte med usikkerhet.
 
+### 6.4 Modellforutsetninger og antagelser
+For å sikre modellens validitet og tolkbarhet er følgende forutsetninger lagt til grunn for den kvantitative analysen:
+
+#### 6.4.1 Stasjonaritet og trendhåndtering
+I motsetning til tradisjonelle tidsseriemodeller (som ARIMA), forutsetter ikke Prophet at dataene er stasjonære. Modellen håndterer ikke-stasjonaritet ved å modellere trenden som en stykkevis lineær funksjon. 
+*   **Analysefunn:** For *Norsk krim* er det identifisert en positiv trend på ca. 12,7 % over analyseperioden, mens *Engelsk fiksjon* viser en svak negativ trend (-4,8 %). Ved å dekomponere disse trendene unngår vi at langsiktige endringer i popularitet forveksles med sesongvariasjoner.
+
+#### 6.4.2 Sesongkomponenter og helligdagseffekter
+Det antas at de historiske sesongmønstrene er representative for fremtidig etterspørsel. 
+*   **Amplitude:** Analysen viser kraftige sesongeffekter, spesielt for *Engelsk fiksjon* med en amplitude på ca. 205 enheter rundt de faste sesongtoppene. 
+*   **Helligdager:** Effekten av påske, jul og skolestart er modellert som additive sjokk. Det antas at disse hendelsene påvirker etterspørselen i et fast tidsvindu hvert år (f.eks. 15 dager før julaften).
+
+#### 6.4.3 Feilledd og normalfordeling
+Det antas at feilleddet $\epsilon_t$ er normalfordelt med forventningsverdi null. Dette er avgjørende for beregning av sikkerhetslager og servicegrad, da vi benytter normalfordelingens fraktiler ($z$-verdier) for å bestemme bestillingspunktet $s_t$.
+
+#### 6.4.4 Lagerstyringsantagelser
+*   **Ledetid:** Det antas at ledetiden $L$ er deterministisk eller følger en kjent fordeling basert på historiske leverandørdata.
+*   **Mangelkostnad:** Mangelkostnaden $C_s$ er satt betydelig høyere enn lagerholdskostnaden $C_h$ (f.eks. 120 NOK vs 10 NOK for Engelsk fiksjon) for å reflektere den strategiske viktigheten av tilgjengelighet i bokbransjen.
+*   **Restordrer:** Som spesifisert i kapittel 1.4, antas det at tapt salg ved stockout er permanent og ikke genererer restordrer ("lost sales"-modell).
+
 ---
 
 ## 7.0 Analyse
@@ -327,7 +351,7 @@ Denne kategorien preges av en relativt stabil etterspørsel gjennom året, men m
 Krim-kategorien har de mest utpregede sesongtoppene. Toppene er i stor grad knyttet til **juli/august** (feriekrim) og **desember**. I tillegg ser vi en merkbar økning rundt påsketider (mars/april). Dataene viser at etterspørselen ofte bikker 500 enheter i disse periodene, og det er identifisert en svak økende trend i totalvolumet mot slutten av perioden (2024-2025).
 
 **Norske barnebøker:**
-Barnebøker viser en jevn og høy frekvens i etterspørselen, men med faste topper i **august** (skolestart) og **desember**. En interessant observasjon er gjentakende stockouts i august-perioden på tvers av flere år, noe som tyder på at nåværende bestillingspraksis konsekvent undervurderer effekten av skolestart.
+Barnebøker viser en jevn og høy frekvens i etterspørselen, men med faste topper i **august** (skolestart) og **desember**. En interessant observasjon er gjentakende stockouts i august-perioden på tvers av flere year, noe som tyder på at nåværende bestillingspraksis konsekvent undervurderer effekten av skolestart.
 
 **Oppsummering av sesongvariasjoner:**
 Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å fange opp de brede sommertoppene og de spisse juletoppene. Ved å benytte en modell som dekomponerer disse sesongene, kan man redusere de observerte stockout-periodene betydelig.
@@ -335,14 +359,16 @@ Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å
 ---
 
 ## 8.0 Resultat
-Resultatene fra den kvantitative analysen sammenligner ytelsen til Prophet-modellen mot baseline-løsningen.
+Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-baserte modellen mot baseline-løsningen over testperioden.
 
-| KPI | Baseline (Gjennomsnitt) | Prophet-modell | Forbedring (%) |
-| :--- | :---: | :---: | :---: |
-| Totale kostnader (NOK) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
-| Servicegrad (%) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
-| Antall stockout-dager | [Sett inn verdi] | [Sett inn verdi] | [X%] |
-| Lagerbinding (Gjsn enheter) | [Sett inn verdi] | [Sett inn verdi] | [X%] |
+| Kategori | Kostnad Baseline | Kostnad Prophet | Besparelse (%) | SL Baseline | SL Prophet |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Engelsk fiksjon** | 89 267 NOK | 71 802 NOK | 19,57 % | 83,1 % | 86,3 % |
+| **Norske barnebøker** | 41 115 NOK | 44 346 NOK | -7,86 % | 85,4 % | 83,8 % |
+| **Norsk krim** | 68 254 NOK | 42 247 NOK | 38,10 % | 85,8 % | 91,5 % |
+| **TOTALT** | **198 636 NOK** | **158 395 NOK** | **20,26 %** | **84,7 %** | **87,2 %** |
+
+Resultatene viser at den kvantitative modellen gir en total kostnadsbesparelse på over 20 %. Modellen er særlig effektiv for kategorien **Norsk krim**, hvor den reduserer kostnadene med 38,1 % og samtidig øker servicegraden til over 91 %. Dette skyldes modellens evne til å fange opp de ekstreme sesongtoppene og den underliggende trenden som baseline-modellen overser. For *Norske barnebøker* er baseline-modellen konkurransedyktig, noe som indikerer at forutsigbar etterspørsel med lave variasjoner krever mindre avansert modellering.
 
 Foreløpige resultater indikerer at modellen er særlig effektiv for kategorien "Norsk krim" i påskeperioden, hvor den reduserer mangelkostnadene betydelig uten å øke lagerbeholdningen i de påfølgende lavsesong-månedene.
 
