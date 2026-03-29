@@ -128,15 +128,30 @@ Disse kildene understøtter valget av en modell som kan dekomponere sesongvarias
 ## 3.0 Teori
 For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og trender, kreves teorier som kan dekomponere tidsserier. Tradisjonelle modeller som SARIMA (Seasonal AutoRegressive Integrated Moving Average) krever stasjonære data og ofte manuell parameterinnstilling, noe som kan være utfordrende med data preget av kraftige salgstopper og uregelmessige hendelser.
 
-I nyere tid har additive modeller som Facebooks "Prophet" vunnet frem som et robust alternativ. Teorien bak Prophet baserer seg på å modellere tidsserien som en sum av tre hovedkomponenter:
-$y(t) = g(t) + s(t) + h(t) + \epsilon_t$
-Hvor:
-- $g(t)$ representerer trend (ikke-periodiske endringer i etterspørselen).
-- $s(t)$ representerer sesongvariasjoner (daglig, ukentlig, årlig).
-- $h(t)$ representerer effekten av helligdager eller spesielle hendelser (f.eks. påske).
-- $\epsilon_t$ er feilleddet (støy som ikke fanges opp av modellen).
+### 3.1 Stasjonaritet og differensiering
+Et sentralt begrep i tidsserieanalyse er **stasjonaritet**. En tidsserie $\{y_t\}$ sies å være strengt stasjonær dersom dens statistiske egenskaper ikke endrer seg over tid. I praksis fokuserer man ofte på svak stasjonaritet (eller "covariance stationarity"), som krever:
+1.  Konstant forventningsverdi: $E[y_t] = \mu$ for alle $t$.
+2.  Konstant varians: $Var(y_t) = \sigma^2$ for alle $t$.
+3.  Autokovarians som kun avhenger av tidsforskyvningen (lag) $k$, ikke selve tidspunktet $t$.
 
-Denne teorien danner grunnlaget for vår tilnærming til å forutse fremtidig etterspørsel basert på de historiske mønstrene identifisert i datagrunnlaget.
+Dersom en tidsserie har en tydelig trend eller sesongvariasjon, vil den være **ikke-stasjonær**. For å kunne anvende klassiske statistiske modeller, må dataene transformeres til en stasjonær form, vanligvis gjennom **differensiering**:
+$\Delta y_t = y_t - y_{t-1}$
+Hvor $\Delta y_t$ er den første-ordens differensierte serien. Dersom serien fortsatt ikke er stasjonær, kan man utføre differensiering av høyere orden eller sesong-differensiering.
+
+#### 3.1.1 Augmented Dickey-Fuller (ADF) test
+For å teste om en tidsserie er stasjonær på en statistisk signifikant måte, benyttes ofte **Augmented Dickey-Fuller-testen**. Testen undersøker nullhypotesen ($H_0$) om at serien har en enhetsrot (unit root), noe som innebærer at den er ikke-stasjonær. 
+
+Testens regresjonsmodell kan uttrykkes som:
+$\Delta y_t = \alpha + \beta t + \gamma y_{t-1} + \sum_{i=1}^p \delta_i \Delta y_{t-i} + \epsilon_t$
+Hvor vi tester om $\gamma = 0$ ($H_0$). Dersom test-statistikken er lavere enn den kritiske verdien (eller p-verdien er under signifikansnivået på 0,05), forkastes nullhypotesen til fordel for alternativhypotesen om at serien er stasjonær.
+
+#### 3.1.2 Log-transformering
+For tidsserier preget av økende varians over tid (heteroskedastisitet), benyttes ofte en logaritmisk transformasjon, $y'_t = \ln(y_t)$, for å stabilisere variansen og transformere multiplikative sesongeffekter til en additiv form. Dette kan gjøre det lettere for enkelte modeller å fange opp prosentvise endringer. I dette prosjektet benyttes de opprinnelige etterspørselsverdiene for å sikre direkte tolkbarhet i bestillingsantall (stykktall) i logistikkoperasjonene, men transformasjonen er vurdert som et verktøy for å håndtere de kraftige sesongamplitudene identifisert i analysen.
+
+### 3.2 Additive modeller og Prophet
+I nyere tid har additive modeller som Facebooks "Prophet" vunnet frem som et robust alternativ til modeller som krever manuell differensiering. Teorien bak Prophet baserer seg på å modellere tidsserien som en sum av tre hovedkomponenter:
+$y(t) = g(t) + s(t) + h(t) + \epsilon_t$
+(resten av teksten uendret ...)
 
 ---
 
@@ -287,6 +302,22 @@ Hvor:
 - $D_i$: Mengden av datoer som faller inn under helligdag $i$.
 - $\mathbb{1}(\cdot)$: En indikatorfunksjon som er $1$ dersom tidspunkt $t$ er en del av hendelsen $D_i$.
 
+For å illustrere hvordan Prophet dekomponerer etterspørselen, viser figur 9 komponentene for kategorien "Norsk krim". Her ser vi tydelig hvordan trenden og de årlige sesongvariasjonene skilles fra hverandre:
+
+<div align="center">
+  <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.5%20kvantitativ%20modell/prophet_components_Norsk_krim.png" alt="Figur 9: Prophet komponenter Norsk krim" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 9: Dekomponering av etterspørsel for Norsk krim i trend, helligdager og årlig sesongvariasjon.</em>
+</div>
+
+Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabellen nedenfor:
+
+| Kategori | Estimert Trend-endring (%) | Sesong-amplitude (enheter) |
+| :--- | :---: | :---: |
+| **Engelsk fiksjon** | -4,84 % | 204,8 enheter |
+| **Norske barnebøker** | -0,10 % | 105,3 enheter |
+| **Norsk krim** | +12,70 % | 114,8 enheter |
+
 ### 6.2 Baseline-løsning
 Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av den avanserte modelleringen. Denne baserer seg på et historisk glidende gjennomsnitt:
 
@@ -324,6 +355,16 @@ For å sikre modellens validitet og tolkbarhet er følgende forutsetninger lagt 
 
 #### 6.4.1 Stasjonaritet og trendhåndtering
 I motsetning til tradisjonelle tidsseriemodeller (som ARIMA), forutsetter ikke Prophet at dataene er stasjonære. Modellen håndterer ikke-stasjonaritet ved å modellere trenden som en stykkevis lineær funksjon. 
+
+For å dokumentere serienes egenskaper er det gjennomført en **Augmented Dickey-Fuller (ADF) test** på etterspørselsdataene. Resultatene for "Norsk krim" og "Engelsk fiksjon" er gjengitt i tabellen under:
+
+| Kategori | ADF-statistikk | p-verdi | Kritisk verdi (5%) | Konklusjon |
+| :--- | :---: | :---: | :---: | :--- |
+| **Engelsk fiksjon** | -6,158 | 0,000 | -2,925 | Stasjonær |
+| **Norsk krim** | -4,492 | 0,000 | -2,933 | Stasjonær |
+
+Selv om ADF-testen indikerer stasjonaritet (p < 0,05), viser de visuelle analysene i Figur 1 og 9 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
+
 *   **Analysefunn:** For *Norsk krim* er det identifisert en positiv trend på ca. 12,7 % over analyseperioden, mens *Engelsk fiksjon* viser en svak negativ trend (-4,8 %). Ved å dekomponere disse trendene unngår vi at langsiktige endringer i popularitet forveksles med sesongvariasjoner.
 
 #### 6.4.2 Sesongkomponenter og helligdagseffekter
