@@ -236,19 +236,84 @@ For å sikre en robust evaluering av etterspørselsprognosene, er datasettet spl
 ---
 
 ## 6.0 Modellering
-Modelleringen i dette prosjektet følger en todelt tilnærming for å evaluere effekten av forbedret beslutningsstøtte:
+Modelleringen i dette prosjektet følger en todelt tilnærming. Først benyttes en avansert tidsseriemodell (Prophet) for å generere nøyaktige etterspørselsprognoser. Deretter benyttes disse prognosene som input i en kvantitativ bestillingsmodell for å optimere lagerbeholdningen.
 
-**1. Baseline-løsning:**
-En enkel og intuitiv bestillingsstrategi basert på historisk gjennomsnittlig etterspørsel. Denne representerer en "status quo"-situasjon hvor man bestiller for å dekke et forventet behov uten avansert dekomponering av sesongtrender.
+### 6.1 Prophet-modellen for etterspørselsprognosering
+Prophet er en additiv regresjonsmodell utviklet av Facebook, designet for å håndtere tidsserier med sterke sesongvariasjoner og flere sesonger (f.eks. ukentlig og årlig). Modellen dekomponerer tidsserien i fire hovedkomponenter:
 
-**2. Kvantitativ bestillingsmodell:**
-En forbedret strategi som tar utgangspunkt i prognosene fra Prophet-modellen. Modellen søker å minimere den totale målfunksjonen:
-$Minimere Z = \sum (Lagerholdskostnad + Mangelkostnad)$
-hvor mangelkostnaden (stockout-kostnaden) vektes tyngre for å sikre høy tilgjengelighet i høysesonger. Modellen inkluderer også variabler for:
-- **Servicegrad:** Et eksplisitt krav til tilgjengelighet for kunden.
-- **Ledetid:** Estimert tid fra bestilling til varen er på lager (forenklet leverandørmodell).
+$y(t) = g(t) + s(t) + h(t) + \epsilon_t$
 
-Gjennom sensitivitetsanalyse testes modellen for ulike scenarier av kostnader og varians i etterspørsel for å vurdere dens robusthet.
+Hvor:
+- $y(t)$ er den observerte verdien (etterspørselen) ved tidspunkt $t$.
+- $g(t)$ er trendfunksjonen som modellerer ikke-periodiske endringer.
+- $s(t)$ representerer periodiske endringer (sesongvariasjoner).
+- $h(t)$ representerer effekten av helligdager eller spesielle hendelser.
+- $\epsilon_t$ er feilleddet som representerer idiosynkratiske endringer som ikke fanges opp av modellen. Det antas at $\epsilon_t \sim N(0, \sigma^2)$.
+
+#### 6.1.1 Trendkomponenten $g(t)$
+For dette prosjektet benyttes en stykkevis lineær trendmodell ("piecewise linear growth"). Denne fanger opp endringer i vekstrate over tid ved hjelp av definerte endringspunkter (changepoints). Matematisk formuleres dette som:
+
+$g(t) = (k + a(t)^T \delta)t + (m + a(t)^T \gamma)$
+
+Her defineres størrelsene som følger:
+- $k$: Den initielle vekstraten.
+- $\delta$: En vektor av ratejusteringer, hvor $\delta_j$ er endringen i vekstrate som oppstår ved endringspunkt $j$.
+- $m$: Et offset-parameter (skjæringspunkt med y-aksen).
+- $a(t)$: En binær vektor av indikatorfunksjoner slik at $a_j(t) = 1$ dersom $t \ge s_j$, og $0$ ellers, hvor $s_j$ er tidspunktet for endringspunkt $j$.
+- $\gamma$: En vektor av justeringsparametre definert som $\gamma_j = -s_j \delta_j$ for å sikre at trendfunksjonen er kontinuerlig.
+
+#### 6.1.2 Sesongkomponenten $s(t)$
+For å modellere periodiske effekter benytter Prophet en Fourier-rekke. Dette gir modellen fleksibilitet til å tilpasse seg komplekse sesongmønstre. Sesongfunksjonen er gitt ved:
+
+$s(t) = \sum_{n=1}^N \left( a_n \cos\left(\frac{2\pi nt}{P}\right) + b_n \sin\left(\frac{2\pi nt}{P}\right) \right)$
+
+Hvor:
+- $P$: Perioden for sesongen (f.eks. $P = 365,25$ for årlig sesongvariasjon).
+- $N$: Rekkens orden, som bestemmer hvor raskt sesongen kan endre seg (høyere $N$ fanger opp mer detaljerte svingninger).
+- $a_n, b_n$: Fourier-koeffisienter som estimeres under modelltilpasningen. For årlig sesongvariasjon benyttes ofte $N=10$, noe som gir 20 parametere som skal estimeres.
+
+#### 6.1.3 Helligdagskomponenten $h(t)$
+Helligdager og kampanjeperioder har ofte en signifikant, men kortvarig effekt på salget. Prophet modellerer dette ved å summere effektene av hver spesifiserte hendelse $i$:
+
+$h(t) = \sum_{i=1}^L \kappa_i \cdot \mathbb{1}(t \in D_i)$
+
+Hvor:
+- $L$: Antall unike helligdager/hendelser (f.eks. påske, jul, skolestart).
+- $\kappa_i$: Effekten av helligdag $i$ på etterspørselen (parameter som estimeres).
+- $D_i$: Mengden av datoer som faller inn under helligdag $i$.
+- $\mathbb{1}(\cdot)$: En indikatorfunksjon som er $1$ dersom tidspunkt $t$ er en del av hendelsen $D_i$.
+
+### 6.2 Baseline-løsning
+Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av den avanserte modelleringen. Denne baserer seg på et historisk glidende gjennomsnitt:
+
+$\hat{D}_{t+1} = \frac{1}{n} \sum_{i=t-n+1}^t D_i$
+
+Hvor $\hat{D}_{t+1}$ er prognosen for neste periode, og $n$ er antall historiske observasjoner som inkluderes i gjennomsnittet. Denne strategien representerer en "status quo"-situasjon hvor man bestiller for å dekke et forventet behov uten å dekomponere sesongtrender eller ta høyde for spesifikke kalenderhendelser.
+
+### 6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)
+Den kvantitative bestillingsmodellen tar utgangspunkt i etterspørselsprognosene fra Prophet. Målet er å bestemme den optimale bestillingsmengden $Q_t$ for hver periode $t$ som minimerer de totale logistikkostnadene.
+
+**Målfunksjon:**
+$Minimere Z = \sum_{t=1}^T (C_h \cdot I_t + C_s \cdot S_t)$
+
+Under forutsetning av:
+- $I_t = I_{t-1} + Q_{t-L} - D_t + S_t$ (Lagerbalanse-ligning)
+- $I_t \ge 0, Q_t \ge 0$
+
+Hvor variablene og parameterne er definert som:
+- $Z$: Totale relevante kostnader over planleggingsperioden $T$.
+- $C_h$: Lagerholdskostnad per enhet per tidsperiode (holding cost).
+- $C_s$: Mangelkostnad per enhet (stockout cost), som inkluderer tapt dekningsbidrag og goodwill-tap.
+- $I_t$: Lagerbeholdning ved slutten av periode $t$.
+- $S_t$: Antall enheter i restordre (stockout) i periode $t$.
+- $Q_{t-L}$: Leveranse mottatt i periode $t$, som ble bestilt i periode $t-L$.
+- $L$: Ledetid fra bestilling til varemottak.
+- $D_t$: Faktisk etterspørsel i periode $t$ (estimert ved $\hat{y}(t)$ fra Prophet).
+
+Modellen inkluderer også et krav til **Servicegrad (SL)**, som definerer sannsynligheten for å kunne dekke etterspørselen direkte fra lager:
+$P(I_t > 0) \ge SL_{mål}$
+
+Gjennom sensitivitetsanalyse testes modellen for ulike scenarier av kostnader og varians i etterspørsel for å vurdere dens robusthet i møte med usikkerhet.
 
 ---
 
