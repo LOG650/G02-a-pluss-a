@@ -1,6 +1,6 @@
 # Statusrapport - LOG650 Gruppe A + A
 
-**Rapportdato:** 2026-03-29  
+**Rapportdato:** 2026-03-31  
 **Prosjekt:** Lagerstyring og beslutningsstøtte i logistikk (ARK Bokhandel AS)  
 **Prosjektfase:** Fase 3 - Data og analyse  
 **Rapportør:** Prosjektledelsen (Astrid & Anne Helene)
@@ -10,10 +10,10 @@
 ## 1. Overordnet Status (Health Check)
 | Område | Status | Kommentar |
 | :--- | :---: | :--- |
-| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.5 fullført. 3.6 og 3.7 påbegynnes. |
-| **Omfang (Scope)** | 🟢 | Kvantitativ modellering og simulering ferdigstilt. |
+| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.6 fullført og godkjent. Nye aktiviteter lagt til i Fase 3. |
+| **Omfang (Scope)** | 🟢 | Utvidet scope med feature engineering og kampanjeanalyse. |
 | **Ressurser** | 🟢 | God fremdrift; teknisk fundament er nå på plass. |
-| **Risiko** | 🟢 | Fokus flyttes til robusthetstesting (sensitivitetsanalyse). |
+| **Risiko** | 🟢 | Fokus på modellrobusthet og prediksjonskraft for 2026. |
 
 ---
 
@@ -30,14 +30,15 @@ gantt
     M2 - Litteratur og teori :milestone, 2026-03-09, 0d
     M3 - Forskningsdesign :milestone, 2026-03-09, 0d
     section Fase 3 - Analyse
-    Data og analyse (PÅGÅR) :active, 2026-03-09, 2026-04-15
+    Data og analyse (PÅGÅR) :active, 2026-03-09, 2026-04-27
     M4 - Data ferdigstilt :done, milestone, 2026-03-27, 0d
     Aktivitet 3.5 - Kvantitativ modell :done, 2026-03-27, 2026-03-29
-    Aktivitet 3.6 - Analysepakke :active, 2026-03-29, 2026-04-05
-    Aktivitet 3.7 - Sensitivitetsanalyse : 2026-04-05, 2026-04-12
-    M5 - Analyse gjennomført :milestone, 2026-04-15, 0d
+    Aktivitet 3.6 - Analysepakke (M5) :done, 2026-03-29, 2026-03-31
+    Aktivitet 3.7 - Sensitivitetsanalyse :active, 2026-03-31, 2026-04-05
+    Aktiviteter 3.8-3.12 - Utvidet analyse : 2026-04-05, 2026-04-27
+    M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
-    Resultater og rapport : 2026-04-15, 2026-05-31
+    Resultater og rapport : 2026-04-27, 2026-05-31
     M6 - Tolkning og diskusjon :milestone, 2026-05-07, 0d
     M7 - Oppgaveutkast :milestone, 2026-05-21, 0d
     M8 - Endelig innlevering :milestone, 2026-05-31, 0d
@@ -46,45 +47,41 @@ gantt
 ---
 
 ## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Aktivitet 3.5 - Kvantitativ modell:**
-    - Utviklet Prophet-modeller med helligdagseffekter for alle tre kategorier.
-    - Gjennomført statistiske sjekker (ADF og KPSS) for å dokumentere stasjonaritet.
-    - Fullført sammenlignende simulering mellom baseline og optimalisert modell.
-    - Dokumentert 20,26 % total kostnadsbesparelse i rapporten.
-- [x] **Gjennomføre formell review av Aktivitet 3.5 (KRITISK KONTROLLPUNKT):**
-    - Alle modell-antagelser er nå dokumentert og kvalitetssikret i henhold til AGENTS.md.
-- [x] **Teoretisk rammeverk:** Oppdatert kapittel 3.0 med teori om stasjonaritet, differensiering og log-transformering.
-- [x] **Rapportering:** Ferdigstilt kapittel 6.0 (Modellering) og lagt inn foreløpige resultater i kapittel 8.0.
+- [x] **Aktivitet 3.6 - Analysepakke (M5):**
+    - Sammenstilt resultater fra Prophet-optimalisering mot baseline for alle kategorier.
+    - Gjennomført formell review (31.03.2026) med fokus på AGENTS.md-standarder.
+    - Implementert korrekt bildeformatering og visuelle referanser i oppsummeringsdokumentene.
+- [x] **Milepæl M5 Oppdatering:** Bekreftet fullføring av den initielle kvantitative analysen.
+- [x] **Utvidelse av prosjektplan:** Lagt til fem nye aktiviteter (3.8-3.12) for å styrke analysens dybde (kampanjeløft, feature engineering, prognoser 2026).
 
 ---
 
 ## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.6 - Analysepakke (M5 Forberedelse):**
-    - Sammenstille alle figurer og tabeller til en helhetlig analysepakke.
-    - Kvalitetssikre tolkningen av resultatene mot de teoretiske forutsetningene.
 - **Aktivitet 3.7 - Sensitivitetsanalyse:**
     - Teste modellens robusthet ved endringer i ledetid ($L$) og kostnadsparametere ($C_h, C_s$).
-    - Dokumentere hvordan endringer i servicegrad-mål påvirker de totale kostnadene.
+- **Aktivitet 3.8 - Utvidet Feature Engineering:**
+    - Inkludere helligdagseffekter og identifisere historiske salgstoppe (kampanjer).
+- **Aktivitet 3.9 - Modellvalidering (Backtesting):**
+    - Verifisere modellens treffsikkerhet på historiske test-sett.
 
 ---
 
-## 4. Oppdatert Saksliste (Issues Log)
+## 5. Oppdatert Saksliste (Issues Log)
 | ID | Sak | Status | Ansvarlig | Frist |
 | :--- | :--- | :--- | :--- | :--- |
-| S5 | Statistisk dokumentasjon (ADF/KPSS) | **Løst** | Begge | - |
-| S6 | Implementering av log-transformeringsteori | **Løst** | Begge | - |
-| S7 | Flytting av figurer for bedre rød tråd | **Løst** | Begge | - |
+| S8 | Bildeformatering iht. AGENTS.md | **Løst** | Gemini | 2026-03-31 |
+| S9 | Mangel på kampanjemarkører i rådata | **Pågår** | Begge | 2026-04-10 |
+| S10 | Generering av out-of-sample prognoser for 2026 | **Ny** | Begge | 2026-04-15 |
 
 ---
 
-## 5. Risikovurdering
-Fokus flyttes nå til **Aktivitet 3.7** for å sikre at modellen ikke bare fungerer i ett scenario, men er robust mot svingninger i forsyningskjeden.
+## 6. Risikovurdering
+Risiko knyttet til **S9 (mangel på kampanjedata)** håndteres ved å bruke residualanalyse for å identifisere sannsynlige kampanjer retrospektivt. Dette krever ekstra metodisk nøyaktighet i Aktivitet 3.10.
 
 ---
 
-## 6. Ressursbruk og økonomi
-- Arbeidet med den kvantitative modellen (3.5) gikk raskere enn planlagt.
-- Gruppens fokus rettes nå mot ferdigstilling av analysepakken.
+## 7. Ressursbruk og økonomi
+- Prosjektet har god fremdrift, noe som har gitt rom for å utvide analysen uten å utsette sluttdatoen for Fase 3 (27. april).
 
 ---
-*Neste statusmøte: Mandag 2026-03-30 kl. 12:00 på Teams.*
+*Neste statusmøte: Mandag 2026-04-06 kl. 12:00 på Teams.*
