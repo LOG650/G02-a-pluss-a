@@ -302,6 +302,16 @@ Hvor:
 - $D_i$: Mengden av datoer som faller inn under helligdag $i$.
 - $\mathbb{1}(\cdot)$: En indikatorfunksjon som er $1$ dersom tidspunkt $t$ er en del av hendelsen $D_i$.
 
+#### 6.1.4 Valg av Prophet fremfor SARIMA
+Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering opp mot den tradisjonelle SARIMA-modellen (Seasonal AutoRegressive Integrated Moving Average). Selv om begge modellene er stokastiske og kan håndtere sesongvariasjoner, anses Prophet som et mer naturlig valg for denne typen logistikkprosjekt av følgende årsaker:
+
+1. **Håndtering av flere sesongmønstre og helligdager:** Bokbransjen preges av komplekse kalendereffekter, som "bevegelige" helligdager (påske) og faste salgstopper (jul, skolestart). Prophet inkluderer en dedikert komponent for helligdager ($h(t)$) som enkelt fanger opp disse additive sjokkene. I en SARIMA-modell ville dette krevd omfattende bruk av eksterne variabler (SARIMAX) og manuell koding av datoer.
+2. **Robusthet mot ikke-stasjonaritet:** SARIMA krever streng stasjonaritet, noe som ofte fordrer flere runder med differensiering og statistisk testing for å transformere dataene. Prophet er en additiv modell som håndterer trender og sesongvariasjoner internt uten behov for omfattende pre-prosessering, noe som reduserer risikoen for feil ved modellspesifisering.
+3. **Praktisk tolkbarhet:** Prophet dekomponerer tidsserien i visuelle komponenter (trend, årstid, helligdager). Dette gir et langt mer intuitivt beslutningsgrunnlag for en logistikkansvarlig enn de mer abstrakte matematiske parameterne i en SARIMA-modell (AR- og MA-ordener).
+4. **Håndtering av uregelmessige data:** Prophet er robust mot manglende observasjoner og store uteliggere, noe som ofte forekommer i reelle salgsdata fra ERP-systemer.
+
+Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
+
 For å illustrere hvordan Prophet dekomponerer etterspørselen, viser figur 9 komponentene for kategorien "Norsk krim". Her ser vi tydelig hvordan trenden og de årlige sesongvariasjonene skilles fra hverandre:
 
 <div align="center">
