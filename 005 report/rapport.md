@@ -216,7 +216,7 @@ Metoden innebærer å trene modellen på historiske salgs data (2021-2025) for �
 
 ### 5.2 Data
 Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lagerdata for ARK Bokhandel AS. Dataene dekker tre hovedkategorier av bøker med ulike etterspørselsmønstre:
-- **Norske barnebøker:** Preget av høy frekvens og tydelige sesongvariasjoner.
+- **Norske barnebøker:** Preget av høy frekvens og tydelige sesongvariasjoner, men med høy grad av forutsigbarhet og regelmessighet.
 - **Norsk krim:** Kjennetegnes av spesifikke salgstopper knyttet til høytider som påske og sommer.
 - **Engelsk fiksjon:** Viser en jevnere etterspørsel gjennom året, ofte påvirket av internasjonale trender og importtider.
 
@@ -422,13 +422,45 @@ Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-b
 | **Norsk krim** | 68 254 NOK | 42 247 NOK | 38,10 % | 85,8 % | 91,5 % |
 | **TOTALT** | **198 636 NOK** | **158 395 NOK** | **20,26 %** | **84,7 %** | **87,2 %** |
 
-Resultatene viser at den kvantitative modellen gir en total kostnadsbesparelse på over 20 %. En sammenligning på tvers av kategoriene avslører interessante forskjeller i modellens effektivitet:
+### 8.1 Detaljert analyse per kategori
+For å forstå de underliggende driverne for besparelsene, dekomponeres resultatene i prognosekvalitet og kostnadsfordeling for hver kategori.
 
-*   **Norsk krim:** Her oppnås den største gevinsten (38,1 %). Dette skyldes at kategorien har både en sterk trend og ekstreme sesongtopper som baseline-modellen ikke klarer å fange opp. Prophet-modellen øker her servicegraden betydelig samtidig som kostnadene reduseres.
-*   **Engelsk fiksjon:** Modellen gir en solid besparelse på 19,6 %. Den høye sesongamplituden i denne kategorien gjør at en dynamisk tilnærming til lagerstyring er langt mer lønnsom enn statiske gjennomsnitt.
-*   **Norske barnebøker:** For denne kategorien ser vi en negativ besparelse (-7,86 %). Dette skyldes at barnebøker har en svært stabil trend og lavere sesongvariasjoner enn de to andre kategoriene. I slike tilfeller kan den enklere baseline-modellen være mer kostnadseffektiv, da de dynamiske justeringene i Prophet kan føre til noe høyere lagerbinding i påvente av sesongtopper som er mindre uttalte.
+#### 8.1.1 Norsk krim (Høy volatilitet og sterk trend)
+Dette er kategorien med størst økonomisk gevinst (38,1 %). Figur 10 viser at Prophet-modellen treffer svært godt på de ekstreme sesongtoppene i testperioden, noe som er kritisk for å unngå utsolgt-situasjoner i høysesong.
 
-Samlet sett viser analysen at avansert kvantitativ modellering gir størst merverdi for kategorier preget av høy volatilitet og sterke trender. For mer stabile varegrupper kan enklere metoder være tilstrekkelige.
+<div align="center">
+  <img src="../006%20analysis/figures/10_forecast_vs_actual_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 10: Forecast vs. Actual for Norsk krim. Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene.</em>
+</div>
+
+Ved å analysere residualene (prognosefeilen) i Figur 11, ser vi en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
+
+<div align="center">
+  <img src="../006%20analysis/figures/11_residualer_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 11: Distribusjon av residualer for Norsk krim. Den røde linjen indikerer nullavvik.</em>
+</div>
+
+Kostnadsfordelingen i Figur 12 forklarer strategien bak besparelsen: Prophet-modellen aksepterer en moderat økning i lagerholdskostnader ($C_h$) for å oppnå en drastisk reduksjon i de kostbare stockout-hendelsene ($C_s$), noe som gir en netto gevinst på over 26 000 NOK sammenlignet med baseline.
+
+<div align="center">
+  <img src="../006%20analysis/figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 12: Kostnadsfordeling for Norsk krim (Baseline vs. Prophet).</em>
+</div>
+
+#### 8.1.2 Engelsk fiksjon (Uforutsigbarhet og import)
+For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen drives her primært av en reduksjon i stockouts med over 15 000 NOK. Den høyere usikkerheten i denne kategorien (høyere MAE) gjør at modellen opererer med et relativt sett større sikkerhetslager for å buffer mot import-ledetid og volatilitet.
+
+<div align="center">
+  <img src="../006%20analysis/figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 13: Kostnadsfordeling for Engelsk fiksjon.</em>
+</div>
+
+#### 8.1.3 Norske barnebøker (Forutsigbare sesongmønstre)
+Barnebøker skiller seg ut med et negativt resultat (-7,86 %). Tidligere analyser (kapittel 7.0) viser at denne kategorien har sterke sesongtopper ved skolestart og jul. Diagnosen viser imidlertid at disse mønstrene er så regelmessige og forutsigbare at den enkle baseline-modellen med en fast sikkerhetsmargin fungerer optimalt. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong, har i dette tilfellet ført til for lav sikkerhetsbeholdning i opptakten til de korte og intensive salgstoppene. Dette bekrefter at for varegrupper med svært konsistente sesongsykluser, kan tradisjonelle lagerstyringsmetoder være mer robuste enn avanserte prediksjonsmodeller som er mer utsatt for små feil i timing og usikkerhetsestimering.
 
 ---
 
@@ -470,6 +502,7 @@ Park, M. H., Lee, J. S., & Doo, I. C. (2020). *A Study of the Demand Forecasting
 ## 12.0 Vedlegg
 Følgende vedlegg dokumenterer det tekniske arbeidet og datagrunnlaget:
 *   **Vedlegg A:** Python-skript for datavask og visualisering (`vask_og_strukturer.py`).
-*   **Vedlegg B:** Modellkode for Prophet-prognoser og kostnadsoptimalisering.
-*   **Vedlegg C:** Vasket masterdatasett (`master_data_vasket.csv`).
-*   **Vedlegg D:** Detaljerte figurer over sesongvariasjoner per kategori.
+*   **Vedlegg B:** Modellkode for Prophet-prognoser og kostnadsoptimalisering (`final_simulation.py`).
+*   **Vedlegg C:** Skript for avansert resultatanalyse og visualisering (`generate_m6_visualisations.py`).
+*   **Vedlegg D:** Vasket masterdatasett (`master_data_vasket.csv`).
+*   **Vedlegg E:** Detaljerte figurer over sesongvariasjoner, residualer og kostnadsfordeling per kategori.
