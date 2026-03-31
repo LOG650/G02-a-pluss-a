@@ -51,14 +51,14 @@ gantt
     - Gjennomført statistiske sjekker (ADF og KPSS) for å dokumentere stasjonaritet.
     - Fullført sammenlignende simulering mellom baseline og optimalisert modell.
     - Dokumentert 20,26 % total kostnadsbesparelse i rapporten.
+- [x] **Gjennomføre formell review av Aktivitet 3.5 (KRITISK KONTROLLPUNKT):**
+    - Alle modell-antagelser er nå dokumentert og kvalitetssikret i henhold til AGENTS.md.
 - [x] **Teoretisk rammeverk:** Oppdatert kapittel 3.0 med teori om stasjonaritet, differensiering og log-transformering.
 - [x] **Rapportering:** Ferdigstilt kapittel 6.0 (Modellering) og lagt inn foreløpige resultater i kapittel 8.0.
 
 ---
 
-## 3. Aktiviteter i arbeid (Neste periode)
-- **Gjennomføre formell review av Aktivitet 3.5 (KRITISK KONTROLLPUNKT):**
-    - Må utføres før oppstart av 3.6 for å sikre at alle modell-antagelser er korrekte.
+## 4. Aktiviteter i arbeid (Neste periode)
 - **Aktivitet 3.6 - Analysepakke (M5 Forberedelse):**
     - Sammenstille alle figurer og tabeller til en helhetlig analysepakke.
     - Kvalitetssikre tolkningen av resultatene mot de teoretiske forutsetningene.
