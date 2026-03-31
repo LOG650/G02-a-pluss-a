@@ -30,7 +30,12 @@
       { "id": "3.4", "name": "Baseline-løsning", "type": "Task" },
       { "id": "3.5", "name": "Kvantitativ modell", "type": "Task" },
       { "id": "3.6", "name": "Analysepakke (M5)", "type": "Task" },
-      { "id": "3.7", "name": "Sensitivitetsanalyse", "type": "Task" }
+      { "id": "3.7", "name": "Sensitivitetsanalyse", "type": "Task" },
+      { "id": "3.8", "name": "Utvidet Feature Engineering", "type": "Task" },
+      { "id": "3.9", "name": "Modellvalidering (Backtesting)", "type": "Task" },
+      { "id": "3.10", "name": "Estimering av kampanjeløft", "type": "Task" },
+      { "id": "3.11", "name": "Prognosegenerering 2026", "type": "Task" },
+      { "id": "3.12", "name": "Scenario-analyse", "type": "Task" }
     ]
   },
   {
