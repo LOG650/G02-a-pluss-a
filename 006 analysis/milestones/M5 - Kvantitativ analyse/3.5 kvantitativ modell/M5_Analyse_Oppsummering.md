@@ -34,4 +34,15 @@ Følgende antagelser ligger til grunn for den kvantitative analysen:
 2. **Parametere:** Kostnadsparametere (lagerholdskostnad og utsolgtkostnad) er antatt konstante gjennom hele simuleringsperioden.
 3. **Ledetid:** Ledetid fra leverandør er modellert som deterministisk basert på historiske gjennomsnitt.
 4. **Modellering:** Prophet-modellen fanger opp additive sesongvariasjoner og lineære trender. Det antas at ingen store strukturelle endringer i markedet inntreffer utenfor det modellen predikerer.
+
+## Sensitivitetsanalyse (Aktivitet 3.7)
+Gjennomført sensitivitetsanalyse viser følgende kritiske funn for modellens robusthet:
+
+1.  **Sikkerhetsmargin (Safety Margin Factor):**
+    *   For **Engelsk fiksjon** er modellen svært sensitiv for sikkerhetsmarginen. Ved å øke denne med 50 % (faktor 1.5) reduseres totalkostnadene med ca. 50 %, mens servicenivået øker fra 86 % til 94 %. Dette tyder på at den opprinnelige modellen var for konservativ.
+    *   For **Norske barnebøker** ble det bekreftet at en aggressiv økning i sikkerhetsmarginen (faktor 2.0) er nødvendig for at Prophet-modellen skal overgå baselinen. Dette skyldes kategoriens svært regelmessige, men kraftige sesongtopper.
+2.  **Kostnadsparametere:**
+    *   Modellen er lineært avhengig av mangelkostnad ($C_s$), men viser seg å være robust mot mindre svingninger i lagerholdskostnad ($C_h$).
+3.  **Anbefaling:**
+    *   Det anbefales å implementere en kategori-spesifikk sikkerhetsfaktor i den endelige modellen for å maksimere besparelsene identifisert i denne analysen.
 *

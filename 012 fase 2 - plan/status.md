@@ -34,8 +34,8 @@ gantt
     M4 - Data ferdigstilt :done, milestone, 2026-03-27, 0d
     Aktivitet 3.5 - Kvantitativ modell :done, 2026-03-27, 2026-03-29
     Aktivitet 3.6 - Analysepakke (M5) :done, 2026-03-29, 2026-03-31
-    Aktivitet 3.7 - Sensitivitetsanalyse :active, 2026-03-31, 2026-04-05
-    Aktiviteter 3.8-3.12 - Utvidet analyse : 2026-04-05, 2026-04-27
+    Aktivitet 3.7 - Sensitivitetsanalyse :done, 2026-03-31, 2026-04-01
+    Aktiviteter 3.8-3.12 - Utvidet analyse : 2026-04-01, 2026-04-27
     M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
     Resultater og rapport : 2026-04-27, 2026-05-31
@@ -51,14 +51,15 @@ gantt
     - Sammenstilt resultater fra Prophet-optimalisering mot baseline for alle kategorier.
     - Gjennomført formell review (31.03.2026) med fokus på AGENTS.md-standarder.
     - Implementert korrekt bildeformatering og visuelle referanser i oppsummeringsdokumentene.
+- [x] **Aktivitet 3.7 - Sensitivitetsanalyse:**
+    - Testet modellens robusthet mot endringer i mangelkostnad, lagerholdskostnad og sikkerhetsmargin.
+    - Identifisert at økt sikkerhetsmargin (faktor 1.5-2.0) gir betydelige gevinster for Engelsk fiksjon og Norske barnebøker.
 - [x] **Milepæl M5 Oppdatering:** Bekreftet fullføring av den initielle kvantitative analysen.
 - [x] **Utvidelse av prosjektplan:** Lagt til fem nye aktiviteter (3.8-3.12) for å styrke analysens dybde (kampanjeløft, feature engineering, prognoser 2026).
 
 ---
 
 ## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.7 - Sensitivitetsanalyse:**
-    - Teste modellens robusthet ved endringer i ledetid ($L$) og kostnadsparametere ($C_h, C_s$).
 - **Aktivitet 3.8 - Utvidet Feature Engineering:**
     - Inkludere helligdagseffekter og identifisere historiske salgstoppe (kampanjer).
 - **Aktivitet 3.9 - Modellvalidering (Backtesting):**
