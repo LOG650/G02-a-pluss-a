@@ -462,6 +462,54 @@ For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen dri
 #### 8.1.3 Norske barnebøker (Forutsigbare sesongmønstre)
 Barnebøker skiller seg ut med et negativt resultat (-7,86 %). Tidligere analyser (kapittel 7.0) viser at denne kategorien har sterke sesongtopper ved skolestart og jul. Diagnosen viser imidlertid at disse mønstrene er så regelmessige og forutsigbare at den enkle baseline-modellen med en fast sikkerhetsmargin fungerer optimalt. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong, har i dette tilfellet ført til for lav sikkerhetsbeholdning i opptakten til de korte og intensive salgstoppene. Dette bekrefter at for varegrupper med svært konsistente sesongsykluser, kan tradisjonelle lagerstyringsmetoder være mer robuste enn avanserte prediksjonsmodeller som er mer utsatt for små feil i timing og usikkerhetsestimering.
 
+### 8.2 Sensitivitetsanalyse og robusthet
+For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere varieres. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
+
+#### 8.2.1 Engelsk fiksjon
+For engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og totalkostnad, mens servicenivået forblir stabilt. Dette indikerer en robust modell, men som vist i figur 14, gir en økning i sikkerhetsmarginfaktoren (Safety Margin Factor) til 1.5 en dramatisk forbedring i både kostnad og service.
+
+<div align="center">
+  <img src="../006%20analysis/figures/13_sensitivitet_kost_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 13: Kostnadssensitivitet (Engelsk fiksjon).</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/figures/14_sensitivitet_service_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 14: Servicenivå-sensitivitet (Engelsk fiksjon).</em>
+</div>
+
+#### 8.2.2 Norske barnebøker
+Barnebøker viser høyere sensitivitet for lagerholdskostnad. En reduksjon i denne kostnaden (faktor 0.8) muliggjør et betydelig hopp i servicenivået, da modellen velger å holde mer bufferlager strategisk før sesongtopper.
+
+<div align="center">
+  <img src="../006%20analysis/figures/13_sensitivitet_kost_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 15: Kostnadssensitivitet (Norske barnebøker).</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/figures/14_sensitivitet_service_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 16: Servicenivå-sensitivitet (Norske barnebøker).</em>
+</div>
+
+#### 8.2.3 Norsk krim
+Norsk krim fremstår som den mest stabile kategorien. Som vist i figur 18, oppnår modellen et "metningspunkt" ved en sikkerhetsmarginfaktor på 1.2, hvor ytterligere lagerbeholdning ikke gir gevinst i servicenivå. Dette tyder på at de resterende manglene skyldes uforutsigbare sjokk som faller utenfor modellens rekkevidde gitt ledetiden.
+
+<div align="center">
+  <img src="../006%20analysis/figures/13_sensitivitet_kost_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 17: Kostnadssensitivitet (Norsk krim).</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/figures/14_sensitivitet_service_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 18: Servicenivå-sensitivitet (Norsk krim).</em>
+</div>
+
 ---
 
 ## 9.0 Diskusjon
