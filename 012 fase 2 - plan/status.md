@@ -10,10 +10,10 @@
 ## 1. Overordnet Status (Health Check)
 | Område | Status | Kommentar |
 | :--- | :---: | :--- |
-| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.8 fullført. Prosjektet ligger foran skjema for Fase 3. |
-| **Omfang (Scope)** | 🟢 | Feature engineering og kampanjeanalyse er nå integrert i hovedmodellen. |
-| **Ressurser** | 🟢 | Teknisk fundament for utvidet analyse er på plass. |
-| **Risiko** | 🟢 | Lav risiko; kampanjeidentifisering via Z-score fungerer godt. |
+| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.9 fullført. Modellen er nå validert mot historiske data. |
+| **Omfang (Scope)** | 🟢 | Backtesting bekrefter høy treffsikkerhet (MAPE under 10 % for krim og barnebøker). |
+| **Ressurser** | 🟢 | Alt teknisk arbeid i Fase 3 nærmer seg slutten. |
+| **Risiko** | 🟢 | Lav risiko; modellbias er identifisert og kan håndteres i neste steg. |
 
 ---
 
@@ -36,7 +36,8 @@ gantt
     Aktivitet 3.6 - Analysepakke (M5) :done, 2026-03-29, 2026-03-31
     Aktivitet 3.7 - Sensitivitetsanalyse :done, 2026-03-31, 2026-04-01
     Aktivitet 3.8 - Utvidet Feature Engineering :done, 2026-04-01, 2026-04-02
-    Aktiviteter 3.9-3.12 - Utvidet analyse : 2026-04-02, 2026-04-27
+    Aktivitet 3.9 - Modellvalidering (Backtesting) :done, 2026-04-02, 2026-04-02
+    Aktiviteter 3.10-3.12 - Utvidet analyse : 2026-04-02, 2026-04-27
     M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
     Resultater og rapport : 2026-04-27, 2026-05-31
@@ -48,21 +49,20 @@ gantt
 ---
 
 ## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Aktivitet 3.7 - Sensitivitetsanalyse:**
-    - Testet modellens robusthet mot endringer i mangelkostnad, lagerholdskostnad og sikkerhetsmargin.
 - [x] **Aktivitet 3.8 - Utvidet Feature Engineering:**
-    - Inkludert helligdagseffekter (jul/påske) automatisk via `holidays`-biblioteket (inkl. 2026).
-    - Identifisert historiske salgstoppe (kampanjer) ved bruk av Z-score-analyse.
-    - Dokumentert betydelig forbedring i modellpresisjon (MAE redusert med 25-33 %).
-    - Gjennomført formell review (02.04.2026) og sikret overholdelse av AGENTS.md for visualiseringer.
+    - Inkludert helligdagseffekter og identifisert kampanjer.
+- [x] **Aktivitet 3.9 - Modellvalidering (Backtesting):**
+    - Gjennomført grundig validering mot testsettet for 2025.
+    - Beregnet MAPE og Bias for alle kategorier.
+    - Bekreftet at modellen er klar for anvendelse i lagerstyring.
 
 ---
 
 ## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.9 - Modellvalidering (Backtesting):**
-    - Verifisere modellens treffsikkerhet på historiske test-sett.
 - **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
     - Utvikle de endelige beslutningsreglene basert på forbedret prognose.
+- **Aktivitet 3.11 - Simuleringskjøring for 2026:**
+    - Generere endelige resultater for hele året 2026.
 
 ---
 
@@ -76,12 +76,12 @@ gantt
 ---
 
 ## 6. Risikovurdering
-Risikonivået er lavt. Fokus flyttes nå fra modellbygging til praktisk anvendelse av prognosene for lagerstyring i 2026.
+Ingen nye risikoer identifisert. Den positive biasen for Engelsk fiksjon (15.9 enheter) må tas hensyn til i Aktivitet 3.10.
 
 ---
 
 ## 7. Ressursbruk og økonomi
-- Prosjektet har god fremdrift og ligger foran opprinnelig tidsplan.
+- Prosjektet opprettholder sin høye hastighet.
 
 ---
 *Neste statusmøte: Mandag 2026-04-06 kl. 12:00 på Teams.*
