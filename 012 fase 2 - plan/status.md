@@ -1,6 +1,6 @@
 # Statusrapport - LOG650 Gruppe A + A
 
-**Rapportdato:** 2026-03-31  
+**Rapportdato:** 2026-04-02  
 **Prosjekt:** Lagerstyring og beslutningsstøtte i logistikk (ARK Bokhandel AS)  
 **Prosjektfase:** Fase 3 - Data og analyse  
 **Rapportør:** Prosjektledelsen (Astrid & Anne Helene)
@@ -10,10 +10,10 @@
 ## 1. Overordnet Status (Health Check)
 | Område | Status | Kommentar |
 | :--- | :---: | :--- |
-| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.6 fullført og godkjent. Nye aktiviteter lagt til i Fase 3. |
-| **Omfang (Scope)** | 🟢 | Utvidet scope med feature engineering og kampanjeanalyse. |
-| **Ressurser** | 🟢 | God fremdrift; teknisk fundament er nå på plass. |
-| **Risiko** | 🟢 | Fokus på modellrobusthet og prediksjonskraft for 2026. |
+| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.8 fullført. Prosjektet ligger foran skjema for Fase 3. |
+| **Omfang (Scope)** | 🟢 | Feature engineering og kampanjeanalyse er nå integrert i hovedmodellen. |
+| **Ressurser** | 🟢 | Teknisk fundament for utvidet analyse er på plass. |
+| **Risiko** | 🟢 | Lav risiko; kampanjeidentifisering via Z-score fungerer godt. |
 
 ---
 
@@ -35,7 +35,8 @@ gantt
     Aktivitet 3.5 - Kvantitativ modell :done, 2026-03-27, 2026-03-29
     Aktivitet 3.6 - Analysepakke (M5) :done, 2026-03-29, 2026-03-31
     Aktivitet 3.7 - Sensitivitetsanalyse :done, 2026-03-31, 2026-04-01
-    Aktiviteter 3.8-3.12 - Utvidet analyse : 2026-04-01, 2026-04-27
+    Aktivitet 3.8 - Utvidet Feature Engineering :done, 2026-04-01, 2026-04-02
+    Aktiviteter 3.9-3.12 - Utvidet analyse : 2026-04-02, 2026-04-27
     M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
     Resultater og rapport : 2026-04-27, 2026-05-31
@@ -47,23 +48,21 @@ gantt
 ---
 
 ## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Aktivitet 3.6 - Analysepakke (M5):**
-    - Sammenstilt resultater fra Prophet-optimalisering mot baseline for alle kategorier.
-    - Gjennomført formell review (31.03.2026) med fokus på AGENTS.md-standarder.
-    - Implementert korrekt bildeformatering og visuelle referanser i oppsummeringsdokumentene.
 - [x] **Aktivitet 3.7 - Sensitivitetsanalyse:**
     - Testet modellens robusthet mot endringer i mangelkostnad, lagerholdskostnad og sikkerhetsmargin.
-    - Identifisert at økt sikkerhetsmargin (faktor 1.5-2.0) gir betydelige gevinster for Engelsk fiksjon og Norske barnebøker.
-- [x] **Milepæl M5 Oppdatering:** Bekreftet fullføring av den initielle kvantitative analysen.
-- [x] **Utvidelse av prosjektplan:** Lagt til fem nye aktiviteter (3.8-3.12) for å styrke analysens dybde (kampanjeløft, feature engineering, prognoser 2026).
+- [x] **Aktivitet 3.8 - Utvidet Feature Engineering:**
+    - Inkludert helligdagseffekter (jul/påske) automatisk via `holidays`-biblioteket (inkl. 2026).
+    - Identifisert historiske salgstoppe (kampanjer) ved bruk av Z-score-analyse.
+    - Dokumentert betydelig forbedring i modellpresisjon (MAE redusert med 25-33 %).
+    - Gjennomført formell review (02.04.2026) og sikret overholdelse av AGENTS.md for visualiseringer.
 
 ---
 
 ## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.8 - Utvidet Feature Engineering:**
-    - Inkludere helligdagseffekter og identifisere historiske salgstoppe (kampanjer).
 - **Aktivitet 3.9 - Modellvalidering (Backtesting):**
     - Verifisere modellens treffsikkerhet på historiske test-sett.
+- **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
+    - Utvikle de endelige beslutningsreglene basert på forbedret prognose.
 
 ---
 
@@ -71,18 +70,18 @@ gantt
 | ID | Sak | Status | Ansvarlig | Frist |
 | :--- | :--- | :--- | :--- | :--- |
 | S8 | Bildeformatering iht. AGENTS.md | **Løst** | Gemini | 2026-03-31 |
-| S9 | Mangel på kampanjemarkører i rådata | **Pågår** | Begge | 2026-04-10 |
-| S10 | Generering av out-of-sample prognoser for 2026 | **Ny** | Begge | 2026-04-15 |
+| S9 | Mangel på kampanjemarkører i rådata | **Løst** | Gemini | 2026-04-02 |
+| S10 | Generering av out-of-sample prognoser for 2026 | **Pågår** | Begge | 2026-04-15 |
 
 ---
 
 ## 6. Risikovurdering
-Risiko knyttet til **S9 (mangel på kampanjedata)** håndteres ved å bruke residualanalyse for å identifisere sannsynlige kampanjer retrospektivt. Dette krever ekstra metodisk nøyaktighet i Aktivitet 3.10.
+Risikonivået er lavt. Fokus flyttes nå fra modellbygging til praktisk anvendelse av prognosene for lagerstyring i 2026.
 
 ---
 
 ## 7. Ressursbruk og økonomi
-- Prosjektet har god fremdrift, noe som har gitt rom for å utvide analysen uten å utsette sluttdatoen for Fase 3 (27. april).
+- Prosjektet har god fremdrift og ligger foran opprinnelig tidsplan.
 
 ---
 *Neste statusmøte: Mandag 2026-04-06 kl. 12:00 på Teams.*

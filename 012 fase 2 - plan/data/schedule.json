@@ -88,7 +88,8 @@
         { "id": "3.4", "name": "Baseline-løsning", "status": "Fullført" },
         { "id": "3.5", "name": "Kvantitativ modell", "status": "Fullført" },
         { "id": "3.6", "name": "Analysepakke (M5)", "status": "Fullført" },
-        { "id": "3.7", "name": "Sensitivitetsanalyse", "status": "Fullført" }
+        { "id": "3.7", "name": "Sensitivitetsanalyse", "status": "Fullført" },
+        { "id": "3.8", "name": "Utvidet Feature Engineering", "status": "Fullført" }
       ]
     },
     {
