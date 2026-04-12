@@ -557,6 +557,37 @@ Som et direkte resultat av backtestingen og sensitivitetsanalysen, er de endelig
 
 Disse optimaliserte reglene danner grunnlaget for den endelige prognosegenereringen og scenario-analysen i de påfølgende stegene av prosjektet.
 
+### 8.4 Prognoser for 2026 (Operasjonell Planlegging)
+Som det siste steget i den kvantitative analysen er det generert endelige etterspørselsprognoser for hele 2026. Disse prognosene integrerer alle funn fra tidligere steg, inkludert bias-justering fra backtestingen (6.5) og dynamisk beregning av sikkerhetslager basert på de optimaliserte k-faktorene (8.3).
+
+Tabellen nedenfor viser de forventede gjennomsnittlige verdiene per måned for 2026, som danner grunnlaget for ARKs taktiske lagerplanlegging:
+
+| Kategori          | Justert etterspørsel (snitt) | Sikkerhetslager (snitt) | Bestillingspunkt (snitt) |
+|:------------------|:----------------------------:|:-----------------------:|:------------------------:|
+| Engelsk fiksjon   |            283,82            |          58,39          |          342,21          |
+| Norsk krim        |            418,90            |          27,62          |          446,52          |
+| Norske barnebøker |            290,59            |          23,41          |          314,00          |
+
+De månedlige svingningene i forventet etterspørsel og det tilhørende behovet for sikkerhetslager er visualisert i figurene 19, 20 og 21. Disse visualiseringene viser hvordan modellen proaktivt øker lagerbeholdningen i forkant av de identifiserte sesongtoppene for å opprettholde målsetningen om leveringsservice.
+
+<div align="center">
+  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 19: Prognose og sikkerhetslager for Engelsk fiksjon i 2026.</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 20: Prognose og sikkerhetslager for Norsk krim i 2026.</em>
+</div>
+
+<div align="center">
+  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 21: Prognose og sikkerhetslager for Norske barnebøker i 2026.</em>
+</div>
+
 ---
 
 ## 9.0 Diskusjon
