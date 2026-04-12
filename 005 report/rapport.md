@@ -418,6 +418,17 @@ Det antas at feilleddet $\epsilon_t$ er normalfordelt med forventningsverdi null
 *   **Mangelkostnad:** Mangelkostnaden $C_s$ er satt betydelig høyere enn lagerholdskostnaden $C_h$ (f.eks. 120 NOK vs 10 NOK for Engelsk fiksjon) for å reflektere den strategiske viktigheten av tilgjengelighet i bokbransjen.
 *   **Restordrer:** Som spesifisert i kapittel 1.4, antas det at tapt salg ved stockout er permanent og ikke genererer restordrer ("lost sales"-modell).
 
+### 6.5 Modellvalidering og Bias-justering (Backtesting)
+Før modellen tas i bruk for fremtidige prognoser (2026), er den validert gjennom "backtesting" mot historiske data for 2025. Dette steget er kritisk for å identifisere systematiske skjevheter (bias) i modellen.
+
+| Kategori | MAE | RMSE | MAPE (%) | Bias |
+| :--- | :---: | :---: | :---: | :---: |
+| **Engelsk fiksjon** | 49,62 | 60,89 | 17,43 % | +15,96 |
+| **Norsk krim** | 23,89 | 30,63 | 5,93 % | -11,78 |
+| **Norske barnebøker** | 25,47 | 32,10 | 8,68 % | +0,69 |
+
+Analysen viser at modellen for *Engelsk fiksjon* har en positiv bias (overestimering), mens *Norsk krim* har en negativ bias (underestimering). For å sikre optimale bestillinger i 2026, er det i aktivitet 3.10 implementert automatiske bias-korreksjoner som nøytraliserer disse systematiske feilene før bestillingsmengden beregnes.
+
 ---
 
 ## 7.0 Analyse
@@ -534,6 +545,17 @@ Norsk krim fremstår som den mest stabile kategorien. Som vist i figur 18, oppn�
   <br>
   <em>Figur 18: Servicenivå-sensitivitet (Norsk krim).</em>
 </div>
+
+### 8.3 Optimalisering av Styringsparametere (3.10)
+Som et direkte resultat av backtestingen og sensitivitetsanalysen, er de endelige styringsparameterne for 2026-sesongen fastsatt. Disse parameterne representerer modellens "beslutningsregler" og er skreddersydd for å håndtere hver kategoris unike risiko- og etterspørselsprofil.
+
+| Kategori | Bias-justering | Sikkerhetsfaktor (k) | Est. Kampanjeløft |
+| :--- | :---: | :---: | :---: |
+| **Engelsk fiksjon** | -15,96 | 1,4 | 135,6 enheter |
+| **Norsk krim** | +11,78 | 1,8 | 56,6 enheter |
+| **Norske barnebøker** | -0,69 | 1,5 | 39,7 enheter |
+
+Disse optimaliserte reglene danner grunnlaget for den endelige prognosegenereringen og scenario-analysen i de påfølgende stegene av prosjektet.
 
 ---
 

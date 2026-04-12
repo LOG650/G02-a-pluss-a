@@ -1,6 +1,6 @@
 # Statusrapport - LOG650 Gruppe A + A
 
-**Rapportdato:** 2026-04-02  
+**Rapportdato:** 2026-04-12  
 **Prosjekt:** Lagerstyring og beslutningsstøtte i logistikk (ARK Bokhandel AS)  
 **Prosjektfase:** Fase 3 - Data og analyse  
 **Rapportør:** Prosjektledelsen (Astrid & Anne Helene)
@@ -10,10 +10,10 @@
 ## 1. Overordnet Status (Health Check)
 | Område | Status | Kommentar |
 | :--- | :---: | :--- |
-| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.9 fullført. Modellen er nå validert mot historiske data. |
-| **Omfang (Scope)** | 🟢 | Backtesting bekrefter høy treffsikkerhet (MAPE under 10 % for krim og barnebøker). |
-| **Ressurser** | 🟢 | Alt teknisk arbeid i Fase 3 nærmer seg slutten. |
-| **Risiko** | 🟢 | Lav risiko; modellbias er identifisert og kan håndteres i neste steg. |
+| **Fremdrift (Tid)** | 🟢 | Aktivitet 3.10 fullført. Beslutningsregler er optimalisert. |
+| **Omfang (Scope)** | 🟢 | Bias-justering og sikkerhetsfaktorer er implementert. |
+| **Ressurser** | 🟢 | Prosjektet er i rute for Phase 4. |
+| **Risiko** | 🟢 | Lav risiko; bias-problematikk er løst. |
 
 ---
 
@@ -37,7 +37,8 @@ gantt
     Aktivitet 3.7 - Sensitivitetsanalyse :done, 2026-03-31, 2026-04-01
     Aktivitet 3.8 - Utvidet Feature Engineering :done, 2026-04-01, 2026-04-02
     Aktivitet 3.9 - Modellvalidering (Backtesting) :done, 2026-04-02, 2026-04-02
-    Aktiviteter 3.10-3.12 - Utvidet analyse : 2026-04-02, 2026-04-27
+    Aktivitet 3.10 - Optimalisering av Bestillingsregler :done, 2026-04-02, 2026-04-12
+    Aktiviteter 3.11-3.12 - Utvidet analyse :active, 2026-04-12, 2026-04-27
     M5 - Analyse gjennomført :milestone, 2026-04-27, 0d
     section Fase 4 - Rapport
     Resultater og rapport : 2026-04-27, 2026-05-31
@@ -49,20 +50,18 @@ gantt
 ---
 
 ## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Aktivitet 3.8 - Utvidet Feature Engineering:**
-    - Inkludert helligdagseffekter og identifisert kampanjer.
 - [x] **Aktivitet 3.9 - Modellvalidering (Backtesting):**
     - Gjennomført grundig validering mot testsettet for 2025.
-    - Beregnet MAPE og Bias for alle kategorier.
-    - Bekreftet at modellen er klar for anvendelse i lagerstyring.
+- [x] **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
+    - Faststatt kategori-spesifikke sikkerhetsfaktorer (k).
+    - Implementert bias-justering (-15.96 for Engelsk fiksjon, +11.78 for Norsk krim).
+    - Estimert gjennomsnittlig kampanjeløft for bruk i scenario-analyser.
 
 ---
 
 ## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
-    - Utvikle de endelige beslutningsreglene basert på forbedret prognose.
 - **Aktivitet 3.11 - Simuleringskjøring for 2026:**
-    - Generere endelige resultater for hele året 2026.
+    - Generere endelige resultater for hele året 2026 basert på de optimaliserte reglene.
 
 ---
 
@@ -76,7 +75,7 @@ gantt
 ---
 
 ## 6. Risikovurdering
-Ingen nye risikoer identifisert. Den positive biasen for Engelsk fiksjon (15.9 enheter) må tas hensyn til i Aktivitet 3.10.
+Ingen nye risikoer identifisert. Bias for Engelsk fiksjon og Norsk krim er nå håndtert gjennom systematiske justeringer i Aktivitet 3.10.
 
 ---
 
@@ -84,4 +83,4 @@ Ingen nye risikoer identifisert. Den positive biasen for Engelsk fiksjon (15.9 e
 - Prosjektet opprettholder sin høye hastighet.
 
 ---
-*Neste statusmøte: Mandag 2026-04-06 kl. 12:00 på Teams.*
+*Neste statusmøte: Mandag 2026-04-13 kl. 12:00 på Teams.*
