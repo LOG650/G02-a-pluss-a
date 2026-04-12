@@ -33,7 +33,7 @@
       "type": "Milestone",
       "description": "Kvantitativ analyse gjennomført",
       "due_date": "2026-04-27",
-      "status": "Planlagt"
+      "status": "Fullført"
     },
     {
       "id": "M6",
@@ -80,7 +80,7 @@
       "name": "Data og analyse",
       "start": "2026-03-09",
       "end": "2026-04-27",
-      "status": "Pågår",
+      "status": "Fullført",
       "activities": [
         { "id": "3.1", "name": "Dataspesifikasjon", "status": "Fullført" },
         { "id": "3.2", "name": "Datagrunnlag ferdigstilt (M4)", "status": "Fullført" },
@@ -92,8 +92,8 @@
         { "id": "3.8", "name": "Utvidet Feature Engineering", "status": "Fullført" },
         { "id": "3.9", "name": "Modellvalidering (Backtesting)", "status": "Fullført" },
         { "id": "3.10", "name": "Optimalisering av Bestillingsregler", "status": "Fullført" },
-        { "id": "3.11", "name": "Prognosegenerering 2026", "status": "Pågår" },
-        { "id": "3.12", "name": "Scenario-analyse", "status": "Planlagt" }
+        { "id": "3.11", "name": "Prognosegenerering 2026", "status": "Fullført" },
+        { "id": "3.12", "name": "Scenario-analyse", "status": "Pågår" }
       ]
     },
     {
