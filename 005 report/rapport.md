@@ -594,34 +594,37 @@ For å sikre at den foreslåtte bestillingsmodellen er robust mot uforutsette en
 1.  **Scenario A (Kampanje-sjokk):** Simulerer en situasjon der kampanjene i mai og desember gir 50 % høyere løft enn historisk snitt, kombinert med en 20 % økning i sikkerhetslageret for å håndtere økt volatilitet.
 2.  **Scenario B (Kostnads-sjokk):** Simulerer en kraftig økning i lagerholdskostnader (f.eks. strøm og husleie), som tvinger frem en 20 % reduksjon i sikkerhetslageret for å minimere kapitalbinding.
 
+**Antagelser og datakvalitet:**
+Analysen antar at sesongmønsteret fra de siste 4 årene vedvarer i 2026. Kampanjeløftet i scenario A er basert på historisk effekt pluss et estimert sjokk (50% økning av gjennomsnittlig løft). Modellen tar høyde for normal volatilitet, men ekstreme "Sorte svaner" er ikke inkludert i simuleringen.
+
 Tabellen nedenfor oppsummerer hvordan det gjennomsnittlige lagernivået (Order-up-to level) må justeres i de ulike scenariene:
 
-| Kategori | Baseline (Enheter) | Scenario A: Kampanje-sjokk | Scenario B: Kostnads-kutt |
+| Kategori | Baseline (Units) | Scenario A: Kampanje-sjokk | Scenario B: Kostnads-sjokk |
 | :--- | :---: | :---: | :---: |
-| **Engelsk fiksjon** | 410,4 | +6,8 % | -4,1 % |
-| **Norsk krim** | 452,7 | +2,3 % | -1,3 % |
+| **Engelsk fiksjon** | 409,2 | +6,8 % | -4,0 % |
+| **Norsk krim** | 451,9 | +2,3 % | -1,2 % |
 | **Norske barnebøker** | 317,2 | +2,6 % | -1,6 % |
 
-Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for nesten 7 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med mindre enn 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
+Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for 6,8 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med mindre enn 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
 
 De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i figurene 22, 23 og 24:
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 22: Scenario-sammenligning for Engelsk fiksjon i 2026.</em>
+  <em>Figur 22: Scenario-sammenligning for Engelsk fiksjon i 2026</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 23: Scenario-sammenligning for Norsk krim i 2026.</em>
+  <em>Figur 23: Scenario-sammenligning for Norsk krim i 2026</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 24: Scenario-sammenligning for Norske barnebøker i 2026.</em>
+  <em>Figur 24: Scenario-sammenligning for Norske barnebøker i 2026</em>
 </div>
 
 ---

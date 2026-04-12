@@ -105,6 +105,11 @@ report = []
 report.append("# Rapport: 3.12 Scenario-analyse 2026\n")
 report.append("Dette dokumentet analyserer hvordan eksterne endringer i 2026 vil påvirke lagerbehovet.\n")
 
+report.append("## Antagelser og datakvalitet")
+report.append("- **Sykronisering:** Modellen antar at sesongmønsteret fra de siste 4 årene vil vedvare i 2026.")
+report.append("- **Kampanjeløft:** Kampanjeløftet i scenario A er basert på historisk effekt pluss et estimert sjokk (50% økning av gjennomsnittlig løft).")
+report.append("- **Prognosekvalitet:** Analysen tar høyde for volatilitet (sikkerhetslager), men ekstreme uforutsette hendelser (f.eks. ny pandemi) er ikke inkludert.\n")
+
 report.append("## Scenariebeskrivelser")
 report.append("1. **Baseline:** Basert på optimaliserte parametere fra Aktivitet 3.10.")
 report.append("2. **Scenario A (Kampanje-sjokk):** Simulerer en situasjon der kampanjene i mai og desember gir 50% høyere løft enn historisk snitt. Vi øker også sikkerhetslageret med 20% for å håndtere økt volatilitet.")
@@ -112,7 +117,7 @@ report.append("3. **Scenario B (Kostnads-sjokk):** Simulerer en 30% økning i la
 
 report.append("## Resultat-oppsummering (Gjennomsnittlig lagernivå 2026)\n")
 summary = all_scenarios.groupby('Kategori')[['out_base', 'out_shock', 'out_cost']].mean().round(1)
-summary.columns = ['Baseline (Units)', 'Kampanje-sjokk (Units)', 'Kostnads-kutt (Units)']
+summary.columns = ['Baseline (Units)', 'Kampanje-sjokk (Units)', 'Kostnads-sjokk (Units)']
 report.append(summary.to_markdown())
 
 report.append("\n## Prosentvis endring vs Baseline\n")
@@ -120,12 +125,12 @@ perc = (summary.div(summary['Baseline (Units)'], axis=0) - 1) * 100
 report.append(perc.round(1).to_markdown())
 
 report.append("\n## Visualiseringer")
-for cat in categories:
+for i, cat in enumerate(categories, 1):
     img = f"scenario_plot_{cat.replace(' ', '_')}.png"
     report.append(f'<div align="center">')
     report.append(f'  <img src="{img}" style="width: 70%; height: auto;">')
     report.append(f'  <br>')
-    report.append(f'  <em>Figur: Scenario-sammenligning for {cat} i 2026</em>')
+    report.append(f'  <em>Figur {i}: Scenario-sammenligning for {cat} i 2026</em>')
     report.append(f'</div>\n')
 
 with open(f"{OUTPUT_DIR}/3.12_scenario_oppsummering.md", "w", encoding="utf-8") as f:
