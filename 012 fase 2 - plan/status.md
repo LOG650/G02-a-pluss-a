@@ -37,38 +37,39 @@ gantt
     M5 - Analyse gjennomført :done, milestone, 2026-04-12, 0d
     section Fase 4 - Rapport
     Resultater og rapport (PÅGÅR) :active, 2026-04-12, 2026-05-31
-    Aktivitet 3.12 - Scenario-analyse :active, 2026-04-12, 2026-04-20
+    Aktivitet 3.12 - Scenario-analyse :done, 2026-04-12, 2026-04-13
     M6 - Tolkning og diskusjon :milestone, 2026-05-07, 0d
     M7 - Oppgaveutkast :milestone, 2026-05-21, 0d
     M8 - Endelig innlevering :milestone, 2026-05-31, 0d
-```
+    ```
 
----
+    ---
 
-## 3. Fullførte aktiviteter (Siste periode)
-- [x] **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
+    ## 3. Fullførte aktiviteter (Siste periode)
+    - [x] **Aktivitet 3.10 - Optimalisering av Bestillingsregler:**
     - Faststatt kategori-spesifikke sikkerhetsfaktorer og bias-justering.
-- [x] **Aktivitet 3.11 - Prognosegenerering 2026:**
+    - [x] **Aktivitet 3.11 - Prognosegenerering 2026:**
     - Generert endelige etterspørselsprognoser og bestillingspunkter for hele 2026.
     - Produsert visualiseringer av sikkerhetslagersoner for alle kategorier.
-- [x] **Milepæl M5 - Kvantitativ analyse gjennomført:**
-    - Alle tekniske analyseaktiviteter i Fase 3 er nå fullført.
+    - [x] **Aktivitet 3.12 - Scenario-analyse:**
+    - Testet effekten av kampanje-sjokk (+50% løft) og kostnads-økninger på lagernivå.
+    - Dokumentert sensitivitet for alle varekategorier i 2026.
+    - [x] **Milepæl M5 - Kvantitativ analyse gjennomført:**
+    - Alle tekniske analyseaktiviteter i Fase 3 og starten av Fase 4 er nå fullført.
 
----
+    ---
 
-## 4. Aktiviteter i arbeid (Neste periode)
-- **Aktivitet 3.12 - Scenario-analyse:**
-    - Teste hvordan prognosen påvirkes av ekstreme kampanjeløft eller endrede kostnader i 2026.
-- **Fase 4 - Rapportskriving:**
-    - Begynne på kapittel 8 (Resultater) med fokus på 2026-tallene.
+    ## 4. Aktiviteter i arbeid (Neste periode)
+    - **Fase 4 - Rapportskriving:**
+    - Begynne på kapittel 8 (Resultater) med fokus på 2026-tallene og scenarier.
 
----
+    ---
 
-## 5. Oppdatert Saksliste (Issues Log)
-| ID | Sak | Status | Ansvarlig | Frist |
-| :--- | :--- | :--- | :--- | :--- |
-| S10 | Generering av out-of-sample prognoser for 2026 | **Løst** | Gemini | 2026-04-12 |
-| S11 | Scenario-oppsett for kampanjeløft | **Ny** | Begge | 2026-04-20 |
+    ## 5. Oppdatert Saksliste (Issues Log)
+    | ID | Sak | Status | Ansvarlig | Frist |
+    | :--- | :--- | :--- | :--- | :--- |
+    | S10 | Generering av out-of-sample prognoser for 2026 | **Løst** | Gemini | 2026-04-12 |
+    | S11 | Scenario-oppsett for kampanjeløft | **Løst** | Gemini | 2026-04-13 |
 
 ---
 

@@ -93,7 +93,7 @@
         { "id": "3.9", "name": "Modellvalidering (Backtesting)", "status": "Fullført" },
         { "id": "3.10", "name": "Optimalisering av Bestillingsregler", "status": "Fullført" },
         { "id": "3.11", "name": "Prognosegenerering 2026", "status": "Fullført" },
-        { "id": "3.12", "name": "Scenario-analyse", "status": "Pågår" }
+        { "id": "3.12", "name": "Scenario-analyse", "status": "Fullført" }
       ]
     },
     {
@@ -102,7 +102,7 @@
       "name": "Resultater og rapport",
       "start": "2026-04-27",
       "end": "2026-05-31",
-      "status": "Planlagt"
+      "status": "Pågår"
     }
   ]
 }
