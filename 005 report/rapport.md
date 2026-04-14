@@ -67,6 +67,9 @@ Dato: 28. mars 2026
 1.4 Antagelser
 2.0 Litteratur
 3.0 Teori
+3.1 Stasjonaritet og differensiering
+3.2 Additive modeller og Prophet
+3.3 Lagerstyringsteori
 4.0 Casebeskrivelse
 5.0 Metode og data
 5.1 Metode
@@ -170,6 +173,48 @@ Hvor:
 - $\epsilon_t$ er feilleddet som representerer idiosynkratiske endringer som ikke fanges opp av modellen.
 
 Til forskjell fra SARIMA-modeller, som krever at dataene er stasjonære (jf. seksjon 3.1), opererer Prophet direkte på de opprinnelige verdiene uten behov for differensiering. Modellen er designet som et «analyst-in-the-loop»-verktøy (Taylor & Letham, 2018), der intuitive parametere — som styrken på sesongkomponenten og plasseringen av trendskift — kan justeres av analytikere uten spesialisert statistikkbakgrunn. Denne egenskapen gjør Prophet egnet for praktisk beslutningsstøtte i logistikkoperasjoner, som er det overordnede målet for dette prosjektet. De matematiske detaljene for hver komponent presenteres i seksjon 6.1.
+
+### 3.3 Lagerstyringsteori
+Mens seksjon 3.1–3.2 dekker det teoretiske grunnlaget for etterspørselsprognosering, omhandler denne seksjonen teorien som knytter prognosene til konkrete lagerbeslutninger. Goltsos et al. (2022) påpeker at disse to disiplinene ofte behandles isolert i litteraturen — dette prosjektet søker å integrere dem.
+
+#### 3.3.1 Bestillingspunkt og sikkerhetslager
+I et lagerstyringssystem med kontinuerlig overvåking utløses en ny bestilling når lagerbeholdningen synker til et definert **bestillingspunkt** (Reorder Point, ROP). Bestillingspunktet må dekke forventet etterspørsel i ledetiden pluss et sikkerhetslager som beskytter mot usikkerhet (Lewis, 1997):
+
+$ROP = \hat{D}_L + SS$
+
+Hvor:
+- $\hat{D}_L = \hat{d} \cdot L$ er forventet etterspørsel i ledetiden, med $\hat{d}$ som gjennomsnittlig etterspørsel per periode og $L$ som ledetid.
+- $SS$ er sikkerhetslageret.
+
+Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvingninger og beregnes som:
+
+$SS = z_\alpha \cdot \sigma_L$
+
+Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 1.4.
+
+Kirmizi et al. (2024) demonstrerer at etterspørselsvariabilitet ($\sigma_d$) er den mest kritiske faktoren for dimensjonering av sikkerhetslageret. Dette understreker viktigheten av nøyaktige prognoser: jo bedre prognosene fanger opp sesongvariasjoner og trender, desto lavere blir residualvariansen, og desto mindre sikkerhetslager kreves for å oppnå samme servicenivå.
+
+#### 3.3.2 Servicegrad
+Servicegraden uttrykker sannsynligheten for at etterspørselen kan dekkes direkte fra lager i en gitt periode. I dette prosjektet benyttes **Cycle Service Level (CSL)**, definert som:
+
+$CSL = P(\text{Etterspørsel i ledetiden} \leq ROP)$
+
+En CSL på 95 % innebærer at etterspørselen dekkes av tilgjengelig lager i 95 av 100 bestillingssykluser. Valget av servicenivå representerer en avveining mellom lagerholdskostnader og risikoen for tapt salg — en avveining som er sentral i dette prosjektet (Adeyemi & Onanuga, 2014).
+
+#### 3.3.3 Kostnadsstruktur i lagerstyring
+Den totale relevante lagerkostnaden kan dekomponeres i to hovedkomponenter (Lewis, 1997; Adeyemi & Onanuga, 2014):
+
+$TC = C_h \cdot \bar{I} + C_s \cdot \bar{S}$
+
+Hvor:
+- $C_h$ er lagerholdskostnaden per enhet per periode, som reflekterer kapitalbinding, lagerplass og svinn.
+- $C_s$ er mangelkostnaden per enhet, som reflekterer tapt dekningsbidrag og goodwill-tap ved stockouts.
+- $\bar{I}$ er gjennomsnittlig lagerbeholdning og $\bar{S}$ er gjennomsnittlig antall enheter i mangel.
+
+Forholdet mellom $C_h$ og $C_s$ er avgjørende for det optimale servicenivået. Når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen der tapte salg er permanente (jf. seksjon 1.4) — forskyves det optimale servicenivået oppover, noe som krever større sikkerhetslager.
+
+#### 3.3.4 Kobling mellom prognose og lagerstyring
+I dette prosjektet kobles de to teoriblokkene sammen ved at Prophet-prognosene ($\hat{y}(t)$) erstatter $\hat{d}$ i beregningen av bestillingspunktet, og residualene fra modellen ($\epsilon_t$) brukes til å estimere $\sigma_d$. Denne integrasjonen er i tråd med rammeverket foreslått av Goltsos et al. (2022), der prognosekvalitet direkte påvirker lagerbeslutningens kvalitet. Den fullstendige implementeringen av denne koblingen presenteres i seksjon 6.3.
 
 ---
 
