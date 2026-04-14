@@ -261,6 +261,8 @@ Siden direkte tilgang til ARKs interne ERP-data ikke var tilgjengelig for dette 
 ## 5.0 Metode og data
 
 ### 5.1 Metode
+Prosjektet følger et kvantitativt forskningsparadigme, der all analyse er basert på numeriske data og statistiske modeller. Forskningsdesignet er en simuleringsbasert case-studie med en todelt tilnærming: først etterspørselsprognosering, deretter kvantitativ bestillingsoptimalisering.
+
 For dette prosjektet er det valgt å benytte **Prophet** som hovedmodell for etterspørselsprognosering. Valget av denne modellen er basert på en drøfting av behovene i bokbransjen og datasettets egenskaper:
 
 **1. Robusthet mot sesongvariasjoner:**
@@ -273,12 +275,12 @@ Salgsmønstrene for spesielt "Norsk krim" og "Norske barnebøker" viser tydelige
 Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant for å fange opp skift i popularitet for ulike sjangre, for eksempel økt etterspørsel etter engelsk fiksjon drevet av sosiale medier (BookTok).
 
 **4. Prediksjon på faktisk etterspørsel:**
-Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer we at modellen lærer det reelle behovet i markedet, uavhengig av historiske lagerbegrensninger.
+Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer vi at modellen lærer det reelle behovet i markedet, uavhengig av historiske lagerbegrensninger.
 
-Metoden innebærer å trene modellen på historiske salgs data (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
+Metoden innebærer å trene modellen på historiske salgsdata (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
 
 ### 5.2 Data
-Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lager data for ARK Bokhandel AS. Dataene dekker tre hovedkategorier av bøker med ulike etterspørselsmønstre:
+Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lagerdata for ARK Bokhandel AS. De tre bokkategoriene er valgt fordi de representerer tre distinkte etterspørselsmønstre, noe som gjør det mulig å teste modellens robusthet på tvers av ulike markedsdynamikker:
 - **Norske barnebøker:** Preget av høy frekvens og tydelige sesongvariasjoner, men med høy grad av forutsigbarhet og regelmessighet.
 - **Norsk krim:** Kjennetegnes av spesifikke salgstopper knyttet til høytider som påske og sommer.
 - **Engelsk fiksjon:** Viser en jevnere etterspørsel gjennom året, ofte påvirket av internasjonale trender og importtider.
