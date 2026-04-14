@@ -113,15 +113,26 @@ For å kunne gjennomføre analysen og modelleringen er følgende forutsetninger 
 ---
 
 ## 2.0 Litteratur
-Litteraturen som danner grunnlaget for denne rapporten spenner fra klassiske teorier om lagerstyring til moderne, datadrevne tilnærminger for etterspørselsprognosering i bokbransjen.
+Litteraturen som danner grunnlaget for denne rapporten spenner fra klassiske teorier om lagerstyring til moderne, datadrevne tilnærminger for etterspørselsprognosering i detaljhandelen og bokbransjen. Gjennomgangen er strukturert langs prosjektets to hovedakser: (1) etterspørselsprognosering og (2) lagerstyring og kostnadsoptimalisering.
 
-**Etterspørselsprognosering i bokbransjen:**
-Park et al. (2020) belyser utfordringene med etterspørselsprognosering spesifikt for forlags- og bokbransjen. De understreker viktigheten av å identifisere faktorer som påvirker salgsvolum for å redusere svinn og lagerholdskostnader. Deres forskning viser hvordan maskinlæringsmodeller kan fange opp komplekse mønstre som tradisjonelle metoder ofte overser. Luo (2019) diskuterer hvordan tradisjonelle bokhandler må reformeres gjennom nye styringssystemer som utnytter stordata og nettskybaserte løsninger for å holde tritt med markedsendringer.
+### Etterspørselsprognosering i detaljhandel og bokbransjen
 
-**Lagerstyring med skiftende etterspørsel:**
-Lewis (1997) gir et omfattende rammeverk for sammenhengen mellom etterspørselsprognoser og lagerstyring (Inventory Control). Han skiller mellom ulike typer etterspørsel (stasjonær, sesongavhengig, trendbasert) og hvordan disse krever ulike kontrollstrategier. Chen (2020) tar dette videre til en moderne kontekst ved å studere datadrevet lagerstyring in miljøer med "shifting demand". Hans arbeid er særlig relevant for vårt prosjekt, da det adresserer situasjoner hvor etterspørselsfordelingen endres over tid, noe som er typisk for sesongvarene hos ARK Bokhandel.
+Park et al. (2020) belyser utfordringene med etterspørselsprognosering spesifikt for forlags- og bokbransjen. De understreker viktigheten av å identifisere faktorer som påvirker salgsvolum for å redusere svinn og lagerholdskostnader, og viser hvordan maskinlæringsmodeller kan fange opp komplekse mønstre som tradisjonelle metoder ofte overser. Luo (2019) diskuterer i forlengelsen av dette hvordan tradisjonelle bokhandler må reformeres gjennom nye styringssystemer som utnytter stordata og nettskybaserte løsninger for å holde tritt med markedsendringer.
 
-Disse kildene understøtter valget av en modell som kan dekomponere sesongvariasjoner og automatisk tilpasse seg skift i markedstrender.
+Taylor og Letham (2018) introduserer Prophet-modellen, en modulær additiv tidsseriemodell designet for prognosering «i stor skala». Modellen dekomponerer tidsserien i trend, sesongvariasjon og helligdagseffekter, og er utviklet for å gi intuitive parametere som analytikere uten spesialisert statistisk bakgrunn kan justere. Modellens evne til å håndtere manglende data, uteliggere og trendskift automatisk gjør den særlig egnet for detaljhandelsdata med uregelmessige sesongmønstre — som er tilfellet for ARK Bokhandel.
+
+Haque et al. (2023) gjennomfører en komparativ studie av ulike prognosemodeller for etterspørsel i detaljhandelen, inkludert regresjonsmodeller og maskinlæringsmetoder. Et sentralt bidrag er inkluderingen av makroøkonomiske variabler — som konsumprisindeks (KPI), forbrukertillitsindeks og arbeidsledighetsrate — som forklaringsvariabler i tillegg til historiske salgsdata. Deres funn viser at modeller som kombinerer tidsseriedata med eksterne faktorer gir bedre prognosenøyaktighet, noe som støtter tilnærmingen i dette prosjektet der sesong- og helligdagseffekter inkluderes eksplisitt i Prophet-modellen. Borucka (2023) sammenligner matematiske metoder for kortsiktig etterspørselsprognosering for produkter med sterke sesongvariasjoner og utviklingstrender. Studien viser at valg av prognosemetode har direkte konsekvenser for forsyningskjeden, og at sesongbaserte metoder gir et vesentlig bedre beslutningsgrunnlag enn enkle gjennomsnitt. Denne innsikten er direkte overførbar til ARK Bokhandels situasjon, der sesongsvingningene er en av de største utfordringene for lagerstyring.
+
+### Lagerstyring og kostnadsoptimalisering
+
+Lewis (1997) gir et klassisk rammeverk for sammenhengen mellom etterspørselsprognoser og lagerstyring. Han skiller mellom ulike typer etterspørsel (stasjonær, sesongavhengig, trendbasert) og hvordan disse krever ulike kontrollstrategier. Chen (2020) bygger videre på dette i en moderne kontekst ved å studere datadrevet lagerstyring i miljøer med «shifting demand». Hans arbeid er særlig relevant for dette prosjektet, da det adresserer situasjoner hvor etterspørselsfordelingen endres over tid — noe som er typisk for sesongvarene hos ARK Bokhandel.
+
+Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet mellom etterspørselsprognoser og lagerstyring, og påpeker at de to forskningsfeltene i stor grad har utviklet seg fragmentert. Prognosestudier ignorerer ofte de nedstrøms konsekvensene for lagerbeslutninger, mens lagermodeller gjerne forutsetter at etterspørselen er kjent. Forfatterne foreslår et integrasjonsrammeverk som binder de to disiplinene sammen. Denne innsikten er bærende for strukturen i vårt prosjekt, som eksplisitt kobler Prophet-prognoser til bestillingsparametere som bestillingspunkt (ROP), sikkerhetslager og servicegrad.
+
+Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
+
+### Oppsummering og kunnskapsgap
+Samlet sett viser litteraturen en bevegelse fra klassiske analytiske modeller (Lewis, 1997; Adeyemi & Onanuga, 2014) mot datadrevne og maskinlæringsbaserte tilnærminger (Taylor & Letham, 2018; Haque et al., 2023; Borucka, 2023). Samtidig avdekkes det et vedvarende gap mellom prognoseforskning og lagerstyringsforskning (Goltsos et al., 2022). Dette prosjektet søker å adressere dette gapet ved å integrere en moderne prognosemodell (Prophet) direkte med kvantitative bestillingsbeslutninger for ARK Bokhandel AS, og dermed binde prognosekvalitet til konkrete lagerstyringsbeslutninger i en kontekst preget av sterke sesongvariasjoner.
 
 ---
 
@@ -149,9 +160,16 @@ Hvor vi tester om $\gamma = 0$ ($H_0$). Dersom test-statistikken er lavere enn d
 For tidsserier preget av økende varians over tid (heteroskedastisitet), benyttes ofte en logaritmisk transformasjon, $y'_t = \ln(y_t)$, for å stabilisere variansen og transformere multiplikative sesongeffekter til en additiv form. Dette kan gjøre det lettere for enkelte modeller å fange opp prosentvise endringer. I dette prosjektet benyttes de opprinnelige etterspørselsverdiene for å sikre direkte tolkbarhet i bestillingsantall (stykktall) i logistikkoperasjonene, men transformasjonen er vurdert som et verktøy for å håndtere de kraftige sesongamplitudene identifisert i analysen.
 
 ### 3.2 Additive modeller og Prophet
-I nyere tid har additive modeller som Facebooks "Prophet" vunnet frem som et robust alternativ til modeller som krever manuell differensiering. Teorien bak Prophet baserer seg på å modellere tidsserien som en sum av tre hovedkomponenter:
+I nyere tid har additive modeller som Facebooks «Prophet» (Taylor & Letham, 2018) vunnet frem som et robust alternativ til modeller som krever manuell differensiering. Teorien bak Prophet baserer seg på å modellere tidsserien som en sum av tre hovedkomponenter:
 $y(t) = g(t) + s(t) + h(t) + \epsilon_t$
-(resten av teksten uendret ...)
+
+Hvor:
+- $g(t)$ er trendfunksjonen som modellerer ikke-periodiske, langsiktige endringer i tidsserienes nivå.
+- $s(t)$ representerer periodiske endringer (sesongvariasjoner), modellert gjennom Fourier-rekker.
+- $h(t)$ fanger opp effekten av helligdager og spesielle hendelser med kortvarig, men signifikant innvirkning.
+- $\epsilon_t$ er feilleddet som representerer idiosynkratiske endringer som ikke fanges opp av modellen.
+
+Til forskjell fra SARIMA-modeller, som krever at dataene er stasjonære (jf. seksjon 3.1), opererer Prophet direkte på de opprinnelige verdiene uten behov for differensiering. Modellen er designet som et «analyst-in-the-loop»-verktøy (Taylor & Letham, 2018), der intuitive parametere — som styrken på sesongkomponenten og plasseringen av trendskift — kan justeres av analytikere uten spesialisert statistikkbakgrunn. Denne egenskapen gjør Prophet egnet for praktisk beslutningsstøtte i logistikkoperasjoner, som er det overordnede målet for dette prosjektet. De matematiske detaljene for hver komponent presenteres i seksjon 6.1.
 
 ---
 
@@ -654,13 +672,25 @@ Videre arbeid bør fokusere på å integrere faktiske ledetider fra leverandøre
 ---
 
 ## 11.0 Bibliografi
+Adeyemi, A. A., & Onanuga, A. T. (2014). Dynamics of inventory cost optimization — A review of theory and evidence. *Research Journal of Finance and Accounting*, *5*(22).
+
+Borucka, A. (2023). Seasonal methods of demand forecasting in the supply chain as support for the company's sustainable growth. *Sustainability*, *15*(9), 7399. https://doi.org/10.3390/su15097399
+
 Chen, B. (2020). *Data-Driven Inventory Control with Shifting Demand*. College of Business Administration, University of Illinois at Chicago.
+
+Goltsos, T. E., Syntetos, A. A., Glock, C. H., & Ioannou, G. (2022). Inventory–forecasting: Mind the gap. *European Journal of Operational Research*, *299*(2), 397–419. https://doi.org/10.1016/j.ejor.2021.07.040
+
+Haque, M. S., Amin, M. S., & Miah, J. (2023). Retail demand forecasting: A comparative study for multivariate time series. *arXiv preprint arXiv:2308.11939*. https://arxiv.org/abs/2308.11939
+
+Kirmizi, S. D., Ceylan, Z., & Bulkan, S. (2024). Enhancing inventory management through safety-stock strategies — A case study. *Systems*, *12*(7), 260. https://doi.org/10.3390/systems12070260
 
 Lewis, C. D. (1997). *Demand forecasting and inventory control: A computer aided learning approach*. Woodhead Publishing Limited.
 
-Luo, T. (2019). *Traditional Book Stores Industry Reforming Based on the New Management System*. Journal of Physics: Conference Series, 1213. doi:10.1088/1742-6596/1213/5/052008.
+Luo, T. (2019). Traditional book stores industry reforming based on the new management system. *Journal of Physics: Conference Series*, *1213*, 052008. https://doi.org/10.1088/1742-6596/1213/5/052008
 
-Park, M. H., Lee, J. S., & Doo, I. C. (2020). *A Study of the Demand Forecasting Model for Publishing Business using Business Analysis*. International Journal of Computing and Digital Systems, 9(5), 801-812.
+Park, M. H., Lee, J. S., & Doo, I. C. (2020). A study of the demand forecasting model for publishing business using business analysis. *International Journal of Computing and Digital Systems*, *9*(5), 801–812.
+
+Taylor, S. J., & Letham, B. (2018). Forecasting at scale. *The American Statistician*, *72*(1), 37–45. https://doi.org/10.1080/00031305.2017.1380080
 
 ---
 
