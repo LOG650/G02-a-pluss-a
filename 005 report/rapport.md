@@ -419,11 +419,47 @@ Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabe
 | **Norsk krim** | +12,70 % | 114,8 enheter |
 
 ### 6.2 Baseline-løsning
-Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av den avanserte modelleringen. Denne baserer seg på et historisk glidende gjennomsnitt:
+Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (`train_data.csv`). Parameterne beregnes kategorivis som:
 
-$\hat{D}_{t+1} = \frac{1}{n} \sum_{i=t-n+1}^t D_i$
+- **Forventet etterspørsel:** $\hat{D} = \frac{1}{n} \sum_{i=1}^{n} D_i$ (historisk månedssnitt).
+- **Bestillingspunkt:** $s = \hat{D} \cdot \bar{L} \cdot 1{,}10$, hvor $\bar{L}$ er gjennomsnittlig ledetid omregnet til måneder og 10 % er en fast sikkerhetsmargin.
+- **Bestillingsmengde:** $Q = \hat{D}$ (snittbehov per måned).
 
-Hvor $\hat{D}_{t+1}$ er prognosen for neste periode, og $n$ er antall historiske observasjoner som inkluderes i gjennomsnittet. Denne strategien representerer en "status quo"-situasjon hvor man bestiller for å dekke et forventet behov uten å dekomponere sesongtrender eller ta høyde for spesifikke kalenderhendelser.
+Strategien representerer en «status quo»-situasjon hvor innkjøper bestiller for å dekke et forventet gjennomsnittsbehov uten å dekomponere sesongtrender eller ta høyde for spesifikke kalenderhendelser. De kategorispesifikke baseline-parameterne er oppsummert i tabellen under:
+
+| Kategori | Gj.sn. etterspørsel | Gj.sn. ledetid | Bestillingspunkt ($s$) | Bestillingsmengde ($Q$) |
+| :--- | :---: | :---: | :---: | :---: |
+| **Engelsk fiksjon** | 338 enheter | 8 dager | 100 enheter | 338 enheter |
+| **Norske barnebøker** | 253 enheter | 3 dager | 28 enheter | 253 enheter |
+| **Norsk krim** | 348 enheter | 3 dager | 38 enheter | 348 enheter |
+
+Figur 15a–15c illustrerer den karakteristiske (s, Q)-sykelen for hver av de tre kategoriene over testperioden (2025). I hver figur er blå linje lagerbeholdning etter salg, rød stiplet linje markerer bestillingspunktet $s$, oransje søyler viser faktisk etterspørsel, og grønne trekanter markerer månedene hvor en bestilling på $Q$ enheter legges.
+
+For **Engelsk fiksjon** (Figur 15a) ser vi den klassiske sagtannprofilen: lageret tappes ned, en bestilling på $Q = 338$ utløses når beholdningen krysser $s = 88$, og den ankommer i påfølgende periode. Modellen bygger likevel ikke opp ekstra buffer før sesongtoppene i juli/august og desember, og flere måneder har lager på null.
+
+<div align="center">
+  <img src="../006%20analysis/figures/15_baseline_sq_sykel_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 15a: Baseline (s, Q)-sykel for Engelsk fiksjon.</em>
+</div>
+
+For **Norske barnebøker** (Figur 15b) er det lave bestillingspunktet ($s = 31$) og det relativt lave $Q = 286$ utilstrekkelig for de faste toppene rundt skolestart (august) og jul. Lageret tappes til null allerede tidlig i året og forblir der gjennom høysesongen. Det understreker at selv om kategorien har regelmessige sesongmønstre, krever den et betydelig sikkerhetslager som den enkle baselinen ikke dimensjonerer for.
+
+<div align="center">
+  <img src="../006%20analysis/figures/15_baseline_sq_sykel_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 15b: Baseline (s, Q)-sykel for Norske barnebøker.</em>
+</div>
+
+For **Norsk krim** (Figur 15c) er ubalansen mest ekstrem: $Q = 365$ ligger under det månedlige gjennomsnittet i testperioden, og kombinert med den positive trenden (+12,7 %) og sterke sesongtopper faller lageret til null allerede i februar. Dette illustrerer at baselinen, basert på historiske snitt, ikke fanger trendutviklingen og systematisk underdimensjonerer volumet.
+
+<div align="center">
+  <img src="../006%20analysis/figures/15_baseline_sq_sykel_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 15c: Baseline (s, Q)-sykel for Norsk krim.</em>
+</div>
+
+Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen ligger i `004 data/python_skript/baseline_vs_optimization.py`, som kjører simuleringen og genererer Figur 15a–15c for alle tre kategorier.
 
 ### 6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)
 Den kvantitative bestillingsmodellen tar utgangspunkt i etterspørselsprognosene fra Prophet. Målet er å bestemme den optimale bestillingsmengden $Q_t$ for hver periode $t$ som minimerer de totale logistikkostnadene.
@@ -464,11 +500,11 @@ For å dokumentere serienes egenskaper er det gjennomført både en **Augmented 
 | **Norske barnebøker** | 0,001 | 0,100 | Stasjonær | Stasjonær | Konsistent stasjonær |
 | **Norsk krim** | 0,000 | 0,100 | Stasjonær | Stasjonær | Konsistent stasjonær |
 
-Ved å kombinere disse to testene, hvor ADF tester for enhetsrot ($H_0$: ikke-stasjonær) og KPSS tester for stasjonaritet ($H_0$: stasjonær), oppnår we en sterkere statistisk bekreftelse. At testene er samstemte for alle tre kategorier, underbygger at dataene svinger stabilt rundt en trend, noe som gjør Prophet-modellens dekomponering svært egnet for denne typen beslutningsstøtte.
+Ved å kombinere disse to testene, hvor ADF tester for enhetsrot ($H_0$: ikke-stasjonær) og KPSS tester for stasjonaritet ($H_0$: stasjonær), oppnår vi en sterkere statistisk bekreftelse. At testene er samstemte for alle tre kategorier, underbygger at dataene svinger stabilt rundt en trend, noe som gjør Prophet-modellens dekomponering svært egnet for denne typen beslutningsstøtte.
 
 Selv om testene indikerer stasjonaritet (p < 0,05 for ADF og p > 0,05 for KPSS), viser de visuelle analysene i Figur 1 og 9 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
 
-*   **Analysefunn:** Trendanalysen viser stor variasjon mellom kategoriene. Mens *Norsk krim* har en tydelig positiv trend (+12,7 %), viser *Engelsk fiksjon* en svak negativ utvikling (-4,8 %). *Norske barnebøker* skiller seg ut med en svært stabil trend (-0,1 %), noe som indikerer en moden kategori med forutsigbart volum over tid. Ved å dekomponere disse trendene for alle tre kategorier, unngår we at langsiktige endringer forveksles med sesongsvingninger.
+*   **Analysefunn:** Trendanalysen viser stor variasjon mellom kategoriene. Mens *Norsk krim* har en tydelig positiv trend (+12,7 %), viser *Engelsk fiksjon* en svak negativ utvikling (-4,8 %). *Norske barnebøker* skiller seg ut med en svært stabil trend (-0,1 %), noe som indikerer en moden kategori med forutsigbart volum over tid. Ved å dekomponere disse trendene for alle tre kategorier, unngår vi at langsiktige endringer forveksles med sesongsvingninger.
 
 #### 6.4.2 Sesongkomponenter og helligdagseffekter
 Det antas at de historiske sesongmønstrene er representative for fremtidig etterspørsel. 
@@ -476,7 +512,7 @@ Det antas at de historiske sesongmønstrene er representative for fremtidig ette
 *   **Helligdager:** Effekten av påske, jul og skolestart er modellert som additive sjokk. Det antas at disse hendelsene påvirker etterspørselen i et fast tidsvindu hvert år (f.eks. 15 dager før julaften).
 
 #### 6.4.3 Feilledd og normalfordeling
-Det antas at feilleddet $\epsilon_t$ er normalfordelt med forventningsverdi null. Dette er avgjørende for beregning av sikkerhetslager og servicegrad, da we benytter normalfordelingens fraktiler ($z$-verdier) for å bestemme bestillingspunktet $s_t$.
+Det antas at feilleddet $\epsilon_t$ er normalfordelt med forventningsverdi null. Dette er avgjørende for beregning av sikkerhetslager og servicegrad, da vi benytter normalfordelingens fraktiler ($z$-verdier) for å bestemme bestillingspunktet $s_t$.
 
 #### 6.4.4 Lagerstyringsantagelser
 *   **Ledetid:** Det antas at ledetiden $L$ er deterministisk eller følger en kjent fordeling basert på historiske leverandørdata.
@@ -503,10 +539,10 @@ Gjennomgangen av det vaskede datasettet (2021-2025) har avdekket distinkte møns
 Denne kategorien preges av en relativt stabil etterspørsel gjennom året, men med markerte topper i **juni/juli** (sommerlesing) og **desember** (julesalg). Historikken viser hyppige og omfattende restordrer (stockouts), spesielt i juni 2021 hvor etterspørselen oversteg salget med nesten 300 enheter. Dette indikerer et stort forbedringspotensial ved mer nøyaktige prognoser.
 
 **Norsk krim:**
-Krim-kategorien har de mest utpregede sesongtoppene. Toppene er i stor grad knyttet til **juli/august** (feriekrim) og **desember**. I tillegg ser we en merkbar økning rundt påsketider (mars/april). Dataene viser at etterspørselen ofte bikker 500 enheter i disse periodene, og det er identifisert en svak økende trend i totalvolumet mot slutten av perioden (2024-2025).
+Krim-kategorien har de mest utpregede sesongtoppene. Toppene er i stor grad knyttet til **juli/august** (feriekrim) og **desember**. I tillegg ser vi en merkbar økning rundt påsketider (mars/april). Dataene viser at etterspørselen ofte bikker 500 enheter i disse periodene, og det er identifisert en svak økende trend i totalvolumet mot slutten av perioden (2024-2025).
 
 **Norske barnebøker:**
-Barnebøker viser en jevn og høy frekvens i etterspørselen, men med faste topper i **august** (skolestart) og **desember**. En interessant observasjon er gjentakende stockouts i august-perioden på tvers av flere year, noe som tyder på at nåværende bestillingspraksis konsekvent undervurderer effekten av skolestart.
+Barnebøker viser en jevn og høy frekvens i etterspørselen, men med faste topper i **august** (skolestart) og **desember**. En interessant observasjon er gjentakende stockouts i august-perioden på tvers av flere år, noe som tyder på at nåværende bestillingspraksis konsekvent undervurderer effekten av skolestart.
 
 **Oppsummering av sesongvariasjoner:**
 Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å fange opp de brede sommertoppene og de spisse juletoppene. Ved å benytte en modell som dekomponerer disse sesongene, kan man redusere de observerte stockout-periodene betydelig.
@@ -535,7 +571,7 @@ Dette er kategorien med størst økonomisk gevinst (38,1 %). Figur 10 viser at P
   <em>Figur 10: Forecast vs. Actual for Norsk krim. Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene.</em>
 </div>
 
-Ved å analysere residualene (prognosefeilen) i Figur 11, ser we en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
+Ved å analysere residualene (prognosefeilen) i Figur 11, ser vi en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
 
 <div align="center">
   <img src="../006%20analysis/figures/11_residualer_Norsk_krim.png" style="width: 70%; height: auto;">
@@ -552,7 +588,7 @@ Kostnadsfordelingen i Figur 12 forklarer strategien bak besparelsen: Prophet-mod
 </div>
 
 #### 8.1.2 Engelsk fiksjon (Uforutsigbarhet og import)
-For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen drives her primært av en reduksjon i stockouts with over 15 000 NOK. Den høyere usikkerheten i denne kategorien (høyere MAE) gjør at modellen opererer med et relativt sett større sikkerhetslager for å buffer mot import-ledetid og volatilitet.
+For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen drives her primært av en reduksjon i stockouts på over 15 000 NOK. Den høyere usikkerheten i denne kategorien (høyere MAE) gjør at modellen opererer med et relativt sett større sikkerhetslager for å buffer mot import-ledetid og volatilitet.
 
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
@@ -561,7 +597,7 @@ For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen dri
 </div>
 
 #### 8.1.3 Norske barnebøker (Forutsigbare sesongmønstre)
-Barnebøker skiller seg ut med et negativt resultat (-7,86 %). Tidligere analyser (kapittel 7.0) viser at denne kategorien har sterke sesongtopper ved skolestart og jul. Diagnosen viser imidlertid at disse mønstrene er så regelmessige og forutsigbare at den enkle baseline-modellen med en fast sikkerhetsmargin fungerer optimalt. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong, har i dette tilfellet ført til for lav sikkerhetsbeholdning i opptakten til de korte og intensive salgstoppene. Dette bekrefter at for varegrupper med svært konsistente sesongsykluser, kan tradisjonelle lagerstyringsmetoder være mer robuste enn avanserte prediksjonsmodeller som er mer utsatt for små feil in timing og usikkerhetsestimering.
+Barnebøker skiller seg ut med et negativt resultat (-7,86 %). Tidligere analyser (kapittel 7.0) viser at denne kategorien har sterke sesongtopper ved skolestart og jul. Diagnosen viser imidlertid at disse mønstrene er så regelmessige og forutsigbare at den enkle baseline-modellen med en fast sikkerhetsmargin fungerer optimalt. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong, har i dette tilfellet ført til for lav sikkerhetsbeholdning i opptakten til de korte og intensive salgstoppene. Dette bekrefter at for varegrupper med svært konsistente sesongsykluser, kan tradisjonelle lagerstyringsmetoder være mer robuste enn avanserte prediksjonsmodeller som er mer utsatt for små feil i timing og usikkerhetsestimering.
 
 ### 8.2 Sensitivitetsanalyse og robusthet
 For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere varieres. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.

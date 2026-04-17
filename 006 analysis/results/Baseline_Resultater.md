@@ -30,5 +30,28 @@ Alle beregninger i prosjektet benytter følgende faste kostnader:
 - **Baseline-svakhet:** Modellen tar ikke hensyn til sesongvariasjoner (f.eks. skolestart eller jul), noe som forventes å føre til stockouts i perioder med høy etterspørsel.
 - **Optimaliseringspotensial:** Ved å gå over til den stokastiske modellen i M5, forventer vi å redusere totalkostnadene ved å balansere lagerholdskostnader mer presist mot risikoen for mangel.
 
+## 5. Visualisering av (s, Q)-sykelen
+Figurene nedenfor er generert av `004 data/python_skript/baseline_vs_optimization.py` og viser hvordan baselinen oppfører seg mot faktisk etterspørsel i testperioden (2025). Blå linje er lagerbeholdning etter salg, rød stiplet linje er bestillingspunktet $s$, oransje søyler er faktisk etterspørsel, og grønne trekanter markerer månedene hvor en bestilling på $Q$ enheter legges.
+
+<div align="center">
+  <img src="../figures/15_baseline_sq_sykel_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 1: Baseline (s, Q)-sykel for Engelsk fiksjon. Den klassiske sagtannprofilen er tydelig, men baselinen bygger ikke opp lager foran sesongtoppene.</em>
+</div>
+
+<div align="center">
+  <img src="../figures/15_baseline_sq_sykel_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 2: Baseline (s, Q)-sykel for Norske barnebøker. Det lave bestillingspunktet (s=31) gir hyppige stockouts rundt skolestart og jul.</em>
+</div>
+
+<div align="center">
+  <img src="../figures/15_baseline_sq_sykel_Norsk_krim.png" style="width: 70%; height: auto;">
+  <br>
+  <em>Figur 3: Baseline (s, Q)-sykel for Norsk krim. Q er for lav til å dekke månedlig etterspørsel, og lageret faller til null tidlig i perioden.</em>
+</div>
+
+*Observasjon:* Figurene synliggjør den samme konklusjonen som er rapportert i `M5_Sluttresultater_Simulering.md` – baselinen er strukturelt underdimensjonert for kategorier med trend eller sterk sesong, og forskjellen er størst for Norsk krim og Engelsk fiksjon.
+
 ---
-*Dokumentet er opprettet 2026-03-27 som en del av Fase 3.4.*
+*Dokumentet er opprettet 2026-03-27 og oppdatert 2026-04-18 med figurer som del av Fase 3.4.*
