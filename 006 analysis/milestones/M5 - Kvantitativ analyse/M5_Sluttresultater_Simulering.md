@@ -9,19 +9,19 @@ Sammenligning av Baseline ((s, Q) basert på snitt) mot Prophet-optimalisert mod
 | Norsk krim        |            68254.3 |                42246.7 |            38.1  |             85.8  |                 91.47 |
 
 <div align="center">
-  <img src="../../../figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <img src="../../figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 4: Kostnadssammenligning for Engelsk fiksjon (Baseline vs. Optimalisert)</em>
 </div>
 
 <div align="center">
-  <img src="../../../figures/12_cost_breakdown_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <img src="../../figures/12_cost_breakdown_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 5: Kostnadssammenligning for Norske barnebøker (Baseline vs. Optimalisert)</em>
 </div>
 
 <div align="center">
-  <img src="../../../figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">
+  <img src="../../figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 6: Kostnadssammenligning for Norsk krim (Baseline vs. Optimalisert)</em>
 </div>
