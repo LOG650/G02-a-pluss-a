@@ -418,6 +418,8 @@ Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabe
 | **Norske barnebøker** | -0,10 % | 105,3 enheter |
 | **Norsk krim** | +12,70 % | 114,8 enheter |
 
+Full dokumentasjon av basisversjonen av Prophet-modellen, inkludert komponentfigurer for alle tre kategorier, finnes i `006 analysis/milestones/M5 - Kvantitativ analyse/3.5 kvantitativ modell/3.5_Kvantitativ_Modell.md`. Implementasjonen ligger i `004 data/python_skript/prophet_analysis.py`.
+
 ### 6.2 Baseline-løsning
 Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (`train_data.csv`). Parameterne beregnes kategorivis som:
 

@@ -9,24 +9,24 @@ Denne analysen er utført med Prophet-modellen og danner grunnlaget for de dynam
 | Norsk krim        |          12.6987    |                      114.849 |
 
 <div align="center">
-  <img src="prophet_components_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <img src="3.5%20kvantitativ%20modell/prophet_components_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 1: Prophet-komponenter for Engelsk fiksjon (Trend og Sesongvariasjon)</em>
 </div>
 
 <div align="center">
-  <img src="prophet_components_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <img src="3.5%20kvantitativ%20modell/prophet_components_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 2: Prophet-komponenter for Norske barnebøker (Trend og Sesongvariasjon)</em>
 </div>
 
 <div align="center">
-  <img src="prophet_components_Norsk_krim.png" style="width: 70%; height: auto;">
+  <img src="3.5%20kvantitativ%20modell/prophet_components_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 3: Prophet-komponenter for Norsk krim (Trend og Sesongvariasjon)</em>
 </div>
 
-*Notat: Trend_Endring viser utviklingen over hele analyseperioden (2021-2026).
+*Notat: Trend_Endring viser utviklingen over hele analyseperioden (2021-2026).*
 
 ## Antagelser og Datakvalitet
 Følgende antagelser ligger til grunn for den kvantitative analysen:
@@ -45,4 +45,3 @@ Gjennomført sensitivitetsanalyse viser følgende kritiske funn for modellens ro
     *   Modellen er lineært avhengig av mangelkostnad ($C_s$), men viser seg å være robust mot mindre svingninger i lagerholdskostnad ($C_h$).
 3.  **Anbefaling:**
     *   Det anbefales å implementere en kategori-spesifikk sikkerhetsfaktor i den endelige modellen for å maksimere besparelsene identifisert i denne analysen.
-*
