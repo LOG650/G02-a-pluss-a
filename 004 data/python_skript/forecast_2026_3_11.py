@@ -8,8 +8,8 @@ import os
 # 1. Konfigurasjon og sti-oppsett
 DATA_PATH = '004 data/vasket data/master_data_vasket.csv'
 CAMPAIGN_PATH = '006 analysis/milestones/M5 - Kvantitativ analyse/3.8 utvidet feature engineering/kampanje_analyse.csv'
-RULES_PATH = '006 analysis/milestones/M5 - Kvantitativ analyse/3.10_optimaliserte_regler.csv'
-OUTPUT_DIR = '006 analysis/milestones/M6-M8 - Resultater og rapport/3.11 prognoser'
+RULES_PATH = '006 analysis/milestones/M5 - Kvantitativ analyse/3.10 estimering av kampanjeløft/3.10_optimaliserte_regler.csv'
+OUTPUT_DIR = '006 analysis/milestones/M5 - Kvantitativ analyse/3.11 prognoser'
 
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
@@ -62,11 +62,15 @@ for cat in categories:
     cat_df = cat_df.rename(columns={'Etterspørsel': 'y'})
     
     # Tren på ALL historikk (2021-2025)
-    model = Prophet(holidays=all_holidays, 
-                    yearly_seasonality=True, 
-                    weekly_seasonality=False, 
+    # interval_width=0.90 gir et 90% usikkerhetsintervall (z = 1.645), slik at
+    # (yhat_upper - yhat) ≈ 1.645 * sigma. Dette gjør sikkerhetslager-formelen
+    # nedenfor mattematisk konsistent med standard SS = k * sigma.
+    model = Prophet(holidays=all_holidays,
+                    yearly_seasonality=True,
+                    weekly_seasonality=False,
                     daily_seasonality=False,
-                    changepoint_prior_scale=0.05)
+                    changepoint_prior_scale=0.05,
+                    interval_width=0.90)
     model.fit(cat_df)
     
     # Lag fremtidig tidsramme (hele 2026)
@@ -85,9 +89,9 @@ for cat in categories:
     # Påfør bias-justering på yhat
     forecast_2026['yhat_adj'] = forecast_2026['yhat'] + bias_adj
     
-    # Beregn sikkerhetslager (Safety Stock) basert på usikkerhetsintervallet fra Prophet og k-faktoren
-    # Vi bruker (yhat_upper - yhat) som et estimat på standardavviket i prognosen
-    forecast_2026['Safety_Stock'] = (forecast_2026['yhat_upper'] - forecast_2026['yhat']) * (k / 1.65) # Normalisert mot Prophet's 80% intervall
+    # Beregn sikkerhetslager (Safety Stock) basert på usikkerhetsintervallet fra Prophet og k-faktoren.
+    # (yhat_upper - yhat) / 1.645 estimerer sigma fra Prophet's 90% intervall, og multipliseres med k.
+    forecast_2026['Safety_Stock'] = (forecast_2026['yhat_upper'] - forecast_2026['yhat']) * (k / 1.645)
     
     # Beregn Bestillingspunkt (Order-up-to level)
     # Forenklet: s = (Forventet etterspørsel i ledetid) + Sikkerhetslager

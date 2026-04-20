@@ -16,12 +16,14 @@ if not os.path.exists(OUTPUT_DIR):
 
 # 2. Last inn data
 df = pd.read_csv(DATA_PATH)
+campaigns_df = pd.read_csv(CAMPAIGN_PATH)
 rules_df = pd.read_csv(RULES_PATH)
 
 # Konverter til datetime
 df['ds'] = pd.to_datetime(df['Dato_Sortering'])
+campaigns_df['ds'] = pd.to_datetime(campaigns_df['Dato_Sortering'])
 
-# 3. Definer Helligdager (Prophet-standard)
+# 3. Definer Helligdager og Kampanjer (samme oppsett som 3.11 for at baseline skal være konsistent)
 no_holidays = holidays.Norway(years=[2021, 2022, 2023, 2024, 2025, 2026])
 christmas_dates = [pd.to_datetime(f"{year}-12-01") for year in range(2021, 2027)]
 holidays_df = pd.DataFrame({
@@ -30,6 +32,25 @@ holidays_df = pd.DataFrame({
   'lower_window': 0,
   'upper_window': 0,
 })
+
+easter_dates = []
+for h_date, name in no_holidays.items():
+    if 'Påskedag' in name and 'Andre' not in name:
+        easter_dates.append(pd.to_datetime(f"{h_date.year}-{h_date.month:02d}-01"))
+
+easter_df = pd.DataFrame({
+  'holiday': 'easter',
+  'ds': list(set(easter_dates)),
+  'lower_window': 0,
+  'upper_window': 0,
+})
+
+detected_campaigns = campaigns_df[campaigns_df['Er_Kampanje'] == True][['ds', 'Kategori']].copy()
+detected_campaigns['holiday'] = 'promo_' + detected_campaigns['Kategori'].str.replace(' ', '_')
+detected_campaigns['lower_window'] = 0
+detected_campaigns['upper_window'] = 0
+
+all_holidays = pd.concat([holidays_df, easter_df, detected_campaigns[['holiday', 'ds', 'lower_window', 'upper_window']]])
 
 # 4. Scenario-simulering
 categories = df['Kategori'].unique()
@@ -40,8 +61,13 @@ for cat in categories:
     cat_df = df[df['Kategori'] == cat].copy()
     cat_df = cat_df.rename(columns={'Etterspørsel': 'y'})
     
-    # Tren Baseline Modell
-    model = Prophet(holidays=holidays_df, yearly_seasonality=True)
+    # Tren Baseline Modell (samme konfig som 3.11)
+    model = Prophet(holidays=all_holidays,
+                    yearly_seasonality=True,
+                    weekly_seasonality=False,
+                    daily_seasonality=False,
+                    changepoint_prior_scale=0.05,
+                    interval_width=0.90)
     model.fit(cat_df)
     
     future = model.make_future_dataframe(periods=12, freq='MS')
@@ -58,8 +84,10 @@ for cat in categories:
     lift_base = rule['Gjennomsnittlig_Kampanjeloft']
     
     # --- SCENARIO 0: Baseline ---
+    # Sigma estimeres fra Prophets 90%-intervall: (yhat_upper - yhat) / 1.645.
+    # Identisk med 3.11 slik at baseline-Order_Up_To er sammenfallende.
     f26['y_base'] = f26['yhat'] + bias
-    f26['ss_base'] = (f26['yhat_upper'] - f26['yhat']) * (k_base / 1.65)
+    f26['ss_base'] = (f26['yhat_upper'] - f26['yhat']) * (k_base / 1.645)
     f26['out_base'] = f26['y_base'] + f26['ss_base']
     
     # --- SCENARIO 1: Kampanje-sjokk (+50% ekstra løft i Des og Mai) ---

@@ -671,26 +671,28 @@ Tabellen nedenfor viser de forventede gjennomsnittlige verdiene per måned for 2
 
 | Kategori          | Justert etterspørsel (snitt) | Sikkerhetslager (snitt) | Bestillingspunkt (snitt) |
 |:------------------|:----------------------------:|:-----------------------:|:------------------------:|
-| Engelsk fiksjon   |            283,82            |          58,39          |          342,21          |
-| Norsk krim        |            418,90            |          27,62          |          446,52          |
-| Norske barnebøker |            290,59            |          23,41          |          314,00          |
+| Engelsk fiksjon   |            283,82            |          75,60          |          359,42          |
+| Norsk krim        |            418,90            |          35,10          |          454,00          |
+| Norske barnebøker |            290,59            |          30,26          |          320,85          |
 
-De månedlige svingningene i forventet etterspørsel og det tilhørende behovet for sikkerhetslager er visualisert i figurene 19, 20 og 21. Disse visualiseringene viser hvordan modellen proaktivt øker lagerbeholdningen i forkant av de identifiserte sesongtoppene for å opprettholde målsetningen om leveringsservice.
+Sikkerhetslageret er beregnet ved å estimere prognosens standardavvik fra Prophets 90 %-usikkerhetsintervall ($\sigma \approx (\hat{y}_{upper} - \hat{y})/1{,}645$) og deretter multiplisere med den kategoritilpassede k-faktoren fra 8.3, slik at $SS = k \cdot \sigma$.
+
+De månedlige svingningene i forventet etterspørsel og det tilhørende behovet for sikkerhetslager er visualisert i figurene 24, 25 og 26. Disse visualiseringene viser hvordan modellen proaktivt øker lagerbeholdningen i forkant av de identifiserte sesongtoppene for å opprettholde målsetningen om leveringsservice.
 
 <div align="center">
-  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 24: Prognose og sikkerhetslager for Engelsk fiksjon i 2026.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Norsk_krim.png" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 25: Prognose og sikkerhetslager for Norsk krim i 2026.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/milestones/M6-M8%20-%20Resultater%20og%20rapport/3.11%20prognoser/prognose_2026_Norske_barnebøker.png" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 26: Prognose og sikkerhetslager for Norske barnebøker i 2026.</em>
 </div>
@@ -708,13 +710,13 @@ Tabellen nedenfor oppsummerer hvordan det gjennomsnittlige lagernivået (Order-u
 
 | Kategori | Baseline (Units) | Scenario A: Kampanje-sjokk | Scenario B: Kostnads-sjokk |
 | :--- | :---: | :---: | :---: |
-| **Engelsk fiksjon** | 409,2 | +6,8 % | -4,0 % |
-| **Norsk krim** | 451,9 | +2,3 % | -1,2 % |
-| **Norske barnebøker** | 317,2 | +2,6 % | -1,6 % |
+| **Engelsk fiksjon** | 359,7 | +7,4 % | -4,2 % |
+| **Norsk krim** | 454,0 | +2,6 % | -1,6 % |
+| **Norske barnebøker** | 320,7 | +2,9 % | -1,9 % |
 
-Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for 6,8 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med mindre enn 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
+Baseline tilsvarer det gjennomsnittlige bestillingspunktet fra 8.4 (små avvik skyldes Prophets stokastiske trekning). Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for 7,4 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med under 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
 
-De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i figurene 22, 23 og 24:
+De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i figurene 27, 28 og 29:
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Engelsk_fiksjon.png" style="width: 70%; height: auto;">

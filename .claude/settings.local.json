@@ -4,7 +4,8 @@
       "Bash(grep -i \"3.9\\\\|3\\\\\\\\.9\")",
       "Bash(python *)",
       "Bash(grep -n \"3.10\\\\|3\\\\\\\\.10\\\\|kampanjeløft\\\\|estimering\" \"C:/Users/anne_/Documents/G02-a-pluss-a/012 fase 2 - plan/projectplan.md\")",
-      "Bash(grep -n \"3.10\\\\|3\\\\\\\\.10\\\\|kampanjeløft\\\\|Optimalisering\" \"C:/Users/anne_/Documents/G02-a-pluss-a/012 fase 2 - plan/data/wbs.json\" \"C:/Users/anne_/Documents/G02-a-pluss-a/012 fase 2 - plan/data/schedule.json\")"
+      "Bash(grep -n \"3.10\\\\|3\\\\\\\\.10\\\\|kampanjeløft\\\\|Optimalisering\" \"C:/Users/anne_/Documents/G02-a-pluss-a/012 fase 2 - plan/data/wbs.json\" \"C:/Users/anne_/Documents/G02-a-pluss-a/012 fase 2 - plan/data/schedule.json\")",
+      "Bash(py --version)"
     ]
   }
 }
