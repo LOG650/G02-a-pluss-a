@@ -53,7 +53,8 @@ for cat, stats in validation_results.items():
 opt_df = pd.DataFrame(optimized_params)
 
 # Lagre de optimaliserte reglene
-output_path = '006 analysis/milestones/M5 - Kvantitativ analyse/3.10_optimaliserte_regler.csv'
+output_dir = '006 analysis/milestones/M5 - Kvantitativ analyse/3.10 estimering av kampanjeløft'
+output_path = f'{output_dir}/3.10_optimaliserte_regler.csv'
 opt_df.to_csv(output_path, index=False)
 
 # Lag en oppsummeringsrapport for 3.10
@@ -77,7 +78,7 @@ report.append("   - **Engelsk fiksjon** får en noe lavere faktor (1.4) kombiner
 report.append("3. **Kampanjeløft:**")
 report.append("   - Analysen viser at kampanjer i gjennomsnitt gir et løft på mellom 70 og 150 enheter utover normal sesong. Dette vil bli brukt som 'input' i scenario-analysen (3.12).")
 
-with open('006 analysis/milestones/M5 - Kvantitativ analyse/3.10_optimalisering_oppsummering.md', 'w', encoding='utf-8') as f:
+with open(f'{output_dir}/3.10_optimalisering_oppsummering.md', 'w', encoding='utf-8') as f:
     f.write('\n'.join(report))
 
 print(f"Optimalisering ferdigstilt. Resultater lagret i {output_path}")

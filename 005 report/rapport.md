@@ -658,6 +658,10 @@ Som et direkte resultat av backtestingen og sensitivitetsanalysen, er de endelig
 | **Norsk krim** | +11,78 | 1,8 | 56,6 enheter |
 | **Norske barnebøker** | -0,69 | 1,5 | 39,7 enheter |
 
+Valget av k reflekterer en kvalitativ avveining mellom lagerholdskostnaden $C_h$ og stockout-kostnaden $C_s$ fra 3.5/3.7: en høyere k binder mer kapital (øker $C_h$-bidraget), men reduserer eksponering for $C_s$. *Norsk krim* tildeles den høyeste faktoren (1,8) fordi modellen systematisk underestimerer etterspørselen (bias −11,78), slik at sensitivitetsanalysen viser at servicegevinsten klart overstiger den marginale økningen i $C_h$. *Engelsk fiksjon* holdes på 1,4 fordi den allerede justeres ned via bias-korreksjon, og en høyere k ville kombinert med volatiliteten gitt for høy kapitalbinding. *Norske barnebøker* ligger på 1,5 som et nøytralt midtpunkt, siden modellen her er tilnærmet forventningsrett (bias 0,69).
+
+Kampanjeløftet for *Norsk krim* (56,6 enheter) er basert på én observert kampanje i datasettet og må derfor tolkes med noe varsomhet; de to andre kategoriene hviler på henholdsvis seks og to observasjoner. Dette er håndtert ved at scenario-analysen (8.5) tester et +50 % løft-sjokk som sensitivitetscheck.
+
 Disse optimaliserte reglene danner grunnlaget for den endelige prognosegenereringen og scenario-analysen i de påfølgende stegene av prosjektet.
 
 ### 8.4 Prognoser for 2026 (Operasjonell Planlegging)
