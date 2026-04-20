@@ -110,7 +110,7 @@ for cat in categories:
     plt.figure(figsize=(12, 7))
     plt.plot(f26['ds'], f26['out_base'], 'k--', label='Baseline Order-up-to (M5)', alpha=0.7)
     plt.plot(f26['ds'], f26['out_shock'], 'r-', label='Scenario A: Kampanje-sjokk (+50% lift)', linewidth=2)
-    plt.plot(f26['ds'], f26['out_cost'], 'g-', label='Scenario B: Kostnads-kutt (-20% Safety Stock)', linewidth=2)
+    plt.plot(f26['ds'], f26['out_cost'], 'g-', label='Scenario B: Kostnads-sjokk (-20% Safety Stock)', linewidth=2)
     
     plt.fill_between(f26['ds'], f26['out_base'], f26['out_shock'], color='red', alpha=0.1)
     plt.fill_between(f26['ds'], f26['out_cost'], f26['out_base'], color='green', alpha=0.1)

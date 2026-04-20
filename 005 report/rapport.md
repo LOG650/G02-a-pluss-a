@@ -710,9 +710,9 @@ Tabellen nedenfor oppsummerer hvordan det gjennomsnittlige lagernivået (Order-u
 
 | Kategori | Baseline (Units) | Scenario A: Kampanje-sjokk | Scenario B: Kostnads-sjokk |
 | :--- | :---: | :---: | :---: |
-| **Engelsk fiksjon** | 359,7 | +7,4 % | -4,2 % |
-| **Norsk krim** | 454,0 | +2,6 % | -1,6 % |
-| **Norske barnebøker** | 320,7 | +2,9 % | -1,9 % |
+| **Engelsk fiksjon** | 360,3 | +7,4 % | -4,2 % |
+| **Norsk krim** | 453,8 | +2,6 % | -1,5 % |
+| **Norske barnebøker** | 320,1 | +2,9 % | -1,8 % |
 
 Baseline tilsvarer det gjennomsnittlige bestillingspunktet fra 8.4 (små avvik skyldes Prophets stokastiske trekning). Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for 7,4 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med under 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
 
