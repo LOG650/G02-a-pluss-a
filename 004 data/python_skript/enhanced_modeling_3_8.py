@@ -102,20 +102,26 @@ for cat in categories:
     plt.close()
     
     prev_mae = previous_results.get(cat, {}).get('MAE', 0)
+    prev_rmse = previous_results.get(cat, {}).get('RMSE', 0)
     mae_improvement = ((prev_mae - mae) / prev_mae * 100) if prev_mae > 0 else 0
-    
+    rmse_improvement = ((prev_rmse - rmse) / prev_rmse * 100) if prev_rmse > 0 else 0
+
     results_summary.append({
         'Kategori': cat,
         'MAE (Tidligere)': prev_mae,
         'MAE (Forbedret)': round(mae, 2),
         'Forbedring MAE (%)': round(mae_improvement, 1),
+        'RMSE (Tidligere)': prev_rmse,
         'RMSE (Forbedret)': round(rmse, 2),
+        'Forbedring RMSE (%)': round(rmse_improvement, 1),
         'img_path': img_path.split('/')[-1]
     })
 
 # Lagre resultater
 results_df = pd.DataFrame(results_summary)
 results_df.drop(columns=['img_path']).to_csv('006 analysis/milestones/M5 - Kvantitativ analyse/3.8 utvidet feature engineering/forbedret_modell_resultater.csv', index=False)
+
+comparison_cols = ['Kategori', 'MAE (Tidligere)', 'MAE (Forbedret)', 'Forbedring MAE (%)', 'RMSE (Tidligere)', 'RMSE (Forbedret)', 'Forbedring RMSE (%)']
 
 # Skriv konklusjon til MD-fil
 with open('006 analysis/milestones/M5 - Kvantitativ analyse/3.8 utvidet feature engineering/3.8_konklusjon.md', 'w') as f:
@@ -126,8 +132,8 @@ with open('006 analysis/milestones/M5 - Kvantitativ analyse/3.8 utvidet feature 
     f.write("2. **Identifiserte Kampanjer:** Salgstoppe identifisert via Z-score i forrige steg er lagt inn som unike hendelser for å forhindre at de 'forstyrrer' det generelle sesongmønsteret.\n\n")
     
     f.write("## Resultater (Modellsammenligning)\n")
-    f.write("Tabellen under viser forbedringen i nøyaktighet (MAE) etter inkludering av utvidet feature engineering.\n\n")
-    f.write(results_df[['Kategori', 'MAE (Tidligere)', 'MAE (Forbedret)', 'Forbedring MAE (%)', 'RMSE (Forbedret)']].to_markdown(index=False))
+    f.write("Tabellen under viser forbedringen i nøyaktighet (både MAE og RMSE) før og etter inkludering av utvidet feature engineering. Baseline-verdiene er hentet fra basis-Prophet-modellen i aktivitet 3.5.\n\n")
+    f.write(results_df[comparison_cols].to_markdown(index=False))
     
     f.write("\n\n## Visualisering av Komponenter\n")
     f.write("Analysen av komponenter viser tydelig hvordan helligdager og kampanjer påvirker etterspørselen separat fra den generelle trenden og sesongvariasjonen.\n\n")
