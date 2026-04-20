@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -i \"3.9\\\\|3\\\\\\\\.9\")",
+      "Bash(python *)"
+    ]
+  }
+}
