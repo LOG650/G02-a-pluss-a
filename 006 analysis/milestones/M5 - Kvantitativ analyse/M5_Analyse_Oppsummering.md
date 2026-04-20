@@ -36,7 +36,7 @@ Følgende antagelser ligger til grunn for den kvantitative analysen:
 4. **Modellering:** Prophet-modellen fanger opp additive sesongvariasjoner og lineære trender. Det antas at ingen store strukturelle endringer i markedet inntreffer utenfor det modellen predikerer.
 
 ## Sensitivitetsanalyse (Aktivitet 3.7)
-Gjennomført sensitivitetsanalyse viser følgende kritiske funn for modellens robusthet:
+Fullstendig dokumentasjon av analysen, inkludert metodikk, figurer (13a–c og 14a–c) og kategorispesifikk fortolkning, finnes i [`3.7 sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md`](3.7%20sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md). Skriptet som genererer figurer og rådata er `004 data/python_skript/sensitivity_analysis.py`. Oppsummert viser analysen følgende kritiske funn for modellens robusthet:
 
 1.  **Sikkerhetsmargin (Safety Margin Factor):**
     *   For **Engelsk fiksjon** er modellen svært sensitiv for sikkerhetsmarginen. Ved å øke denne med 50 % (faktor 1.5) reduseres totalkostnadene med ca. 50 %, mens servicenivået øker fra 86 % til 94 %. Dette tyder på at den opprinnelige modellen var for konservativ.

@@ -8,11 +8,13 @@ import seaborn as sns
 # Konfigurasjon
 TRAIN_DATA_PATH = r'004 data/splittet_data/train/train_data.csv'
 TEST_DATA_PATH = r'004 data/splittet_data/test/test_data.csv'
-OUTPUT_DIR = r'006 analysis/milestones/M5 - Kvantitativ analyse/3.5 kvantitativ modell'
+OUTPUT_DIR = r'006 analysis/milestones/M5 - Kvantitativ analyse/3.7 sensitivitetsanalyse'
 FIGURES_DIR = r'006 analysis/figures'
 
 if not os.path.exists(FIGURES_DIR):
     os.makedirs(FIGURES_DIR)
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
 
 KATEGORI_INFO = {
     'Engelsk fiksjon': {'lagerkost': 10, 'stockout_kost': 120, 'bestillingskost': 600},
@@ -128,7 +130,6 @@ for kat, base_params in KATEGORI_INFO.items():
             kost, sl = simuler_lager(te, s_opt_list, [Q_opt]*len(te), p)
             results.append({'Kategori': kat, 'Parameter': param_name, 'Faktor': f, 'Kostnad': round(kost, 2), 'ServiceLevel': round(sl, 2)})
 
-# Lagre resultater til Markdown med UTF-8
 res_df = pd.DataFrame(results)
 
 # Generer figurer
@@ -156,30 +157,11 @@ for kat in KATEGORI_INFO.keys():
     plt.savefig(os.path.join(FIGURES_DIR, f'14_sensitivitet_service_{kat.replace(" ", "_")}.png'))
     plt.close()
 
-output_path = os.path.join(OUTPUT_DIR, 'Sensitivitetsanalyse_Resultater.md')
+# Lagre rådata til CSV for reproduserbarhet. Kuratert aktivitetsdokument
+# (`3.7_Sensitivitetsanalyse.md`) oppdateres manuelt med disse tallene og
+# tilhørende fortolkning, og overskrives derfor ikke av skriptet.
+csv_path = os.path.join(OUTPUT_DIR, 'sensitivity_results.csv')
+res_df.to_csv(csv_path, index=False, encoding='utf-8')
 
-with open(output_path, 'w', encoding='utf-8') as f:
-    f.write("# Resultater - Sensitivitetsanalyse (Aktivitet 3.7)\n\n")
-    f.write("Denne analysen viser hvordan totalkostnader og servicenivå endres ved variasjon av nøkkelparametere.\n\n")
-    
-    for kat in KATEGORI_INFO.keys():
-        f.write(f"## {kat}\n\n")
-        
-        # Legg til figur 13
-        f.write('<div align="center">\n')
-        f.write(f'  <img src="../../../figures/13_sensitivitet_kost_{kat.replace(" ", "_")}.png" style="width: 70%; height: auto;">\n')
-        f.write(f'  <br>\n  <em>Figur 13: Kostnadssensitivitet ved parameterendring ({kat})</em>\n')
-        f.write('</div>\n\n')
-
-        # Legg til figur 14
-        f.write('<div align="center">\n')
-        f.write(f'  <img src="../../../figures/14_sensitivitet_service_{kat.replace(" ", "_")}.png" style="width: 70%; height: auto;">\n')
-        f.write(f'  <br>\n  <em>Figur 14: Servicenivå-sensitivitet ved parameterendring ({kat})</em>\n')
-        f.write('</div>\n\n')
-
-        kat_df = res_df[res_df['Kategori'] == kat]
-        f.write(kat_df[['Parameter', 'Faktor', 'Kostnad', 'ServiceLevel']].to_markdown(index=False))
-        f.write("\n\n")
-
-print(f"Sensitivitetsanalyse ferdig! Resultater og figurer lagret.")
+print("Sensitivitetsanalyse ferdig! Figurer lagret til %s og rådata til %s." % (FIGURES_DIR, csv_path))
 
