@@ -581,7 +581,7 @@ Ved å analysere residualene (prognosefeilen) i Figur 15, ser vi en tilnærmet n
   <em>Figur 15: Distribusjon av residualer for Norsk krim. Den røde linjen indikerer nullavvik.</em>
 </div>
 
-Kostnadsfordelingen i Figur 16 forklarer strategien bak besparelsen: Prophet-modellen aksepterer en moderat økning i lagerholdskostnader ($C_h$) for å oppnå en drastisk reduksjon i de kostbare stockout-hendelsene ($C_s$), noe som gir en netto gevinst på over 26 000 NOK sammenlignet med baseline.
+Figur 16 viser fordelingen mellom lagerholdskostnader ($C_h$) og stockout-kostnader ($C_s$) for baseline og Prophet-modellen, med en netto reduksjon i totalkostnad på over 26 000 NOK.
 
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">
@@ -590,7 +590,7 @@ Kostnadsfordelingen i Figur 16 forklarer strategien bak besparelsen: Prophet-mod
 </div>
 
 #### 8.1.2 Engelsk fiksjon (Uforutsigbarhet og import)
-For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen drives her primært av en reduksjon i stockouts på over 15 000 NOK. Den høyere usikkerheten i denne kategorien (høyere MAE) gjør at modellen opererer med et relativt sett større sikkerhetslager for å buffer mot import-ledetid og volatilitet.
+For Engelsk fiksjon oppnår Prophet-modellen en besparelse på 19,57 %, hvor reduksjonen i $C_s$ utgjør over 15 000 NOK. Kategorien har den høyeste prognoseusikkerheten av de tre (MAPE 17,43 %, jf. 6.5).
 
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
@@ -599,7 +599,7 @@ For Engelsk fiksjon gir modellen en solid besparelse på 19,6 %. Besparelsen dri
 </div>
 
 #### 8.1.3 Norske barnebøker (Forutsigbare sesongmønstre)
-Barnebøker skiller seg ut med et negativt resultat (-7,86 %). Tidligere analyser (kapittel 7.0) viser at denne kategorien har sterke sesongtopper ved skolestart og jul. Diagnosen viser imidlertid at disse mønstrene er så regelmessige og forutsigbare at den enkle baseline-modellen med en fast sikkerhetsmargin fungerer optimalt. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong, har i dette tilfellet ført til for lav sikkerhetsbeholdning i opptakten til de korte og intensive salgstoppene. Dette bekrefter at for varegrupper med svært konsistente sesongsykluser, kan tradisjonelle lagerstyringsmetoder være mer robuste enn avanserte prediksjonsmodeller som er mer utsatt for små feil i timing og usikkerhetsestimering.
+For Norske barnebøker gir Prophet-modellen et negativt resultat (−7,86 %), tilsvarende en merkostnad på 3 231 NOK sammenlignet med baseline. Servicegraden faller marginalt fra 85,4 % til 83,8 %.
 
 ### 8.2 Sensitivitetsanalyse og robusthet
 For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere (stockout-kostnad $C_s$, lagerholdskostnad $C_h$ og sikkerhetsmarginfaktor) varieres én om gangen rundt basisverdien. Den fullstendige analysen – med metodikk, nøkkelfunn per kategori og eksplisitte koblinger til 3.5, 3.6, 3.10 og 3.12 – er dokumentert i `006 analysis/milestones/M5 - Kvantitativ analyse/3.7 sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md`, og figurene (13a–c og 14a–c) er generert av `004 data/python_skript/sensitivity_analysis.py`. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
@@ -649,8 +649,8 @@ Norsk krim fremstår som den mest stabile kategorien. Som vist i figur 23, oppn�
   <em>Figur 23: Servicenivå-sensitivitet (Norsk krim).</em>
 </div>
 
-### 8.3 Optimalisering av Styringsparametere (3.10)
-Som et direkte resultat av backtestingen og sensitivitetsanalysen, er de endelige styringsparameterne for 2026-sesongen fastsatt. Disse parameterne representerer modellens "beslutningsregler" og er skreddersydd for å håndtere hver kategoris unike risiko- og etterspørselsprofil.
+### 8.3 Optimalisering av styringsparametere
+Som et resultat av backtestingen og sensitivitetsanalysen er de endelige styringsparameterne for 2026-sesongen fastsatt. Tabellen under viser bias-justering, sikkerhetsfaktor (k) og estimert kampanjeløft per kategori:
 
 | Kategori | Bias-justering | Sikkerhetsfaktor (k) | Est. Kampanjeløft |
 | :--- | :---: | :---: | :---: |
@@ -658,11 +658,7 @@ Som et direkte resultat av backtestingen og sensitivitetsanalysen, er de endelig
 | **Norsk krim** | +11,78 | 1,8 | 56,6 enheter |
 | **Norske barnebøker** | -0,69 | 1,5 | 39,7 enheter |
 
-Valget av k reflekterer en kvalitativ avveining mellom lagerholdskostnaden $C_h$ og stockout-kostnaden $C_s$ fra 3.5/3.7: en høyere k binder mer kapital (øker $C_h$-bidraget), men reduserer eksponering for $C_s$. *Norsk krim* tildeles den høyeste faktoren (1,8) fordi modellen systematisk underestimerer etterspørselen (bias −11,78), slik at sensitivitetsanalysen viser at servicegevinsten klart overstiger den marginale økningen i $C_h$. *Engelsk fiksjon* holdes på 1,4 fordi den allerede justeres ned via bias-korreksjon, og en høyere k ville kombinert med volatiliteten gitt for høy kapitalbinding. *Norske barnebøker* ligger på 1,5 som et nøytralt midtpunkt, siden modellen her er tilnærmet forventningsrett (bias 0,69).
-
-Kampanjeløftet for *Norsk krim* (56,6 enheter) er basert på én observert kampanje i datasettet og må derfor tolkes med noe varsomhet; de to andre kategoriene hviler på henholdsvis seks og to observasjoner. Dette er håndtert ved at scenario-analysen (8.5) tester et +50 % løft-sjokk som sensitivitetscheck.
-
-Disse optimaliserte reglene danner grunnlaget for den endelige prognosegenereringen og scenario-analysen i de påfølgende stegene av prosjektet.
+Sikkerhetsfaktoren er satt kategorivis ut fra bias-størrelse og observert volatilitet, mens kampanjeløftet er estimert fra historiske kampanjeobservasjoner i datasettet (seks for *Engelsk fiksjon*, to for *Norske barnebøker* og én for *Norsk krim*). Disse reglene danner grunnlaget for den endelige prognosegenereringen og scenario-analysen.
 
 ### 8.4 Prognoser for 2026 (Operasjonell Planlegging)
 Som det siste steget i den kvantitative analysen er det generert endelige etterspørselsprognoser for hele 2026. Disse prognosene integrerer alle funn fra tidligere steg, inkludert bias-justering fra backtestingen (6.5) og dynamisk beregning av sikkerhetslager basert på de optimaliserte k-faktorene (8.3).
@@ -714,7 +710,7 @@ Tabellen nedenfor oppsummerer hvordan det gjennomsnittlige lagernivået (Order-u
 | **Norsk krim** | 453,8 | +2,6 % | -1,5 % |
 | **Norske barnebøker** | 320,1 | +2,9 % | -1,8 % |
 
-Baseline tilsvarer det gjennomsnittlige bestillingspunktet fra 8.4 (små avvik skyldes Prophets stokastiske trekning). Analysen viser at *Engelsk fiksjon* er mest sensitiv for kampanje-sjokk, med et behov for 7,4 % økning i lagernivået for å opprettholde servicegraden. For *Norsk krim* og *Norske barnebøker* er modellen svært robust, med under 3 % endring i nødvendig beholdning selv ved ekstreme utslag. Dette gir ARK Bokhandel trygghet for at de optimaliserte reglene fra 3.10 vil fungere tilfredsstillende også i et urolig marked.
+Baseline tilsvarer det gjennomsnittlige bestillingspunktet fra 8.4 (små avvik skyldes Prophets stokastiske trekning). *Engelsk fiksjon* krever den største justeringen under kampanje-sjokket (+7,4 %), mens *Norsk krim* og *Norske barnebøker* holder seg under 3 % endring i begge scenarier.
 
 De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i figurene 27, 28 og 29:
 
@@ -742,13 +738,15 @@ De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i fi
 Den kvantitative analysen viser at en overgang fra statiske, gjennomsnittsbaserte bestillingsregler til en prognosedrevet og dynamisk modell gir en samlet kostnadsbesparelse på 20,26 % (fra 198 636 NOK til 158 395 NOK) og løfter den gjennomsnittlige servicegraden fra 84,7 % til 87,2 % i testperioden. Samtidig avdekker resultatene at gevinsten ikke er jevnt fordelt mellom kategoriene, og at modellens merverdi avhenger sterkt av etterspørselsstrukturen i den enkelte varegruppen. Diskusjonen under tolker funnene i lys av problemstillingen, litteraturen og metodens iboende begrensninger, og peker på hva resultatene faktisk betyr for ARK Bokhandels drift.
 
 ### 9.1 Tolkning av hovedfunnene
-Resultatene i kapittel 8 bekrefter at modellen leverer på problemstillingens to kjernekrav: å redusere lagerkostnader og samtidig begrense risikoen for utsolgte varer. Det er likevel tre nivåer i tolkningen som bør løftes frem.
+Resultatene i kapittel 8 bekrefter at modellen leverer på problemstillingens to kjernekrav: å redusere lagerkostnader og samtidig begrense risikoen for utsolgte varer. Det er likevel fire nivåer i tolkningen som bør løftes frem.
 
 **Gevinstens drivere er konsistent med kostnadsasymmetrien.** For *Norsk krim* (−38,10 %) og *Engelsk fiksjon* (−19,57 %) kommer besparelsen hovedsakelig fra en kraftig reduksjon i mangelkostnaden $C_s$, delvis på bekostning av en moderat økning i lagerholdskostnaden $C_h$ (jf. Figur 16 og 17). Dette er i tråd med den teoretiske forventningen i seksjon 3.3.3: når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen med permanent tapt salg (seksjon 1.4) — forskyves det optimale servicenivået oppover, og en dynamisk allokering av lager mot sesongtoppene blir lønnsom. Omfordelingen mellom $C_h$ og $C_s$ er altså ikke en bivirkning av modellen, men en rasjonell respons på asymmetrien mellom de to kostnadstypene.
 
 **Servicegraden øker samtidig som kostnadene faller.** At CSL for *Norsk krim* stiger fra 85,8 % til 91,5 % viser at gevinsten ikke hentes ut ved å akseptere flere stockouts, men ved at modellen bestiller mer presist når behovet faktisk oppstår. Dette er konsistent med Kirmizi et al. (2024) sitt poeng om at bedre prognoser reduserer residualvariansen $\sigma_d$ og dermed kravet til sikkerhetslager for et gitt servicenivå.
 
-**Bias-korreksjonen er en undervurdert gevinstdriver.** Backtestingen i 6.5 avdekket systematisk skjevhet i to av tre kategorier: +15,96 for *Engelsk fiksjon* og −11,78 for *Norsk krim*. Korreksjonen i 3.10 var trolig et av de enkeltstående viktigste bidragene til besparelsen, særlig for *Norsk krim* der modellen ellers ville underbestilt systematisk i høysesong. Dette understreker Goltsos et al. (2022) sin observasjon om at prognose- og lagerbeslutninger må behandles som én integrert tilbakekoblingssløyfe — uten backtestingen ville biasen forplantet seg uhindret inn i bestillingspunktene.
+**Bias-korreksjonen er en undervurdert gevinstdriver.** Backtestingen i 6.5 avdekket systematisk skjevhet i to av tre kategorier: +15,96 for *Engelsk fiksjon* og −11,78 for *Norsk krim*. Korreksjonen anvendt i 8.3 var trolig et av de enkeltstående viktigste bidragene til besparelsen, særlig for *Norsk krim* der modellen ellers ville underbestilt systematisk i høysesong. Dette understreker Goltsos et al. (2022) sin observasjon om at prognose- og lagerbeslutninger må behandles som én integrert tilbakekoblingssløyfe — uten backtestingen ville biasen forplantet seg uhindret inn i bestillingspunktene.
+
+**Parametervalget reflekterer kategoriens risikoprofil.** Sikkerhetsfaktoren k (8.3) er satt kategorivis ut fra en kvalitativ avveining mellom $C_h$ og $C_s$: en høyere k binder mer kapital, men reduserer eksponeringen for stockouts. *Norsk krim* tildeles k = 1,8 fordi modellen systematisk underestimerer etterspørselen (bias −11,78), og sensitivitetsanalysen (8.2.3) viser at servicegevinsten klart overstiger den marginale økningen i $C_h$. *Engelsk fiksjon* holdes på 1,4 – bias-korreksjonen reduserer allerede sikkerhetsbehovet, og en høyere k kombinert med volatiliteten ville gitt for høy kapitalbinding. *Norske barnebøker* ligger på 1,5 som et nøytralt midtpunkt, siden modellen der er tilnærmet forventningsrett (bias −0,69). At samme modellrammeverk kalibreres så ulikt mellom varegruppene, illustrerer et sentralt prinsipp: parametervalget er like viktig som metoden – en observasjon som også støtter Goltsos et al. (2022) sitt argument om integrert behandling av prognose- og lagerstyringsbeslutninger.
 
 ### 9.2 Når fungerer ikke den avanserte modellen? Tilfellet Norske barnebøker
 Det mest overraskende funnet er at Prophet-modellen gir et *dårligere* resultat enn baseline for *Norske barnebøker* (+7,86 % i kostnad). Dette fortjener en egen drøfting, fordi det har direkte konsekvenser for hvordan ARK bør velge mellom ulike prognoseverktøy i drift.
