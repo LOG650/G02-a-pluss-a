@@ -146,11 +146,15 @@ Prosjektet er avgrenset på følgende områder for å sikre en målrettet analys
 *   **Metodikk:** Prosjektet baserer seg utelukkende på kvantitative metoder og inkluderer ikke kvalitative vurderinger eller manuelle justeringer foretatt av butikkansatte.
 
 ### 1.4 Antagelser
-For å kunne gjennomføre analysen og modelleringen er følgende forutsetninger lagt til grunn:
-*   **Representativitet:** Det antas at det simulerte datasettet nøyaktig speiler virkelige salgsmønstre for ARK Bokhandel AS, inkludert sesongtopper og tilfeldige variasjoner.
-*   **Efterspørselens natur:** Ved "stockouts" (utsolgt-situasjoner) antas det at salget går permanent tapt. Kunden antas altså å ikke vente på varen (ingen restordrer i modellen).
+For å kunne gjennomføre analysen og modelleringen er følgende forutsetninger lagt til grunn. For å skille tydelig mellom hva som er forutsetninger om selve datagrunnlaget og hva som er forutsetninger om modellen, er antagelsene gruppert i to kategorier. Det simulerte datasettet er beskrevet i seksjon 5.2.
+
+**Antagelser om datagrunnlaget:**
+*   **Representativitet:** Det antas at det simulerte datasettet speiler virkelige salgsmønstre for ARK Bokhandel AS, inkludert sesongtopper og tilfeldige variasjoner. Implikasjonen er at funn i analysen kan tolkes som indikative for ARKs faktiske drift, men med de forbeholdene som drøftes i kapittel 9.
+*   **Datakvalitet:** Det legges til grunn at det simulerte og vaskede datagrunnlaget er internt konsistent og gir et korrekt bilde av de historiske forholdene det skal representere (jf. seksjon 5.2).
+
+**Antagelser om modellen og lagerstyringsdomenet:**
+*   **Etterspørselens natur:** Ved "stockouts" (utsolgt-situasjoner) antas det at salget går permanent tapt. Kunden antas altså å ikke vente på varen (ingen restordrer i modellen).
 *   **Kostnadskonstans:** Lagerholdskostnader og mangelkostnader antas å være konstante gjennom hele analyseperioden.
-*   **Datakvalitet:** Det legges til grunn at dataene er gjenstand for intern kvalitetssikring hos leverandøren før utlevering, og at de vaskede dataene gir et korrekt bilde av historiske forhold.
 
 ---
 
@@ -229,7 +233,7 @@ Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvi
 
 $SS = z_\alpha \cdot \sigma_L$
 
-Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 1.4.
+Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 6.4.
 
 Kirmizi et al. (2024) demonstrerer at etterspørselsvariabilitet ($\sigma_d$) er den mest kritiske faktoren for dimensjonering av sikkerhetslageret. Dette understreker viktigheten av nøyaktige prognoser: jo bedre prognosene fanger opp sesongvariasjoner og trender, desto lavere blir residualvariansen, og desto mindre sikkerhetslager kreves for å oppnå samme servicenivå.
 
@@ -319,16 +323,45 @@ Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer
 Metoden innebærer å trene modellen på historiske salgsdata (2021-2025) for å predikere etterspørselen i 2026. Resultatene vil deretter fungere som beslutningsstøtte for den kvantitative bestillingsmodellen.
 
 ### 5.2 Data
-Datasettet som benyttes i denne rapporten er basert på simulerte salgs- og lagerdata for ARK Bokhandel AS. De tre bokkategoriene er valgt fordi de representerer tre distinkte etterspørselsmønstre, noe som gjør det mulig å teste modellens robusthet på tvers av ulike markedsdynamikker:
+
+Datasettet som benyttes i denne rapporten er **simulert** salgs- og lagerdata for ARK Bokhandel AS. Reelle ERP-data fra ARK var ikke tilgjengelige, og datasettet er derfor konstruert syntetisk slik at det etterligner ARKs salgsmønstre på tvers av tre bokkategorier. Antagelsene som ligger til grunn for å bruke et simulert datagrunnlag — særlig at det er representativt for virkelige salgsmønstre og av tilstrekkelig kvalitet — er formulert eksplisitt i seksjon 1.4 ("Antagelser om datagrunnlaget").
+
+**Innhold og struktur:**
+Datasettet dekker perioden 2021–2025 og inneholder for hver kategori daglige observasjoner av:
+- **Dato** — daglig tidsstempel.
+- **Kategori** — Norske barnebøker, Norsk krim eller Engelsk fiksjon.
+- **Etterspørsel** — det reelle, simulerte behovet i markedet.
+- **Salg** — faktisk solgt mengde, oppad begrenset av tilgjengelig lager.
+- **Lagerbeholdning** — beholdning ved slutten av dagen.
+- **Svinn** — registrert svinn på dagen.
+
+Prophet-modellen trenes på `Etterspørsel` (ikke `Salg`) for å unngå at historiske lagerbegrensninger demper prognosen. Begrunnelsen for dette valget er gitt i seksjon 5.1.
+
+**Tre distinkte etterspørselsmønstre:**
+De tre bokkategoriene er valgt fordi de representerer ulike markedsdynamikker, noe som gjør det mulig å teste modellens robusthet på tvers av flere typer etterspørsel:
 - **Norske barnebøker:** Preget av høy frekvens og tydelige sesongvariasjoner, men med høy grad av forutsigbarhet og regelmessighet.
 - **Norsk krim:** Kjennetegnes av spesifikke salgstopper knyttet til høytider som påske og sommer.
 - **Engelsk fiksjon:** Viser en jevnere etterspørsel gjennom året, ofte påvirket av internasjonale trender og importtider.
 
-**Datakvalitet:**
-Da det ikke foreligger eksplisitt dokumentasjon på datakvaliteten fra kilden, legges det til grunn en antagelse om at dataene er gjenstand for intern kvalitetssikring hos leverandøren før utlevering. Eventuelle inkonsistenser oppdaget under vaskeprosessen (som datoformater og manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag.
+**Datakvalitet og begrensninger ved simulert datagrunnlag:**
+Siden datagrunnlaget er simulert, har vi full kontroll over de underliggende mønstrene (sesong, trend, støy), men det fjerner samtidig den uregelmessige støyen som ville vært til stede i reelle ERP-data. Inkonsistenser oppdaget under datavasking (datoformater, manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag. Implikasjonen for resultatene er at modellen testes under kontrollerte betingelser; overførbarheten til ARKs faktiske drift må derfor vurderes i lys av denne begrensningen, og dette diskuteres i kapittel 9.
 
 **Datapreparering og validering:**
 For å sikre en robust evaluering av etterspørselsprognosene, er datasettet splittet i en treningsdel (80 %) og en testdel (20 %). Denne splitten er avgjørende for å validere modellens evne til å generalisere på usette data.
+
+**Oppsummering — datagrunnlag vs. antagelser:**
+
+For å gjøre skillet mellom det simulerte datagrunnlaget og antagelsene som ligger til grunn for analysen tydelig, gir tabellen under en samlet oversikt over hvilke elementer som er hva, og hvor i rapporten de er beskrevet.
+
+| Element                                            | Type                  | Beskrevet i |
+|----------------------------------------------------|-----------------------|-------------|
+| Daglige tidsserier (etterspørsel, salg, lager)     | Simulert datagrunnlag | 5.2         |
+| Sesongmønstre, helligdagstopper, tilfeldig støy    | Simulert datagrunnlag | 5.2         |
+| Representativitet for ARKs virkelige drift         | Antagelse om data     | 1.4         |
+| Datakvalitet og indre konsistens                   | Antagelse om data     | 1.4 og 5.2  |
+| Lost-sales ved stockout                            | Modellantagelse       | 1.4         |
+| Konstante lager- og mangelkostnader                | Modellantagelse       | 1.4         |
+| Normalfordelt prognosefeil                         | Modellantagelse       | 6.4.3       |
 
 **Beskrivelse av datagrunnlaget og tekniske visualiseringer:**
 
