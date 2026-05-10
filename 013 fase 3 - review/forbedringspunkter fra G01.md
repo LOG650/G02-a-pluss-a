@@ -9,7 +9,7 @@
 ## A. Forsiden / Front matter (helt øverst i rapporten)
 
 - [x] **Lag innholdsfortegnelse med sidetall.** ~~Dagens innholdsfortegnelse (linje 62 i `rapport.md`) mangler sidetall – legg til sidetall for hvert kapittel og delkapittel.~~ Gjort: alle hovedkapitler og underkapitler er nå klikkbare lenker. Sidetall står som `s. _` placeholder – fyll inn faktiske sidetall ved PDF-eksport.
-- [ ] **Legg til en eksplisitt KI-erklæring.** Rapporten mangler beskrivelse av bruk av KI – legg inn et eget avsnitt (f.eks. under egenerklæringen) som beskriver hvilke KI-verktøy som er brukt og til hva.
+- [x] **Legg til en eksplisitt KI-erklæring.** ~~Rapporten mangler beskrivelse av bruk av KI – legg inn et eget avsnitt (f.eks. under egenerklæringen) som beskriver hvilke KI-verktøy som er brukt og til hva.~~ Gjort: ny seksjon `### Bruk av kunstig intelligens (KI)` lagt inn mellom Personvern og Publiseringsavtale i `rapport.md`. Dekker verktøy, bruksområder og kvalitetssikring – tilpass detaljene hvis bruken har vært annerledes.
 - [ ] **Vurder å skrive "vi" konsekvent i egenerklæringen (egen notat, ikke fra G01).** I dag står det "Jeg/vi" gjennom hele egenerklæringen (linje 16–31 i `rapport.md`). Siden dette er en gruppeoppgave kan det være ryddigere å bytte ut alle "Jeg/vi"/"min/vår" med bare "vi"/"vår".
 - [ ] **Vurder å fjerne Personvern-seksjonen (egen notat, ikke fra G01).** Vi har krysset av at oppgaven ikke omfattes av Personopplysningsloven, og vi bruker simulerte data. Vurder om hele underseksjonen "Personvern" (linje 33–40) kan fjernes – eller om den må stå fordi den er en del av den obligatoriske malen fra HiM.
 

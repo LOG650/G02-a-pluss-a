@@ -39,6 +39,24 @@ Har oppgaven vært vurdert av NSD? [ ] ja [ ] nei
 Har oppgaven vært til behandling hos REK? [ ] ja [ ] nei
 - Hvis ja: Referansenummer:      
 
+### Bruk av kunstig intelligens (KI)
+
+I tråd med Høgskolen i Moldes retningslinjer for ansvarlig bruk av KI-verktøy, erklærer vi følgende om bruken av kunstig intelligens i arbeidet med denne oppgaven:
+
+**KI-verktøy benyttet:** Claude (Anthropic), primært via Claude Code.
+
+**Bruksområder:**
+- Strukturering, språklig bearbeiding og korrekturlesing av rapporttekst.
+- Hjelp til implementering og feilsøking av Python-kode (bl.a. Prophet-modellen, baseline-løsning, sensitivitets- og scenarioanalyse).
+- Generering og forbedring av visualiseringer og figurer.
+- Diskusjonspartner for faglige problemstillinger, metodevalg og tolkning av resultater.
+
+**Kvalitetssikring og begrensninger:**
+- KI er ikke benyttet til å generere kilder eller referanser uten egen verifikasjon.
+- Alle modellresultater, analyser og konklusjoner er kontrollert og validert av forfatterne.
+- Problemstilling, metodevalg, faglige vurderinger og endelig fortolkning av resultatene er forfatternes egne.
+- Rapporten er gjennomlest og kvalitetssikret av begge forfattere før innlevering.
+
 ### Publiseringsavtale
 
 Studiepoeng: 30
