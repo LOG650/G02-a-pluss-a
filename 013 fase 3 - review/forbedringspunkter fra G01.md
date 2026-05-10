@@ -18,7 +18,7 @@
 Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitler samtidig.
 
 - [x] **Tydeliggjør skillet mellom simulerte data og antagelser.** ~~Antagelsene står i 1.4, mens datasettet beskrives i 5.2 – sørg for at det er krystallklart hva som er rene modellforutsetninger (antagelser) og hva som er simulert datagrunnlag. Vurder å krysshenvise mellom 1.4 og 5.2, eller å lage en oppsummeringstabell.~~ Gjort: (1) 1.4 omstrukturert med to underkategorier (datagrunnlag vs. modell/domene). (2) 5.2 utvidet med eksplisitt "simulert", variabelliste, krysshenvisninger til 1.4 og 5.1, og en oppsummeringstabell som mapper hvert element til type og rapportseksjon. (3) Feilaktig referanse på linje 236 (sikkerhetslager) korrigert fra 1.4 til 6.4.
-- [ ] **Sammenlign modeller eksplisitt og vis mer kritisk refleksjon.** Reviewen påpeker generelt for lite modellsammenligning og kritisk refleksjon. Konkretisering ligger i punktene under kap. 2/3 (vurder styrker/svakheter ved modeller) og kap. 6 (forklar manglende SARIMA-sammenligning) – men tenk gjennom om det også bør utvides i diskusjonen (kap. 9).
+- [x] **Sammenlign modeller eksplisitt og vis mer kritisk refleksjon.** ~~Reviewen påpeker generelt for lite modellsammenligning og kritisk refleksjon. Konkretisering ligger i punktene under kap. 2/3 (vurder styrker/svakheter ved modeller) og kap. 6 (forklar manglende SARIMA-sammenligning) – men tenk gjennom om det også bør utvides i diskusjonen (kap. 9).~~ Gjort: (1) Ny seksjon i kap. 2 ("Sammenliknende styrker og svakheter ved modellene") som dekker SARIMA, Prophet, ML/hybrid og klassiske lagerstyringsmodeller. (2) Nytt avsnitt på slutten av 3.2 om Prophets teoretiske svakheter ift. SARIMA. (3) Nytt avsnitt på slutten av 6.1.5 som eksplisitt forklarer hvorfor empirisk SARIMA-sammenligning ikke ble gjort. Diskusjonen i 9.4–9.5 hadde allerede god kritisk refleksjon (særlig 9.5 #4 om SARIMA og bias-overfit), så den er ikke endret. **NB:** dette dekker også senere punkter i seksjon C (kritikk i kap. 2/3) og F (SARIMA-forklaring i 6) – kryss av/slett dem også.
 
 ## B. Kapittel 1 – Innledning
 
@@ -28,7 +28,7 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 ## C. Kapittel 2 & 3 – Litteratur og teori
 
 - [ ] **Oppdater eldre kilder.** Gå gjennom referanselisten og bytt ut/utfyll kilder som er eldre enn 5 år der nyere alternativer finnes.
-- [ ] **Legg til kritisk vurdering av modellene.** I både litteratur- og teorikapittelet: skriv inn korte avsnitt om styrker og svakheter ved Prophet, SARIMA, EOQ osv. – ikke bare beskriv dem.
+- [x] **Legg til kritisk vurdering av modellene.** ~~I både litteratur- og teorikapittelet: skriv inn korte avsnitt om styrker og svakheter ved Prophet, SARIMA, EOQ osv. – ikke bare beskriv dem.~~ Dekket av A2-punkt 2: ny seksjon "Sammenliknende styrker og svakheter ved modellene" i kap. 2 + tilsvarende avsnitt på slutten av 3.2.
 - [ ] **Gjør teorikapittelet mer lesbart.** Reduser tettheten av matematiske notasjoner, eller suppler hver formel med en setning som forklarer hva den betyr i praksis (slik at lesere uten LaTeX-kjennskap henger med).
 
 ## D. Kapittel 4 – Casebeskrivelse
@@ -46,7 +46,7 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 ## F. Kapittel 6 – Modellering
 
 - [ ] **Lag en flytmodell/figur i 6.3.** Kapitlet er tett pakket med variabler og formler – legg inn en enkel figur som viser hvordan prognoseoutputen mates inn i optimaliseringsmodellen.
-- [ ] **Forklar hvorfor SARIMA ikke ble sammenlignet direkte.** Avsnitt 6.1.5 begrunner valget av Prophet teoretisk – legg til en setning eller to om hvorfor en direkte empirisk sammenligning mot SARIMA ikke ble gjennomført.
+- [x] **Forklar hvorfor SARIMA ikke ble sammenlignet direkte.** ~~Avsnitt 6.1.5 begrunner valget av Prophet teoretisk – legg til en setning eller to om hvorfor en direkte empirisk sammenligning mot SARIMA ikke ble gjennomført.~~ Dekket av A2-punkt 2: nytt avsnitt på slutten av 6.1.5 ("Hvorfor en empirisk sammenligning mot SARIMA ikke ble gjennomført") som peker videre til 9.5 og 9.7.
 - [ ] **Forstørre figurer med liten tekst.** Gå gjennom figurene i kapittel 6 og øk skriftstørrelse / akseteksting der det er for smått.
 
 ## G. Kapittel 7 & 8 – Analyse og resultat

@@ -177,6 +177,20 @@ Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet
 
 Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
 
+### Sammenliknende styrker og svakheter ved modellene
+
+For å plassere prosjektets metodevalg i et kritisk perspektiv vurderes her styrker og svakheter ved de sentrale modellgruppene som litteraturen omtaler.
+
+**Klassiske statistiske tidsseriemodeller (SARIMA, eksponensiell utjevning):** Sterk teoretisk forankring, tolkbare parametere og god prognosenøyaktighet når serien er tilnærmet stasjonær og residualene viser tydelig autokorrelasjonsstruktur. Svakhetene er kravet til omfattende pre-prosessering (differensiering, log-transformering), sårbarhet for uteliggere, og at additive sjokk som kampanjer og bevegelige helligdager må håndteres via SARIMAX med eksterne regressorer (Taylor & Letham, 2018).
+
+**Additive modeller (Prophet):** Eksplisitt dekomponering i trend, sesong og helligdager, robusthet mot manglende observasjoner og et intuitivt parameterapparat som muliggjør "analyst-in-the-loop"-justering. Svakhetene er at modellen ikke modellerer korttidsavhengigheter (autokorrelasjon) eksplisitt, kan overtilpasse flate kategorier med stabile mønstre (jf. drøftingen av *Norske barnebøker* i kapittel 9), og krever ekstra arbeid for å integrere eksogene kovariater.
+
+**Maskinlærings- og hybride tilnærminger (Haque et al., 2023):** Fanger komplekse, ikke-lineære sammenhenger og kan inkorporere makroøkonomiske kovariater. Svakhetene er krav om større datavolum, lavere tolkbarhet og høyere driftskompleksitet — noe som er en reell barriere i en operativ logistikkontekst.
+
+**Klassiske lagerstyringsmodeller (EOQ, (s, Q), ROP):** Analytisk tolkbare bestillingsregler og lavt datakrav. Svakhetene er forutsetninger om deterministisk eller normalfordelt etterspørsel og konstante kostnader (Adeyemi & Onanuga, 2014); i kontekster med skiftende etterspørsel (Chen, 2020) blir disse antagelsene strenge, noe som motiverer hybride tilnærminger der fleksible prognoser mater inn i den klassiske lagerstyringsformelen — slik dette prosjektet gjør.
+
+Avveiningen i dette prosjektet er gjort ut fra ARKs operative kontekst: tolkbarhet for innkjøpere og naturlig håndtering av helligdager er prioritert over den marginale prognosenøyaktigheten en fullt tunet maskinlæringsmodell potensielt kunne bidra med.
+
 ### Oppsummering og kunnskapsgap
 Samlet sett viser litteraturen en bevegelse fra klassiske analytiske modeller (Lewis, 1997; Adeyemi & Onanuga, 2014) mot datadrevne og maskinlæringsbaserte tilnærminger (Taylor & Letham, 2018; Haque et al., 2023; Borucka, 2023). Samtidig avdekkes det et vedvarende gap mellom prognoseforskning og lagerstyringsforskning (Goltsos et al., 2022). Dette prosjektet søker å adressere dette gapet ved å integrere en moderne prognosemodell (Prophet) direkte med kvantitative bestillingsbeslutninger for ARK Bokhandel AS, og dermed binde prognosekvalitet til konkrete lagerstyringsbeslutninger i en kontekst preget av sterke sesongvariasjoner.
 
@@ -216,6 +230,9 @@ Hvor:
 - $\epsilon_t$ er feilleddet som representerer idiosynkratiske endringer som ikke fanges opp av modellen.
 
 Til forskjell fra SARIMA-modeller, som krever at dataene er stasjonære (jf. seksjon 3.1), opererer Prophet direkte på de opprinnelige verdiene uten behov for differensiering. Modellen er designet som et «analyst-in-the-loop»-verktøy (Taylor & Letham, 2018), der intuitive parametere — som styrken på sesongkomponenten og plasseringen av trendskift — kan justeres av analytikere uten spesialisert statistikkbakgrunn. Denne egenskapen gjør Prophet egnet for praktisk beslutningsstøtte i logistikkoperasjoner, som er det overordnede målet for dette prosjektet. De matematiske detaljene for hver komponent presenteres i seksjon 6.1.
+
+**Teoretiske avveininger mellom Prophet og SARIMA:**
+Prophet er strukturelt enklere å spesifisere og krever ikke at dataene transformeres til stasjonær form. SARIMA kan til gjengjeld gi marginalt bedre prognosenøyaktighet for serier som faktisk er nær stasjonære og uten kraftige helligdagseffekter, fordi modellen utnytter autokorrelasjonsstrukturen direkte (Lewis, 1997). Prophets svakhet er at den ikke modellerer korttidsavhengigheter (autokorrelasjon) eksplisitt, og kan derfor underprestere på serier der residualene viser tydelige autokorrelerte mønstre. For dette prosjektet — der både trendskift og helligdager er sentrale — vurderes Prophets fleksibilitet som mer verdifull enn SARIMAs autokorrelasjonsmodellering. Begrunnelsen for valget i operativ kontekst, samt en drøfting av hvorfor de to modellene ikke er sammenlignet empirisk på datasettet, er gitt i seksjon 6.1.5 og 9.5.
 
 ### 3.3 Lagerstyringsteori
 Mens seksjon 3.1–3.2 dekker det teoretiske grunnlaget for etterspørselsprognosering, omhandler denne seksjonen teorien som knytter prognosene til konkrete lagerbeslutninger. Goltsos et al. (2022) påpeker at disse to disiplinene ofte behandles isolert i litteraturen — dette prosjektet søker å integrere dem.
@@ -473,6 +490,9 @@ Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering
 4. **Håndtering av uregelmessige data:** Prophet er robust mot manglende observasjoner og store uteliggere, noe som ofte forekommer i reelle salgsdata fra ERP-systemer.
 
 Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
+
+**Hvorfor en empirisk sammenligning mot SARIMA ikke ble gjennomført:**
+Prosjektets primære forskningsspørsmål handler om å integrere prognose med lagerstyring (jf. Goltsos et al., 2022), ikke om å rangere prognosemodeller mot hverandre. En direkte komparativ evaluering av Prophet mot SARIMAX ville krevd et separat eksperimentelt oppsett med konsistent feature engineering, hyperparametertuning og kryssvalidering for begge modeller — noe som ligger utenfor prosjektets ramme. Vurderingen i listen over er derfor metodisk og kvalitativ, ikke empirisk. Dette er en reell begrensning for hvor sterkt valget av Prophet kan rettferdiggjøres på prognosenøyaktighet alene, og en komparativ benchmarking mot SARIMAX og utvalgte maskinlæringsmodeller er løftet frem som et naturlig neste steg i seksjon 9.5 og 9.7.
 
 For å illustrere hvordan Prophet dekomponerer etterspørselen, viser figur 12 komponentene for kategorien "Norsk krim" før utvidet feature engineering:
 
