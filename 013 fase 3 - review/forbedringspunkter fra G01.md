@@ -22,8 +22,8 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## B. Kapittel 1 – Innledning
 
-- [ ] **Spiss åpningen mot ARK / bokbransjen.** Erstatt det generiske om "forsyningskjede" med et mer konkret innledningsavsnitt som tar utgangspunkt i ARK Bokhandel og bokbransjens særtrekk.
-- [ ] **Snevre inn bruken av "forsyningskjede".** Begrepet er for bredt – bytt det ut eller presiser at fokuset er på lager- og bestillingsbeslutninger i detaljhandelen.
+- [x] **Spiss åpningen mot ARK / bokbransjen.** ~~Erstatt det generiske om "forsyningskjede" med et mer konkret innledningsavsnitt som tar utgangspunkt i ARK Bokhandel og bokbransjens særtrekk.~~ Gjort: ny åpning av 1.0 starter med bokbransjens særtrekk (skolestart-topp for barnebøker, påske for krim, jul, BookTok-trender, importerte engelske bøker), forankrer ARKs konkrete situasjon (flere utsalgssteder, lost-sales-mekanikk med konkurrent/e-bok), og navngir de tre kategoriene eksplisitt i andre avsnitt.
+- [x] **Snevre inn bruken av "forsyningskjede".** ~~Begrepet er for bredt – bytt det ut eller presiser at fokuset er på lager- og bestillingsbeslutninger i detaljhandelen.~~ Dekket av punktet over: ordet er fjernet fra innledningen. Det forekommer fortsatt på linje 170 i kap. 2, men der refererer det til Boruckas (2023) studie og er kontekstuelt riktig.
 
 ## C. Kapittel 2 & 3 – Litteratur og teori
 
