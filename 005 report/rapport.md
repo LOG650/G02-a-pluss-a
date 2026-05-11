@@ -34,7 +34,7 @@ Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte 
 
 Har oppgaven vært vurdert av NSD? [ ] ja [ ] nei
 - Hvis ja: Referansenummer:      
-- Hvis nei: Jeg/vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: [x]
+- Hvis nei: Vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: [x]
 
 Har oppgaven vært til behandling hos REK? [ ] ja [ ] nei
 - Hvis ja: Referansenummer:      
