@@ -207,14 +207,14 @@ Et sentralt begrep i tidsserieanalyse er **stasjonaritet**. En tidsserie $\{y_t\
 
 Dersom en tidsserie har en tydelig trend eller sesongvariasjon, vil den være **ikke-stasjonær**. For å kunne anvende klassiske statistiske modeller, må dataene transformeres til en stasjonær form, vanligvis gjennom **differensiering**:
 $\Delta y_t = y_t - y_{t-1}$
-Hvor $\Delta y_t$ er den første-ordens differensierte serien. Dersom serien fortsatt ikke er stasjonær, kan man utføre differensiering av høyere orden eller sesong-differensiering.
+Hvor $\Delta y_t$ er den første-ordens differensierte serien. Med andre ord ser man på endringen fra én periode til neste i stedet for selve nivåene — en jevnt stigende trend blir da omformet til en flatere serie rundt null, som er enklere å modellere statistisk. Dersom serien fortsatt ikke er stasjonær, kan man utføre differensiering av høyere orden eller sesong-differensiering.
 
 #### 3.1.1 Augmented Dickey-Fuller (ADF) test
 For å teste om en tidsserie er stasjonær på en statistisk signifikant måte, benyttes ofte **Augmented Dickey-Fuller-testen**. Testen undersøker nullhypotesen ($H_0$) om at serien har en enhetsrot (unit root), noe som innebærer at den er ikke-stasjonær. 
 
 Testens regresjonsmodell kan uttrykkes som:
 $\Delta y_t = \alpha + \beta t + \gamma y_{t-1} + \sum_{i=1}^p \delta_i \Delta y_{t-i} + \epsilon_t$
-Hvor vi tester om $\gamma = 0$ ($H_0$). Dersom test-statistikken er lavere enn den kritiske verdien (eller p-verdien er under signifikansnivået på 0,05), forkastes nullhypotesen til fordel for alternativhypotesen om at serien er stasjonær.
+Intuisjonen bak modellen er at hvis koeffisienten $\gamma$ er negativ og signifikant, "trekkes" serien tilbake mot et stabilt nivå hver gang den vandrer bort fra det — da er den stasjonær. Er $\gamma$ derimot lik null, vandrer serien fritt uten å vende tilbake til et middelnivå. Vi tester altså om $\gamma = 0$ ($H_0$). Dersom test-statistikken er lavere enn den kritiske verdien (eller p-verdien er under signifikansnivået på 0,05), forkastes nullhypotesen til fordel for alternativhypotesen om at serien er stasjonær.
 
 #### 3.1.2 Log-transformering
 For tidsserier preget av økende varians over tid (heteroskedastisitet), benyttes ofte en logaritmisk transformasjon, $y'_t = \ln(y_t)$, for å stabilisere variansen og transformere multiplikative sesongeffekter til en additiv form. Dette kan gjøre det lettere for enkelte modeller å fange opp prosentvise endringer. I dette prosjektet benyttes de opprinnelige etterspørselsverdiene for å sikre direkte tolkbarhet i bestillingsantall (stykktall) i logistikkoperasjonene, men transformasjonen er vurdert som et verktøy for å håndtere de kraftige sesongamplitudene identifisert i analysen.
@@ -228,6 +228,8 @@ Hvor:
 - $s(t)$ representerer periodiske endringer (sesongvariasjoner), modellert gjennom Fourier-rekker.
 - $h(t)$ fanger opp effekten av helligdager og spesielle hendelser med kortvarig, men signifikant innvirkning.
 - $\epsilon_t$ er feilleddet som representerer idiosynkratiske endringer som ikke fanges opp av modellen.
+
+I praksis betyr dette at salgsverdien på et gitt tidspunkt splittes i fire tolkbare biter: en langsiktig trend, et gjentakende sesongmønster, helligdagseffekter og tilfeldig støy.
 
 Til forskjell fra SARIMA-modeller, som krever at dataene er stasjonære (jf. seksjon 3.1), opererer Prophet direkte på de opprinnelige verdiene uten behov for differensiering. Modellen er designet som et «analyst-in-the-loop»-verktøy (Taylor & Letham, 2018), der intuitive parametere — som styrken på sesongkomponenten og plasseringen av trendskift — kan justeres av analytikere uten spesialisert statistikkbakgrunn. Denne egenskapen gjør Prophet egnet for praktisk beslutningsstøtte i logistikkoperasjoner, som er det overordnede målet for dette prosjektet. De matematiske detaljene for hver komponent presenteres i seksjon 6.1.
 
@@ -246,11 +248,13 @@ Hvor:
 - $\hat{D}_L = \hat{d} \cdot L$ er forventet etterspørsel i ledetiden, med $\hat{d}$ som gjennomsnittlig etterspørsel per periode og $L$ som ledetid.
 - $SS$ er sikkerhetslageret.
 
+Praktisk talt utløses en ny bestilling så snart det er akkurat nok på lager til å dekke ventet salg under ledetiden, pluss en sikkerhetsmargin.
+
 Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvingninger og beregnes som:
 
 $SS = z_\alpha \cdot \sigma_L$
 
-Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 6.4.
+Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. I praksis vokser sikkerhetslageret både med ønsket servicegrad (høyere $z_\alpha$) og med hvor uforutsigbar etterspørselen er ($\sigma_L$) — strenge tilgjengelighetskrav og volatil etterspørsel krever altså begge en større buffer. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 6.4.
 
 Kirmizi et al. (2024) demonstrerer at etterspørselsvariabilitet ($\sigma_d$) er den mest kritiske faktoren for dimensjonering av sikkerhetslageret. Dette understreker viktigheten av nøyaktige prognoser: jo bedre prognosene fanger opp sesongvariasjoner og trender, desto lavere blir residualvariansen, og desto mindre sikkerhetslager kreves for å oppnå samme servicenivå.
 
@@ -270,6 +274,8 @@ Hvor:
 - $C_h$ er lagerholdskostnaden per enhet per periode, som reflekterer kapitalbinding, lagerplass og svinn.
 - $C_s$ er mangelkostnaden per enhet, som reflekterer tapt dekningsbidrag og goodwill-tap ved stockouts.
 - $\bar{I}$ er gjennomsnittlig lagerbeholdning og $\bar{S}$ er gjennomsnittlig antall enheter i mangel.
+
+Med andre ord er total lagerkostnad summen av det det koster å ligge med varer på lager og det det koster å gå tom for varer — to hensyn som trekker i hver sin retning og må balanseres.
 
 Forholdet mellom $C_h$ og $C_s$ er avgjørende for det optimale servicenivået. Når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen der tapte salg er permanente (jf. seksjon 1.4) — forskyves det optimale servicenivået oppover, noe som krever større sikkerhetslager.
 

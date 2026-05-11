@@ -29,7 +29,7 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 - [ ] **Oppdater eldre kilder.** Gå gjennom referanselisten og bytt ut/utfyll kilder som er eldre enn 5 år der nyere alternativer finnes.
 - [x] **Legg til kritisk vurdering av modellene.** ~~I både litteratur- og teorikapittelet: skriv inn korte avsnitt om styrker og svakheter ved Prophet, SARIMA, EOQ osv. – ikke bare beskriv dem.~~ Dekket av A2-punkt 2: ny seksjon "Sammenliknende styrker og svakheter ved modellene" i kap. 2 + tilsvarende avsnitt på slutten av 3.2.
-- [ ] **Gjør teorikapittelet mer lesbart.** Reduser tettheten av matematiske notasjoner, eller suppler hver formel med en setning som forklarer hva den betyr i praksis (slik at lesere uten LaTeX-kjennskap henger med).
+- [x] **Gjør teorikapittelet mer lesbart.** ~~Reduser tettheten av matematiske notasjoner, eller suppler hver formel med en setning som forklarer hva den betyr i praksis (slik at lesere uten LaTeX-kjennskap henger med).~~ Gjort: lagt til en kort, plain-norsk "i praksis"-setning etter de mest kryptiske formlene i kap. 3: differensiering (3.1), ADF-regresjonen (3.1.1), Prophet-dekomponeringen (3.2), bestillingspunktet og sikkerhetslageret (3.3.1) og totalkostnadsformelen (3.3.3). CSL-formelen (3.3.2) hadde allerede en plain-språk-forklaring rett etterpå og er ikke endret.
 
 ## D. Kapittel 4 – Casebeskrivelse
 
