@@ -13,22 +13,22 @@ Den enkelte student er selv ansvarlig for å sette seg inn i hva som er lovlige 
 
 Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte del 1-6:
 
-1. Jeg/vi erklærer herved at min/vår besvarelse er mitt/vårt eget arbeid, og at jeg/vi ikke har brukt andre kilder eller har mottatt annen hjelp enn det som er nevnt i besvarelsen. [ ]
+1. Vi erklærer herved at vår besvarelse er vårt eget arbeid, og at vi ikke har brukt andre kilder eller har mottatt annen hjelp enn det som er nevnt i besvarelsen. [ ]
 
-2. Jeg/vi erklærer videre at denne besvarelsen:
+2. Vi erklærer videre at denne besvarelsen:
 - ikke har vært brukt til annen eksamen ved annen avdeling/universitet/høgskole innenlands eller utenlands.
 - ikke refererer til andres arbeid uten at det er oppgitt.
 - ikke refererer til eget tidligere arbeid uten at det er oppgitt.
 - har alle referansene oppgitt i litteraturlisten.
 - ikke er en kopi, duplikat eller avskrift av andres arbeid eller besvarelse. [ ]
 
-3. Jeg/vi er kjent med at brudd på ovennevnte er å betrakte som fusk og kan medføre annullering av eksamen og utestengelse fra universiteter og høgskoler i Norge, jf. Universitets- og høgskoleloven §§4-7 og 4-8 og Forskrift om eksamen §§14 og 15. [ ]
+3. Vi er kjent med at brudd på ovennevnte er å betrakte som fusk og kan medføre annullering av eksamen og utestengelse fra universiteter og høgskoler i Norge, jf. Universitets- og høgskoleloven §§4-7 og 4-8 og Forskrift om eksamen §§14 og 15. [ ]
 
-4. Jeg/vi er kjent med at alle innlevere oppgaver kan bli plagiatkontrollert i URKUND, se Retningslinjer for elektronisk innlevering og publisering av studiepoenggivende studentoppgaver [ ]
+4. Vi er kjent med at alle innlevere oppgaver kan bli plagiatkontrollert i URKUND, se Retningslinjer for elektronisk innlevering og publisering av studiepoenggivende studentoppgaver [ ]
 
-5. Jeg/vi er kjent med at høgskolen vil behandle alle saker hvor det forligger mistanke om fusk etter høgskolens retningslinjer for behandling av saker om fusk [ ]
+5. Vi er kjent med at høgskolen vil behandle alle saker hvor det forligger mistanke om fusk etter høgskolens retningslinjer for behandling av saker om fusk [ ]
 
-6. Jeg/vi har satt oss inn i regler og retningslinjer i bruk av kilder og referanser på biblioteket sine nettsider [ ]
+6. Vi har satt oss inn i regler og retningslinjer i bruk av kilder og referanser på biblioteket sine nettsider [ ]
 
 ### Personvern
 
