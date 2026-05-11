@@ -295,29 +295,29 @@ Casen fokuserer på tre spesifikke kategorier:
 Utfordringene knyttet til disse sesongvariasjonene er tydelige når vi analyserer det historiske forholdet mellom etterspørsel og faktisk tilgjengelighet for ARK:
 
 <div align="center">
-  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 4.1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid. Legg merke til gapet mellom etterspørsel og salg i toppene.</em>
+  <em>Figur 4.1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid, aggregert på tvers av de tre kategoriene (Norske barnebøker, Norsk krim og Engelsk fiksjon). Legg merke til gapet mellom etterspørsel og salg i toppene.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 2: Stockouts over tid" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 4.2: Stockouts over tid" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager (stockouts).</em>
+  <em>Figur 4.2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager (stockouts), aggregert på tvers av de tre kategoriene.</em>
 </div>
 
-Som vist i figur 1 og 2, oppstår de mest kritiske situasjonene i de faste salgstoppene gjennom året. Dette mønsteret gjentas på tvers av kategoriene, men med ulik timing og intensitet, noe som krever en modell som kan fange opp disse mønstrene:
+Som vist i Figur 4.1 og 4.2, oppstår de mest kritiske situasjonene i de faste salgstoppene gjennom året. Dette mønsteret gjentas på tvers av kategoriene, men med ulik timing og intensitet, noe som krever en modell som kan fange opp disse mønstrene:
 
 <div align="center">
-  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 3: Gjennomsnittlig salg fordelt på måneder" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 4.3: Gjennomsnittlig salg fordelt på måneder" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 3: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger i casen.</em>
+  <em>Figur 4.3: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger i casen.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 4: Sesongvariasjoner salg" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 4.4: Sesongvariasjoner salg" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 4: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene som utgjør kjernen i denne analysen.</em>
+  <em>Figur 4.4: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene som utgjør kjernen i denne analysen.</em>
 </div>
 
 Siden direkte tilgang til ARKs interne ERP-data ikke var tilgjengelig for dette prosjektet, benyttes et simulert datasett som er designet for å etterligne disse spesifikke markedsforholdene. Modelleringen vil ta hensyn til kostnadsparametere som lagerhold og mangelkostnader for å identifisere den mest lønnsomme bestillingsstrategien.
@@ -389,27 +389,27 @@ For å gjøre skillet mellom det simulerte datagrunnlaget og antagelsene som lig
 **Beskrivelse av datagrunnlaget og tekniske visualiseringer:**
 
 <div align="center">
-  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 5: Kategorifordeling totalt" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 5.1: Kategorifordeling totalt" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 5: Fordeling av salgsvolum per kategori i det benyttede datasettet.</em>
+  <em>Figur 5.1: Fordeling av salgsvolum per kategori i det benyttede datasettet.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 6: Kostnads-tradeoff" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 5.2: Kostnads-tradeoff" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 6: Teknisk analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
+  <em>Figur 5.2: Teknisk analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 7: Svinn total oversikt" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 5.3: Svinn total oversikt" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 7: Total oversikt over registrert svinn i datagrunnlaget.</em>
+  <em>Figur 5.3: Total oversikt over registrert svinn i datagrunnlaget.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 8: Totalt salg per år" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 5.4: Totalt salg per år" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 8: Utvikling i totalt salgsvolum per år i treningsdataene.</em>
+  <em>Figur 5.4: Utvikling i totalt salgsvolum per år i treningsdataene.</em>
 </div>
 
 ---
@@ -467,24 +467,24 @@ En kritisk utfordring i etterspørselsprognosering er å skille mellom regelmess
 
 I fravær av eksplisitte kampanjemarkører i rådataene, er det benyttet en metodikk basert på **Z-score residualanalyse** for å retrospektivt identifisere sannsynlige kampanjeperioder. Observasjoner med et avvik større enn 1,5 standardavvik fra det månedlige snittet er klassifisert som kampanjehendelser. Disse hendelsene er deretter inkludert som unike binære variabler i helligdagskomponenten $h(t)$.
 
-Resultatet av denne dekomponeringen er visualisert i figur 9, 10 og 11:
+Resultatet av denne dekomponeringen er visualisert i Figur 6.1, 6.2 og 6.3:
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.8%20utvidet%20feature%20engineering/komponenter_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 9: Komponentanalyse for Engelsk fiksjon. Legg merke til de betydelige utslagene i helligdagskomponenten (nederst) som fanger opp seks identifiserte kampanjer og faste høytider.</em>
+  <em>Figur 6.1: Komponentanalyse for Engelsk fiksjon. Legg merke til de betydelige utslagene i helligdagskomponenten (nederst) som fanger opp seks identifiserte kampanjer og faste høytider.</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.8%20utvidet%20feature%20engineering/komponenter_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 10: Komponentanalyse for Norsk krim. Kategorien viser en svært stabil sesongprofil med kun én identifisert kampanje (mai 2025).</em>
+  <em>Figur 6.2: Komponentanalyse for Norsk krim. Kategorien viser en svært stabil sesongprofil med kun én identifisert kampanje (mai 2025).</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.8%20utvidet%20feature%20engineering/komponenter_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 11: Komponentanalyse for Norske barnebøker. Modellen fanger opp de faste toppene ved skolestart og jul, supplert med to identifiserte kampanjeperioder.</em>
+  <em>Figur 6.3: Komponentanalyse for Norske barnebøker. Modellen fanger opp de faste toppene ved skolestart og jul, supplert med to identifiserte kampanjeperioder.</em>
 </div>
 
 #### 6.1.5 Valg av Prophet fremfor SARIMA
@@ -500,12 +500,12 @@ Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk
 **Hvorfor en empirisk sammenligning mot SARIMA ikke ble gjennomført:**
 Prosjektets primære forskningsspørsmål handler om å integrere prognose med lagerstyring (jf. Goltsos et al., 2022), ikke om å rangere prognosemodeller mot hverandre. En direkte komparativ evaluering av Prophet mot SARIMAX ville krevd et separat eksperimentelt oppsett med konsistent feature engineering, hyperparametertuning og kryssvalidering for begge modeller — noe som ligger utenfor prosjektets ramme. Vurderingen i listen over er derfor metodisk og kvalitativ, ikke empirisk. Dette er en reell begrensning for hvor sterkt valget av Prophet kan rettferdiggjøres på prognosenøyaktighet alene, og en komparativ benchmarking mot SARIMAX og utvalgte maskinlæringsmodeller er løftet frem som et naturlig neste steg i seksjon 9.5 og 9.7.
 
-For å illustrere hvordan Prophet dekomponerer etterspørselen, viser figur 12 komponentene for kategorien "Norsk krim" før utvidet feature engineering:
+For å illustrere hvordan Prophet dekomponerer etterspørselen, viser Figur 6.4 komponentene for kategorien "Norsk krim" før utvidet feature engineering:
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.5%20kvantitativ%20modell/prophet_components_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 12: Opprinnelig dekomponering av etterspørsel for Norsk krim i trend, helligdager og årlig sesongvariasjon (før inkludering av kampanjeanalyse).</em>
+  <em>Figur 6.4: Opprinnelig dekomponering av etterspørsel for Norsk krim i trend, helligdager og årlig sesongvariasjon (før inkludering av kampanjeanalyse).</em>
 </div>
 
 Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabellen nedenfor:
@@ -533,33 +533,33 @@ Strategien representerer en «status quo»-situasjon hvor innkjøper bestiller f
 | **Norske barnebøker** | 253 enheter | 3 dager | 28 enheter | 253 enheter |
 | **Norsk krim** | 348 enheter | 3 dager | 38 enheter | 348 enheter |
 
-Figur 13a–13c illustrerer den karakteristiske (s, Q)-sykelen for hver av de tre kategoriene over testperioden (2025). I hver figur er blå linje lagerbeholdning etter salg, rød stiplet linje markerer bestillingspunktet $s$, oransje søyler viser faktisk etterspørsel, og grønne trekanter markerer månedene hvor en bestilling på $Q$ enheter legges.
+Figur 6.5a–6.5c illustrerer den karakteristiske (s, Q)-sykelen for hver av de tre kategoriene over testperioden (2025). I hver figur er blå linje lagerbeholdning etter salg, rød stiplet linje markerer bestillingspunktet $s$, oransje søyler viser faktisk etterspørsel, og grønne trekanter markerer månedene hvor en bestilling på $Q$ enheter legges.
 
-For **Engelsk fiksjon** (Figur 13a) ser vi den klassiske sagtannprofilen: lageret tappes ned, en bestilling på $Q = 338$ utløses når beholdningen krysser $s = 88$, og den ankommer i påfølgende periode. Modellen bygger likevel ikke opp ekstra buffer før sesongtoppene i juli/august og desember, og flere måneder har lager på null.
+For **Engelsk fiksjon** (Figur 6.5a) ser vi den klassiske sagtannprofilen: lageret tappes ned, en bestilling på $Q = 338$ utløses når beholdningen krysser $s = 88$, og den ankommer i påfølgende periode. Modellen bygger likevel ikke opp ekstra buffer før sesongtoppene i juli/august og desember, og flere måneder har lager på null.
 
 <div align="center">
   <img src="../006%20analysis/figures/15_baseline_sq_sykel_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 13a: Baseline (s, Q)-sykel for Engelsk fiksjon.</em>
+  <em>Figur 6.5a: Baseline (s, Q)-sykel for Engelsk fiksjon.</em>
 </div>
 
-For **Norske barnebøker** (Figur 13b) er det lave bestillingspunktet ($s = 31$) og det relativt lave $Q = 286$ utilstrekkelig for de faste toppene rundt skolestart (august) og jul. Lageret tappes til null allerede tidlig i året og forblir der gjennom høysesongen. Det understreker at selv om kategorien har regelmessige sesongmønstre, krever den et betydelig sikkerhetslager som den enkle baselinen ikke dimensjonerer for.
+For **Norske barnebøker** (Figur 6.5b) er det lave bestillingspunktet ($s = 31$) og det relativt lave $Q = 286$ utilstrekkelig for de faste toppene rundt skolestart (august) og jul. Lageret tappes til null allerede tidlig i året og forblir der gjennom høysesongen. Det understreker at selv om kategorien har regelmessige sesongmønstre, krever den et betydelig sikkerhetslager som den enkle baselinen ikke dimensjonerer for.
 
 <div align="center">
   <img src="../006%20analysis/figures/15_baseline_sq_sykel_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 13b: Baseline (s, Q)-sykel for Norske barnebøker.</em>
+  <em>Figur 6.5b: Baseline (s, Q)-sykel for Norske barnebøker.</em>
 </div>
 
-For **Norsk krim** (Figur 13c) er ubalansen mest ekstrem: $Q = 365$ ligger under det månedlige gjennomsnittet i testperioden, og kombinert med den positive trenden (+12,7 %) og sterke sesongtopper faller lageret til null allerede i februar. Dette illustrerer at baselinen, basert på historiske snitt, ikke fanger trendutviklingen og systematisk underdimensjonerer volumet.
+For **Norsk krim** (Figur 6.5c) er ubalansen mest ekstrem: $Q = 365$ ligger under det månedlige gjennomsnittet i testperioden, og kombinert med den positive trenden (+12,7 %) og sterke sesongtopper faller lageret til null allerede i februar. Dette illustrerer at baselinen, basert på historiske snitt, ikke fanger trendutviklingen og systematisk underdimensjonerer volumet.
 
 <div align="center">
   <img src="../006%20analysis/figures/15_baseline_sq_sykel_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 13c: Baseline (s, Q)-sykel for Norsk krim.</em>
+  <em>Figur 6.5c: Baseline (s, Q)-sykel for Norsk krim.</em>
 </div>
 
-Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen ligger i `004 data/python_skript/baseline_vs_optimization.py`, som kjører simuleringen og genererer Figur 13a–13c for alle tre kategorier.
+Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen ligger i `004 data/python_skript/baseline_vs_optimization.py`, som kjører simuleringen og genererer Figur 6.5a–6.5c for alle tre kategorier.
 
 ### 6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)
 Den kvantitative bestillingsmodellen tar utgangspunkt i etterspørselsprognosene fra Prophet. Målet er å bestemme den optimale bestillingsmengden $Q_t$ for hver periode $t$ som minimerer de totale logistikkostnadene.
@@ -602,7 +602,7 @@ For å dokumentere serienes egenskaper er det gjennomført både en **Augmented 
 
 Ved å kombinere disse to testene, hvor ADF tester for enhetsrot ($H_0$: ikke-stasjonær) og KPSS tester for stasjonaritet ($H_0$: stasjonær), oppnår vi en sterkere statistisk bekreftelse. At testene er samstemte for alle tre kategorier, underbygger at dataene svinger stabilt rundt en trend, noe som gjør Prophet-modellens dekomponering svært egnet for denne typen beslutningsstøtte.
 
-Selv om testene indikerer stasjonaritet (p < 0,05 for ADF og p > 0,05 for KPSS), viser de visuelle analysene i Figur 1 og 9 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
+Selv om testene indikerer stasjonaritet (p < 0,05 for ADF og p > 0,05 for KPSS), viser de visuelle analysene i Figur 4.1 og 6.1 kraftige, periodiske sesongsvingninger. Valget av Prophet-modellen er derfor begrunnet i dens evne til å modellere disse svingningene og helligdagseffekter eksplisitt, noe som gir bedre beslutningsstøtte enn modeller som utelukkende fokuserer på stasjonaritet gjennom differensiering.
 
 *   **Analysefunn:** Trendanalysen viser stor variasjon mellom kategoriene. Mens *Norsk krim* har en tydelig positiv trend (+12,7 %), viser *Engelsk fiksjon* en svak negativ utvikling (-4,8 %). *Norske barnebøker* skiller seg ut med en svært stabil trend (-0,1 %), noe som indikerer en moden kategori med forutsigbart volum over tid. Ved å dekomponere disse trendene for alle tre kategorier, unngår vi at langsiktige endringer forveksles med sesongsvingninger.
 
@@ -663,28 +663,28 @@ Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-b
 For å forstå de underliggende driverne for besparelsene, dekomponeres resultatene i prognosekvalitet og kostnadsfordeling for hver kategori.
 
 #### 8.1.1 Norsk krim (Høy volatilitet og sterk trend)
-Dette er kategorien med størst økonomisk gevinst (38,1 %). Figur 14 viser at Prophet-modellen treffer svært godt på de ekstreme sesongtoppene i testperioden, noe som er kritisk for å unngå utsolgt-situasjoner i høysesong.
+Dette er kategorien med størst økonomisk gevinst (38,1 %). Figur 8.1 viser at Prophet-modellen treffer svært godt på de ekstreme sesongtoppene i testperioden, noe som er kritisk for å unngå utsolgt-situasjoner i høysesong.
 
 <div align="center">
   <img src="../006%20analysis/figures/10_forecast_vs_actual_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 14: Forecast vs. Actual for Norsk krim. Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene.</em>
+  <em>Figur 8.1: Forecast vs. Actual for Norsk krim. Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene.</em>
 </div>
 
-Ved å analysere residualene (prognosefeilen) i Figur 15, ser vi en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
+Ved å analysere residualene (prognosefeilen) i Figur 8.2, ser vi en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
 
 <div align="center">
   <img src="../006%20analysis/figures/11_residualer_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 15: Distribusjon av residualer for Norsk krim. Den røde linjen indikerer nullavvik.</em>
+  <em>Figur 8.2: Distribusjon av residualer for Norsk krim. Den røde linjen indikerer nullavvik.</em>
 </div>
 
-Figur 16 viser fordelingen mellom lagerholdskostnader ($C_h$) og stockout-kostnader ($C_s$) for baseline og Prophet-modellen, med en netto reduksjon i totalkostnad på over 26 000 NOK.
+Figur 8.3 viser fordelingen mellom lagerholdskostnader ($C_h$) og stockout-kostnader ($C_s$) for baseline og Prophet-modellen, med en netto reduksjon i totalkostnad på over 26 000 NOK.
 
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 16: Kostnadsfordeling for Norsk krim (Baseline vs. Prophet).</em>
+  <em>Figur 8.3: Kostnadsfordeling for Norsk krim (Baseline vs. Prophet).</em>
 </div>
 
 #### 8.1.2 Engelsk fiksjon (Uforutsigbarhet og import)
@@ -693,28 +693,28 @@ For Engelsk fiksjon oppnår Prophet-modellen en besparelse på 19,57 %, hvor red
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 17: Kostnadsfordeling for Engelsk fiksjon.</em>
+  <em>Figur 8.4: Kostnadsfordeling for Engelsk fiksjon.</em>
 </div>
 
 #### 8.1.3 Norske barnebøker (Forutsigbare sesongmønstre)
 For Norske barnebøker gir Prophet-modellen et negativt resultat (−7,86 %), tilsvarende en merkostnad på 3 231 NOK sammenlignet med baseline. Servicegraden faller marginalt fra 85,4 % til 83,8 %.
 
 ### 8.2 Sensitivitetsanalyse og robusthet
-For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere (stockout-kostnad $C_s$, lagerholdskostnad $C_h$ og sikkerhetsmarginfaktor) varieres én om gangen rundt basisverdien. Den fullstendige analysen – med metodikk, nøkkelfunn per kategori og eksplisitte koblinger til 3.5, 3.6, 3.10 og 3.12 – er dokumentert i `006 analysis/milestones/M5 - Kvantitativ analyse/3.7 sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md`, og figurene (13a–c og 14a–c) er generert av `004 data/python_skript/sensitivity_analysis.py`. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
+For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere (stockout-kostnad $C_s$, lagerholdskostnad $C_h$ og sikkerhetsmarginfaktor) varieres én om gangen rundt basisverdien. Den fullstendige analysen – med metodikk, nøkkelfunn per kategori og eksplisitte koblinger til 3.5, 3.6, 3.10 og 3.12 – er dokumentert i `006 analysis/milestones/M5 - Kvantitativ analyse/3.7 sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md`, og figurene (jf. Figur 8.5–8.10) er generert av `004 data/python_skript/sensitivity_analysis.py`. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
 
 #### 8.2.1 Engelsk fiksjon
-For engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og totalkostnad, mens servicenivået forblir stabilt. Dette indikerer en robust modell, men som vist i figur 19, gir en økning i sikkerhetsmarginfaktoren (Safety Margin Factor) til 1.5 en dramatisk forbedring i både kostnad og service.
+For engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og totalkostnad, mens servicenivået forblir stabilt. Dette indikerer en robust modell, men som vist i Figur 8.6, gir en økning i sikkerhetsmarginfaktoren (Safety Margin Factor) til 1.5 en dramatisk forbedring i både kostnad og service.
 
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 18: Kostnadssensitivitet (Engelsk fiksjon).</em>
+  <em>Figur 8.5: Kostnadssensitivitet (Engelsk fiksjon).</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/figures/14_sensitivitet_service_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 19: Servicenivå-sensitivitet (Engelsk fiksjon).</em>
+  <em>Figur 8.6: Servicenivå-sensitivitet (Engelsk fiksjon).</em>
 </div>
 
 #### 8.2.2 Norske barnebøker
@@ -723,28 +723,28 @@ Barnebøker viser høyere sensitivitet for lagerholdskostnad. En reduksjon i den
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 20: Kostnadssensitivitet (Norske barnebøker).</em>
+  <em>Figur 8.7: Kostnadssensitivitet (Norske barnebøker).</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/figures/14_sensitivitet_service_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 21: Servicenivå-sensitivitet (Norske barnebøker).</em>
+  <em>Figur 8.8: Servicenivå-sensitivitet (Norske barnebøker).</em>
 </div>
 
 #### 8.2.3 Norsk krim
-Norsk krim fremstår som den mest stabile kategorien. Som vist i figur 23, oppnår modellen et "metningspunkt" ved en sikkerhetsmarginfaktor på 1.2, hvor ytterligere lagerbeholdning ikke gir gevinst i servicenivå. Dette tyder på at de resterende manglene skyldes uforutsigbare sjokk som faller utenfor modellens rekkevidde gitt ledetiden.
+Norsk krim fremstår som den mest stabile kategorien. Som vist i Figur 8.10, oppnår modellen et "metningspunkt" ved en sikkerhetsmarginfaktor på 1.2, hvor ytterligere lagerbeholdning ikke gir gevinst i servicenivå. Dette tyder på at de resterende manglene skyldes uforutsigbare sjokk som faller utenfor modellens rekkevidde gitt ledetiden.
 
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 22: Kostnadssensitivitet (Norsk krim).</em>
+  <em>Figur 8.9: Kostnadssensitivitet (Norsk krim).</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/figures/14_sensitivitet_service_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 23: Servicenivå-sensitivitet (Norsk krim).</em>
+  <em>Figur 8.10: Servicenivå-sensitivitet (Norsk krim).</em>
 </div>
 
 ### 8.3 Optimalisering av styringsparametere
@@ -771,24 +771,24 @@ Tabellen nedenfor viser de forventede gjennomsnittlige verdiene per måned for 2
 
 Sikkerhetslageret er beregnet ved å estimere prognosens standardavvik fra Prophets 90 %-usikkerhetsintervall ($\sigma \approx (\hat{y}_{upper} - \hat{y})/1{,}645$) og deretter multiplisere med den kategoritilpassede k-faktoren fra 8.3, slik at $SS = k \cdot \sigma$.
 
-De månedlige svingningene i forventet etterspørsel og det tilhørende behovet for sikkerhetslager er visualisert i figurene 24, 25 og 26. Disse visualiseringene viser hvordan modellen proaktivt øker lagerbeholdningen i forkant av de identifiserte sesongtoppene for å opprettholde målsetningen om leveringsservice.
+De månedlige svingningene i forventet etterspørsel og det tilhørende behovet for sikkerhetslager er visualisert i Figur 8.11, 8.12 og 8.13. Disse visualiseringene viser hvordan modellen proaktivt øker lagerbeholdningen i forkant av de identifiserte sesongtoppene for å opprettholde målsetningen om leveringsservice.
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 24: Prognose og sikkerhetslager for Engelsk fiksjon i 2026.</em>
+  <em>Figur 8.11: Prognose og sikkerhetslager for Engelsk fiksjon i 2026.</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 25: Prognose og sikkerhetslager for Norsk krim i 2026.</em>
+  <em>Figur 8.12: Prognose og sikkerhetslager for Norsk krim i 2026.</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.11%20prognoser/prognose_2026_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 26: Prognose og sikkerhetslager for Norske barnebøker i 2026.</em>
+  <em>Figur 8.13: Prognose og sikkerhetslager for Norske barnebøker i 2026.</em>
 </div>
 
 ### 8.5 Scenario-analyse (Robusthetstesting)
@@ -810,24 +810,24 @@ Tabellen nedenfor oppsummerer hvordan det gjennomsnittlige lagernivået (Order-u
 
 Baseline tilsvarer det gjennomsnittlige bestillingspunktet fra 8.4 (små avvik skyldes Prophets stokastiske trekning). *Engelsk fiksjon* krever den største justeringen under kampanje-sjokket (+7,4 %), mens *Norsk krim* og *Norske barnebøker* holder seg under 3 % endring i begge scenarier.
 
-De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i figurene 27, 28 og 29:
+De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i Figur 8.14, 8.15 og 8.16:
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 27: Scenario-sammenligning for Engelsk fiksjon i 2026</em>
+  <em>Figur 8.14: Scenario-sammenligning for Engelsk fiksjon i 2026</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 28: Scenario-sammenligning for Norsk krim i 2026</em>
+  <em>Figur 8.15: Scenario-sammenligning for Norsk krim i 2026</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 29: Scenario-sammenligning for Norske barnebøker i 2026</em>
+  <em>Figur 8.16: Scenario-sammenligning for Norske barnebøker i 2026</em>
 </div>
 
 ---
@@ -838,7 +838,7 @@ Den kvantitative analysen viser at en overgang fra statiske, gjennomsnittsbasert
 ### 9.1 Tolkning av hovedfunnene
 Resultatene i kapittel 8 bekrefter at modellen leverer på problemstillingens to kjernekrav: å redusere lagerkostnader og samtidig begrense risikoen for utsolgte varer. Det er likevel fire nivåer i tolkningen som bør løftes frem.
 
-**Gevinstens drivere er konsistent med kostnadsasymmetrien.** For *Norsk krim* (−38,10 %) og *Engelsk fiksjon* (−19,57 %) kommer besparelsen hovedsakelig fra en kraftig reduksjon i mangelkostnaden $C_s$, delvis på bekostning av en moderat økning i lagerholdskostnaden $C_h$ (jf. Figur 16 og 17). Dette er i tråd med den teoretiske forventningen i seksjon 3.3.3: når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen med permanent tapt salg (seksjon 1.4) — forskyves det optimale servicenivået oppover, og en dynamisk allokering av lager mot sesongtoppene blir lønnsom. Omfordelingen mellom $C_h$ og $C_s$ er altså ikke en bivirkning av modellen, men en rasjonell respons på asymmetrien mellom de to kostnadstypene.
+**Gevinstens drivere er konsistent med kostnadsasymmetrien.** For *Norsk krim* (−38,10 %) og *Engelsk fiksjon* (−19,57 %) kommer besparelsen hovedsakelig fra en kraftig reduksjon i mangelkostnaden $C_s$, delvis på bekostning av en moderat økning i lagerholdskostnaden $C_h$ (jf. Figur 8.3 og 8.4). Dette er i tråd med den teoretiske forventningen i seksjon 3.3.3: når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen med permanent tapt salg (seksjon 1.4) — forskyves det optimale servicenivået oppover, og en dynamisk allokering av lager mot sesongtoppene blir lønnsom. Omfordelingen mellom $C_h$ og $C_s$ er altså ikke en bivirkning av modellen, men en rasjonell respons på asymmetrien mellom de to kostnadstypene.
 
 **Servicegraden øker samtidig som kostnadene faller.** At CSL for *Norsk krim* stiger fra 85,8 % til 91,5 % viser at gevinsten ikke hentes ut ved å akseptere flere stockouts, men ved at modellen bestiller mer presist når behovet faktisk oppstår. Dette er konsistent med Kirmizi et al. (2024) sitt poeng om at bedre prognoser reduserer residualvariansen $\sigma_d$ og dermed kravet til sikkerhetslager for et gitt servicenivå.
 
@@ -876,7 +876,7 @@ Analysen har fem hovedbegrensninger som bør påvirke hvor sterkt resultatene ka
 
 **3. Deterministisk ledetid:** Modellen forutsetter at ledetiden $L$ er kjent og konstant. I virkeligheten vil særlig importerte bøker (*Engelsk fiksjon*) være eksponert for leverandørforsinkelser, tollklarering og fraktkapasitet. En stokastisk ledetid ville kreve at sikkerhetslageret dimensjoneres ut fra $\sigma_L = \sqrt{L \cdot \sigma_d^2 + \hat{d}^2 \cdot \sigma_L^2}$ (jf. Adeyemi & Onanuga, 2014), noe som ville gitt et betydelig høyere sikkerhetslager for *Engelsk fiksjon* og trolig redusert den realiserte gevinsten for denne kategorien.
 
-**4. Tilsynelatende motsetning mellom stasjonaritetstester og visuell sesongstruktur:** ADF- og KPSS-testene i 6.4.1 indikerer at alle tre serier er stasjonære, mens komponentanalysene i Figur 9–11 viser tydelige periodiske svingninger. Dette er ikke en selvmotsigelse — testene måler om serien svinger rundt et stabilt gjennomsnitt, ikke om den er fri for sesongstruktur — men det innebærer at tradisjonelle modeller som SARIMA i prinsippet kunne vært anvendt. Valget av Prophet er begrunnet praktisk i 6.1.5, men en komparativ evaluering mot SARIMAX er et naturlig neste steg for å kvantifisere hvor mye Prophet faktisk tilfører.
+**4. Tilsynelatende motsetning mellom stasjonaritetstester og visuell sesongstruktur:** ADF- og KPSS-testene i 6.4.1 indikerer at alle tre serier er stasjonære, mens komponentanalysene i Figur 6.1–6.3 viser tydelige periodiske svingninger. Dette er ikke en selvmotsigelse — testene måler om serien svinger rundt et stabilt gjennomsnitt, ikke om den er fri for sesongstruktur — men det innebærer at tradisjonelle modeller som SARIMA i prinsippet kunne vært anvendt. Valget av Prophet er begrunnet praktisk i 6.1.5, men en komparativ evaluering mot SARIMAX er et naturlig neste steg for å kvantifisere hvor mye Prophet faktisk tilfører.
 
 **5. Bias-korreksjon som potensielt overfit:** Bias-justeringen i 3.10 er estimert på 2025-testdataene og applisert på 2026-prognosen. Dersom bias ikke er konstant over tid — noe som er sannsynlig i en kategori med skiftende trend som *Norsk krim* — vil korreksjonen delvis være en overtilpasning til testperioden. En mer robust tilnærming er rullerende backtesting som kan fange endringer i bias over tid, og som bør vurderes ved operativ implementering.
 

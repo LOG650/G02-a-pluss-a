@@ -33,8 +33,8 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## D. Kapittel 4 – Casebeskrivelse
 
-- [ ] **Tydeliggjør at hovedfiguren viser aggregerte tall.** Skriv eksplisitt i figurteksten at etterspørsel, salg og lagerbeholdning er aggregert på tvers av de tre kategoriene.
-- [ ] **Innfør figurnummerering.** Gå gjennom hele rapporten og nummerer figurer per kapittel (Figur 4.1, 4.2, …, Figur 6.1, 6.2 osv.) – og bruk disse referansene i brødteksten.
+- [x] **Tydeliggjør at hovedfiguren viser aggregerte tall.** ~~Skriv eksplisitt i figurteksten at etterspørsel, salg og lagerbeholdning er aggregert på tvers av de tre kategoriene.~~ Gjort: figurteksten til Figur 4.1 presiserer nå "aggregert på tvers av de tre kategoriene (Norske barnebøker, Norsk krim og Engelsk fiksjon)". Tilsvarende presisering lagt til i Figur 4.2 (stockouts).
+- [x] **Innfør figurnummerering.** ~~Gå gjennom hele rapporten og nummerer figurer per kapittel (Figur 4.1, 4.2, …, Figur 6.1, 6.2 osv.) – og bruk disse referansene i brødteksten.~~ Gjort: alle figurer er nummerert per kapittel — kap. 4: Figur 4.1–4.4, kap. 5: 5.1–5.4, kap. 6: 6.1–6.4 + 6.5a–6.5c, kap. 8: 8.1–8.16. Alle inntekstreferanser i kap. 4, 6, 8 og 9 er oppdatert til ny nummerering, og alt-tekster er oppdatert der de var satt.
 
 ## E. Kapittel 5 – Metode og data
 
