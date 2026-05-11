@@ -350,15 +350,21 @@ Metoden innebærer å trene modellen på historiske salgsdata (2021-2025) for å
 Datasettet som benyttes i denne rapporten er **simulert** salgs- og lagerdata for ARK Bokhandel AS. Reelle ERP-data fra ARK var ikke tilgjengelige, og datasettet er derfor konstruert syntetisk slik at det etterligner ARKs salgsmønstre på tvers av tre bokkategorier. Antagelsene som ligger til grunn for å bruke et simulert datagrunnlag — særlig at det er representativt for virkelige salgsmønstre og av tilstrekkelig kvalitet — er formulert eksplisitt i seksjon 1.4 ("Antagelser om datagrunnlaget").
 
 **Innhold og struktur:**
-Datasettet dekker perioden 2021–2025 og inneholder for hver kategori daglige observasjoner av:
-- **Dato** — daglig tidsstempel.
-- **Kategori** — Norske barnebøker, Norsk krim eller Engelsk fiksjon.
-- **Etterspørsel** — det reelle, simulerte behovet i markedet.
-- **Salg** — faktisk solgt mengde, oppad begrenset av tilgjengelig lager.
-- **Lagerbeholdning** — beholdning ved slutten av dagen.
-- **Svinn** — registrert svinn på dagen.
+Datasettet dekker perioden 2021–2025 og inneholder daglige observasjoner per kategori. Tabellen under viser hvordan datasettet er bygget opp:
 
-Prophet-modellen trenes på `Etterspørsel` (ikke `Salg`) for å unngå at historiske lagerbegrensninger demper prognosen. Begrunnelsen for dette valget er gitt i seksjon 5.1.
+| Variabel | Type / enhet | Beskrivelse |
+|----------|--------------|-------------|
+| `Dato` | Tidsstempel (YYYY-MM-DD) | Daglig observasjonstidspunkt fra 2021-01-01 til 2025-12-31. |
+| `Kategori` | Kategorisk (3 nivåer) | "Norske barnebøker", "Norsk krim" eller "Engelsk fiksjon". |
+| `Etterspørsel` | Heltall (enheter/dag) | Det reelle, simulerte behovet i markedet — uavhengig av lagerstatus. |
+| `Salg` | Heltall (enheter/dag) | Faktisk solgt mengde, oppad begrenset av tilgjengelig lager (`Salg ≤ Etterspørsel`). |
+| `Lagerbeholdning` | Heltall (enheter) | Beholdning ved slutten av dagen, etter dagens salg og eventuelle leveranser. |
+| `Svinn` | Heltall (enheter/dag) | Registrert svinn på dagen (skade, retur, etc.). |
+
+Differansen mellom `Etterspørsel` og `Salg` på en gitt dag utgjør tapt salg ved stockout (lost-sales-mekanikk, jf. antagelse i 1.4).
+
+**Hva Prophet-modellen trenes på:**
+Prophet-modellen trenes **utelukkende på variabelen `Etterspørsel`** — ikke på `Salg`, og ikke på begge samtidig. Grunnen er at `Salg` er begrenset oppad av tilgjengelig lager, slik at historiske stockout-perioder ville systematisk undervurdert det reelle markedsbehovet og forplantet denne skjevheten inn i prognosen for 2026. Ved å trene på `Etterspørsel` lærer modellen det underliggende behovet i markedet, som så fungerer som input til bestillingsmodellen i kapittel 6. Den teoretiske begrunnelsen er gitt i 5.1 (punkt 4).
 
 **Tre distinkte etterspørselsmønstre:**
 De tre bokkategoriene er valgt fordi de representerer ulike markedsdynamikker, noe som gjør det mulig å teste modellens robusthet på tvers av flere typer etterspørsel:
@@ -367,10 +373,10 @@ De tre bokkategoriene er valgt fordi de representerer ulike markedsdynamikker, n
 - **Engelsk fiksjon:** Viser en jevnere etterspørsel gjennom året, ofte påvirket av internasjonale trender og importtider.
 
 **Datakvalitet og begrensninger ved simulert datagrunnlag:**
-Siden datagrunnlaget er simulert, har vi full kontroll over de underliggende mønstrene (sesong, trend, støy), men det fjerner samtidig den uregelmessige støyen som ville vært til stede i reelle ERP-data. Inkonsistenser oppdaget under datavasking (datoformater, manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag. Implikasjonen for resultatene er at modellen testes under kontrollerte betingelser; overførbarheten til ARKs faktiske drift må derfor vurderes i lys av denne begrensningen, og dette diskuteres i kapittel 9.
+Bruken av et simulert datagrunnlag er en bevisst metodisk avveining. Styrken er at vi kjenner det sanne underliggende signalet (sesong, trend, støy) og dermed kan måle hvor godt modellen rekonstruerer det — et eksperiment som er vanskelig å gjennomføre på reelle ERP-data hvor det ikke finnes en kjent "fasit". Samtidig er kontrollen også en begrensning: simulerte data fanger ikke opp den uregelmessige støyen i reelle driftsdata, som leverandørforsinkelser, kampanjeeffekter utenfor vår parameterisering, makroøkonomiske skift, registreringsfeil eller plutselige BookTok-drevne etterspørselssjokk. Inkonsistenser oppdaget under datavasking (datoformater, manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag. Implikasjonen er at modellen testes under kontrollerte betingelser, og overførbarheten av resultatene til ARKs faktiske drift må derfor vurderes med forsiktighet. Denne begrensningen diskuteres mer inngående i kapittel 9.
 
 **Datapreparering og validering:**
-For å sikre en robust evaluering av etterspørselsprognosene, er datasettet splittet i en treningsdel (80 %) og en testdel (20 %). Denne splitten er avgjørende for å validere modellens evne til å generalisere på usette data.
+Valideringsstrategien har to ledd som henger sammen. Først splittes datasettet kronologisk i en treningsdel (80 %, ca. 2021–2024) og en testdel (20 %, ca. 2025), slik at modellen kan evalueres på data den ikke har sett under trening. Treningssettet brukes til å estimere Prophet-modellens parametere, mens testsettet brukes til *backtesting* — en empirisk sammenligning av predikert mot faktisk etterspørsel i 2025. Backtestingen tjener to formål: (1) den kvantifiserer modellens treffsikkerhet (MAE, RMSE, MAPE), og (2) den identifiserer eventuell systematisk skjevhet (bias) per kategori, som korrigeres før prognosene mates inn i bestillingsmodellen for 2026. Selve resultatene av backtestingen og den påfølgende bias-justeringen presenteres i 6.5.
 
 **Oppsummering — datagrunnlag vs. antagelser:**
 

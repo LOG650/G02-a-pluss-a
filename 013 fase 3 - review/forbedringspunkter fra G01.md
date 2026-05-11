@@ -38,10 +38,10 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## E. Kapittel 5 – Metode og data
 
-- [ ] **Konkretiser variabelbeskrivelsen i 5.2.** Lag en tabell eller punktliste som viser hvilke variabler datasettet inneholder (dato, kategori, salg, etterspørsel, lagerbeholdning osv.) og hvordan de er bygget opp.
-- [ ] **Klargjør hva modellen trenes på.** Skriv eksplisitt om Prophet trenes på salg, etterspørsel eller begge – og hvorfor.
-- [ ] **Samle valideringsforklaringen.** Slå sammen forklaringen av 80/20-splitten og backtesting til ett samlet avsnitt som viser hvordan de henger sammen.
-- [ ] **Reflekter over begrensninger ved simulert data.** Legg til et kort avsnitt om at simulert datagrunnlag gir kontroll, men begrenser overførbarheten til ARKs faktiske drift.
+- [x] **Konkretiser variabelbeskrivelsen i 5.2.** ~~Lag en tabell eller punktliste som viser hvilke variabler datasettet inneholder (dato, kategori, salg, etterspørsel, lagerbeholdning osv.) og hvordan de er bygget opp.~~ Gjort: bullet-listen i 5.2 er erstattet av en tabell med kolonnene Variabel / Type-enhet / Beskrivelse for `Dato`, `Kategori`, `Etterspørsel`, `Salg`, `Lagerbeholdning` og `Svinn`. Lagt til en presisering om at differansen `Etterspørsel − Salg` utgjør tapt salg (lost-sales), med krysshenvisning til antagelse i 1.4.
+- [x] **Klargjør hva modellen trenes på.** ~~Skriv eksplisitt om Prophet trenes på salg, etterspørsel eller begge – og hvorfor.~~ Gjort: ny underseksjon "Hva Prophet-modellen trenes på" i 5.2 sier eksplisitt at modellen trenes utelukkende på `Etterspørsel` — ikke `Salg`, ikke begge — og begrunner det med lost-sales-mekanikken (stockout-perioder ville undervurdert reelt behov). Krysshenvisning til 5.1 punkt 4 for teoretisk drøfting.
+- [x] **Samle valideringsforklaringen.** ~~Slå sammen forklaringen av 80/20-splitten og backtesting til ett samlet avsnitt som viser hvordan de henger sammen.~~ Gjort: avsnittet "Datapreparering og validering" i 5.2 forklarer nå valideringen som ett sammenhengende toleddet løp — først kronologisk 80/20-splitt (trening ca. 2021–2024, test 2025), deretter backtesting på testsettet med både treffsikkerhet (MAE/RMSE/MAPE) og bias-justering. Krysshenvisning til 6.5 for resultatene.
+- [x] **Reflekter over begrensninger ved simulert data.** ~~Legg til et kort avsnitt om at simulert datagrunnlag gir kontroll, men begrenser overførbarheten til ARKs faktiske drift.~~ Gjort: avsnittet "Datakvalitet og begrensninger ved simulert datagrunnlag" i 5.2 er utvidet til å eksplisitt presentere både styrken (kjent "fasit" — vanskelig på reelle ERP-data) og begrensningen (fanger ikke leverandørforsinkelser, kampanjestøy, makroskift, BookTok-sjokk). Krysshenvisning til kapittel 9.
 
 ## F. Kapittel 6 – Modellering
 
