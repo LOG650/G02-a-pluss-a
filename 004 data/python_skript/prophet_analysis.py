@@ -69,13 +69,32 @@ for kat in KATEGORIER:
     future = m.make_future_dataframe(periods=12, freq='ME')
     forecast = m.predict(future)
     
-    # Lagre plot av komponenter
+    # Lagre plot av komponenter (forstørret skrift + norske etiketter)
+    LABEL_MAP_NB = {
+        'trend': 'Trend (enheter)',
+        'ds': 'Dato',
+        'holidays': 'Helligdager (enheter)',
+        'yearly': 'Årlig sesong (enheter)',
+        'Day of year': 'Dag i året',
+    }
     fig = m.plot_components(forecast)
-    fig.suptitle(f'Sesong- og trendkomponenter: {kat}', fontsize=16)
-    plt.tight_layout()
+    fig.set_size_inches(13, 12)
+    for ax in fig.axes:
+        ax.tick_params(axis='both', labelsize=12)
+        if ax.get_xlabel() in LABEL_MAP_NB:
+            ax.set_xlabel(LABEL_MAP_NB[ax.get_xlabel()], fontsize=13)
+        else:
+            ax.xaxis.label.set_fontsize(13)
+        if ax.get_ylabel() in LABEL_MAP_NB:
+            ax.set_ylabel(LABEL_MAP_NB[ax.get_ylabel()], fontsize=13)
+        else:
+            ax.yaxis.label.set_fontsize(13)
+        ax.grid(True, alpha=0.35)
+    fig.suptitle(f'Sesong- og trendkomponenter: {kat}', fontsize=15, fontweight='bold', y=0.995)
+    fig.tight_layout(rect=(0, 0, 1, 0.985))
     plot_path = os.path.join(OUTPUT_DIR, f'prophet_components_{kat.replace(" ", "_")}.png')
-    plt.savefig(plot_path)
-    plt.close()
+    fig.savefig(plot_path, dpi=160, bbox_inches='tight')
+    plt.close(fig)
     
     # Trekk ut noen nøkkeltall
     trend_start = forecast['trend'].iloc[0]

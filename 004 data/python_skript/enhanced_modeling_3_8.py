@@ -91,15 +91,47 @@ def run_enhanced_prophet(category_name):
 categories = df['Kategori'].unique()
 results_summary = []
 
+LABEL_MAP_NB = {
+    'trend': 'Trend (enheter)',
+    'ds': 'Dato',
+    'holidays': 'Helligdager / kampanjer (enheter)',
+    'yearly': 'Årlig sesong (enheter)',
+    'Day of year': 'Dag i året',
+}
+
+
+def stilrent_komponentplott(model, forecast, tittel, lagre_til, fig_size=(13, 12)):
+    """Generer Prophet plot_components og forstørr fonter + oversett etiketter."""
+    fig = model.plot_components(forecast)
+    fig.set_size_inches(*fig_size)
+    for ax in fig.axes:
+        ax.tick_params(axis='both', labelsize=12)
+        if ax.get_xlabel() in LABEL_MAP_NB:
+            ax.set_xlabel(LABEL_MAP_NB[ax.get_xlabel()], fontsize=13)
+        else:
+            ax.xaxis.label.set_fontsize(13)
+        if ax.get_ylabel() in LABEL_MAP_NB:
+            ax.set_ylabel(LABEL_MAP_NB[ax.get_ylabel()], fontsize=13)
+        else:
+            ax.yaxis.label.set_fontsize(13)
+        ax.grid(True, alpha=0.35)
+    fig.suptitle(tittel, fontsize=15, fontweight='bold', y=0.995)
+    fig.tight_layout(rect=(0, 0, 1, 0.985))
+    fig.savefig(lagre_til, dpi=160, bbox_inches='tight')
+    plt.close(fig)
+
+
 for cat in categories:
     print(f"Trener forbedret modell for: {cat}...")
     model, forecast, mae, rmse, test = run_enhanced_prophet(cat)
-    
-    # Lagre plot av komponenter
-    fig = model.plot_components(forecast)
+
+    # Lagre plot av komponenter (forstørret skrift + norske etiketter)
     img_path = f'006 analysis/milestones/M5 - Kvantitativ analyse/3.8 utvidet feature engineering/komponenter_{cat.replace(" ", "_")}.png'
-    plt.savefig(img_path)
-    plt.close()
+    stilrent_komponentplott(
+        model, forecast,
+        tittel=f'Komponentanalyse (utvidet feature engineering) – {cat}',
+        lagre_til=img_path,
+    )
     
     prev_mae = previous_results.get(cat, {}).get('MAE', 0)
     prev_rmse = previous_results.get(cat, {}).get('RMSE', 0)
