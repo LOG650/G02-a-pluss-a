@@ -27,7 +27,23 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## C. Kapittel 2 & 3 – Litteratur og teori
 
-- [ ] **Oppdater eldre kilder.** Gå gjennom referanselisten og bytt ut/utfyll kilder som er eldre enn 5 år der nyere alternativer finnes.
+- [x] **Oppdater eldre kilder.** ~~Gå gjennom referanselisten og bytt ut/utfyll kilder som er eldre enn 5 år der nyere alternativer finnes.~~ Gjort: Kartla alle 10 referansene i bibliografien — 6 var eldre enn 5-årsgrensen (2021-05-12). Endringer gjort:
+
+  **Erstattet/oppdatert:**
+  - **Chen (2020) → Chen (2021):** Working paper-versjonen er erstattet med peer-reviewed publikasjon i *Production and Operations Management*, 30(5), 1365–1385, DOI 10.1111/poms.13326 (samme paper, men nå referert til den publiserte versjonen).
+
+  **Lagt til som supplement der nyere alternativ finnes:**
+  - **Ensafi et al. (2022):** Lagt inn i kap. 2 (Prophet-avsnittet) som nyere empirisk støtte — komparativ analyse av SARIMA, eksponensiell utjevning, Prophet, LSTM og CNN på sesongbasert detaljsalg. Prophet ble anbefalt som mest kostnadseffektive. *International Journal of Information Management Data Insights*, 2(1), 100058, DOI 10.1016/j.jjimei.2022.100058.
+  - **Douaioui et al. (2024):** Lagt inn i kap. 2.4 (oppsummering/kunnskapsgap) som nyere systematisk gjennomgang av 119 ML/DL-baserte prognosestudier i forsyningskjeden. *Applied System Innovation*, 7(5), 93, DOI 10.3390/asi7050093.
+
+  **Beholdt med begrunnelse (jf. G01s formulering "der nyere alternativer finnes"):**
+  - *Taylor & Letham (2018)* — foundational Prophet-paper; siteres for å introdusere modellen og kan ikke erstattes.
+  - *Adeyemi & Onanuga (2014)* — klassisk gjennomgang av EOQ/sikkerhetslager-teori. Nyere reviews fokuserer på ML-tilnærminger (jf. Bergsma et al. 2025 vurdert), ikke klassiske analytiske modeller, så er ikke et substitutt for denne rollen.
+  - *Lewis (1997)* — klassisk lærebok-anker for grunnleggende lagerstyringsteori (ROP, kostnadsdekomponering). Ingen ny lærebok i feltet de siste 5 årene gir nyere kanonisk referanse for de samme grunnbegrepene; Goltsos et al. (2022) supplerer allerede den moderne vinklingen.
+  - *Luo (2019)* — eneste industri-spesifikke kilde om reform av tradisjonelle bokhandler. Søk etter post-2021 peer-reviewed alternativer for samme tematikk (bokhandel + digital transformasjon) ga ikke treff; det generelle omnichannel-detaljhandel-feltet har bevegd seg videre, men det dekker ikke bokhandel-spesifikke styringsutfordringer.
+  - *Park et al. (2020)* — eneste industri-spesifikke kilde om etterspørselsprognosering i forlagsbransjen. Søk etter post-2021 publishing-spesifikk forecasting-litteratur ga ikke treff; nyere arbeid omhandler generell detaljhandel (dekkes nå av Ensafi et al. 2022 og Douaioui et al. 2024).
+
+  **Status:** 3 nye referanser lagt til i bibliografien (alfabetisert rekkefølge bevart), 1 oppgradert, 5 beholdt med eksplisitt begrunnelse. Litteraturkapittelet bygger nå tyngre på post-2021 kilder, særlig for Prophet-valget og ML-trenden i feltet.
 - [x] **Legg til kritisk vurdering av modellene.** ~~I både litteratur- og teorikapittelet: skriv inn korte avsnitt om styrker og svakheter ved Prophet, SARIMA, EOQ osv. – ikke bare beskriv dem.~~ Dekket av A2-punkt 2: ny seksjon "Sammenliknende styrker og svakheter ved modellene" i kap. 2 + tilsvarende avsnitt på slutten av 3.2.
 - [x] **Gjør teorikapittelet mer lesbart.** ~~Reduser tettheten av matematiske notasjoner, eller suppler hver formel med en setning som forklarer hva den betyr i praksis (slik at lesere uten LaTeX-kjennskap henger med).~~ Gjort: lagt til en kort, plain-norsk "i praksis"-setning etter de mest kryptiske formlene i kap. 3: differensiering (3.1), ADF-regresjonen (3.1.1), Prophet-dekomponeringen (3.2), bestillingspunktet og sikkerhetslageret (3.3.1) og totalkostnadsformelen (3.3.3). CSL-formelen (3.3.2) hadde allerede en plain-språk-forklaring rett etterpå og er ikke endret.
 
