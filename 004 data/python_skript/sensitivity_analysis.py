@@ -102,18 +102,18 @@ for kat, base_params in KATEGORI_INFO.items():
     snitt_lt = tr['Supp_Ledetid (dager)'].mean() / 30
     D_annual = tr['Etterspørsel'].mean() * 12
     
-    # Parametere som skal testes
+    # Parametere som skal testes (norske navn — vises som legendetekst i figurene)
     test_configs = [
-        ('Stockout Cost', [0.5, 0.75, 1.0, 1.25, 1.5], 'stockout_kost'),
-        ('Holding Cost', [0.8, 1.0, 1.2], 'lagerkost'),
-        ('Safety Margin Factor', [0.8, 1.0, 1.2, 1.5, 2.0], None)
+        ('Stockout-kostnad', [0.5, 0.75, 1.0, 1.25, 1.5], 'stockout_kost'),
+        ('Lagerholdskostnad', [0.8, 1.0, 1.2], 'lagerkost'),
+        ('Sikkerhetsmargin-faktor', [0.8, 1.0, 1.2, 1.5, 2.0], None)
     ]
-    
+
     for param_name, factors, key in test_configs:
         for f in factors:
-            if param_name == 'Safety Margin Factor' and f == 1.0 and any(r['Parameter'] == 'Stockout Cost' and r['Faktor'] == 1.0 and r['Kategori'] == kat for r in results):
+            if param_name == 'Sikkerhetsmargin-faktor' and f == 1.0 and any(r['Parameter'] == 'Stockout-kostnad' and r['Faktor'] == 1.0 and r['Kategori'] == kat for r in results):
                 continue
-            if param_name == 'Holding Cost' and f == 1.0: continue
+            if param_name == 'Lagerholdskostnad' and f == 1.0: continue
             
             p = base_params.copy()
             if key:
@@ -124,7 +124,7 @@ for kat, base_params in KATEGORI_INFO.items():
             if kat == 'Norsk krim': Q_opt *= 1.5
             
             # Oppdater s_opt
-            safety_factor = f if param_name == 'Safety Margin Factor' else 1.0
+            safety_factor = f if param_name == 'Sikkerhetsmargin-faktor' else 1.0
             s_opt_list = [(row['yhat_upper'] * snitt_lt * safety_factor) for _, row in forecast.iterrows()]
             
             kost, sl = simuler_lager(te, s_opt_list, [Q_opt]*len(te), p)
@@ -136,25 +136,31 @@ res_df = pd.DataFrame(results)
 for kat in KATEGORI_INFO.keys():
     kat_df = res_df[res_df['Kategori'] == kat]
     
-    # Figur 13: Kostnadssensitivitet
+    # Kostnadssensitivitet (refereres i rapporten som Figur 8.5/8.7/8.9)
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=kat_df, x='Faktor', y='Kostnad', hue='Parameter', marker='o')
-    plt.title(f'Figur 13: Kostnadssensitivitet - {kat}', fontsize=14, fontweight='bold')
-    plt.ylabel('Totalkostnad (NOK)')
+    sns.lineplot(data=kat_df, x='Faktor', y='Kostnad', hue='Parameter', marker='o', linewidth=2)
+    plt.title(f'Kostnadssensitivitet – {kat}', fontsize=14, fontweight='bold')
+    plt.xlabel('Multiplikator på basisverdi', fontsize=12)
+    plt.ylabel('Totalkostnad (NOK)', fontsize=12)
+    plt.tick_params(axis='both', labelsize=11)
+    plt.legend(title='Parameter', fontsize=11, title_fontsize=11)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(FIGURES_DIR, f'13_sensitivitet_kost_{kat.replace(" ", "_")}.png'))
+    plt.savefig(os.path.join(FIGURES_DIR, f'13_sensitivitet_kost_{kat.replace(" ", "_")}.png'), dpi=150)
     plt.close()
 
-    # Figur 14: Servicenivå-sensitivitet
+    # Servicenivå-sensitivitet (refereres i rapporten som Figur 8.6/8.8/8.10)
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=kat_df, x='Faktor', y='ServiceLevel', hue='Parameter', marker='s')
-    plt.title(f'Figur 14: Servicenivå-sensitivitet - {kat}', fontsize=14, fontweight='bold')
-    plt.ylabel('Servicenivå (%)')
+    sns.lineplot(data=kat_df, x='Faktor', y='ServiceLevel', hue='Parameter', marker='s', linewidth=2)
+    plt.title(f'Servicenivå-sensitivitet – {kat}', fontsize=14, fontweight='bold')
+    plt.xlabel('Multiplikator på basisverdi', fontsize=12)
+    plt.ylabel('Servicenivå (%)', fontsize=12)
+    plt.tick_params(axis='both', labelsize=11)
+    plt.legend(title='Parameter', fontsize=11, title_fontsize=11, loc='lower right')
     plt.ylim(0, 105)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(FIGURES_DIR, f'14_sensitivitet_service_{kat.replace(" ", "_")}.png'))
+    plt.savefig(os.path.join(FIGURES_DIR, f'14_sensitivitet_service_{kat.replace(" ", "_")}.png'), dpi=150)
     plt.close()
 
 # Lagre rådata til CSV for reproduserbarhet. Kuratert aktivitetsdokument

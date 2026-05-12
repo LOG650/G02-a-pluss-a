@@ -731,7 +731,7 @@ Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-b
 
 ### 8.1 Detaljert analyse per kategori
 
-For å forstå de underliggende driverne for besparelsene, dekomponeres resultatene i prognosekvalitet og kostnadsfordeling for hver kategori.
+For å forstå de underliggende driverne for besparelsene, dekomponeres resultatene i prognosekvalitet og kostnadsfordeling for hver kategori. Hovedfunnet er ikke ensartet: *Norsk krim* (38,1 % besparelse) og *Engelsk fiksjon* (19,6 % besparelse) viser tydelig gevinst med Prophet-modellen, mens **Norske barnebøker skiller seg ut som unntaket** — her gir modellen et marginalt negativt resultat (−7,9 %). Denne asymmetrien har en sammenheng med kategorienes underliggende variansstruktur og diskuteres i 8.1.3, sensitivitetsanalysen i 8.2, og i drøftingen i 9.3 og 9.5.
 
 #### 8.1.1 Norsk krim (Høy volatilitet og sterk trend)
 
@@ -740,7 +740,7 @@ Dette er kategorien med størst økonomisk gevinst (38,1 %). Figur 8.1 viser at 
 <div align="center">
   <img src="../006%20analysis/figures/10_forecast_vs_actual_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 8.1: Forecast vs. Actual for Norsk krim. Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene.</em>
+  <em>Figur 8.1: Forecast vs. Actual for Norsk krim.</em>
 </div>
 
 Ved å analysere residualene (prognosefeilen) i Figur 8.2, ser vi en tilnærmet normalfordeling med en svak negativ bias. Dette underbygger bruken av sikkerhetslager basert på normalfordelingens fraktiler for å sikre ønsket servicegrad.
@@ -751,7 +751,7 @@ Ved å analysere residualene (prognosefeilen) i Figur 8.2, ser vi en tilnærmet 
   <em>Figur 8.2: Distribusjon av residualer for Norsk krim. Den røde linjen indikerer nullavvik.</em>
 </div>
 
-Figur 8.3 viser fordelingen mellom lagerholdskostnader ($C_h$) og stockout-kostnader ($C_s$) for baseline og Prophet-modellen, med en netto reduksjon i totalkostnad på over 26 000 NOK.
+Netto reduksjon i totalkostnad er på over 26 000 NOK, hovedsakelig drevet av lavere $C_s$ (Figur 8.3).
 
 <div align="center">
   <img src="../006%20analysis/figures/12_cost_breakdown_Norsk_krim.png" style="width: 70%; height: auto;">

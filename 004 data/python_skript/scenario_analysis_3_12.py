@@ -106,22 +106,24 @@ for cat in categories:
     
     scenario_results.append(f26)
     
-    # Visualisering per kategori
+    # Visualisering per kategori (refereres i rapporten som Figur 8.14/8.15/8.16)
     plt.figure(figsize=(12, 7))
-    plt.plot(f26['ds'], f26['out_base'], 'k--', label='Baseline Order-up-to (M5)', alpha=0.7)
-    plt.plot(f26['ds'], f26['out_shock'], 'r-', label='Scenario A: Kampanje-sjokk (+50% lift)', linewidth=2)
-    plt.plot(f26['ds'], f26['out_cost'], 'g-', label='Scenario B: Kostnads-sjokk (-20% Safety Stock)', linewidth=2)
-    
+    plt.plot(f26['ds'], f26['out_base'], 'k--', label='Baseline (gjeldende bestillingspunkt)', alpha=0.7, linewidth=2)
+    plt.plot(f26['ds'], f26['out_shock'], 'r-', label='Scenario A: Kampanje-sjokk (+50 % løft)', linewidth=2)
+    plt.plot(f26['ds'], f26['out_cost'], 'g-', label='Scenario B: Kostnads-sjokk (−20 % sikkerhetslager)', linewidth=2)
+
     plt.fill_between(f26['ds'], f26['out_base'], f26['out_shock'], color='red', alpha=0.1)
     plt.fill_between(f26['ds'], f26['out_cost'], f26['out_base'], color='green', alpha=0.1)
-    
-    plt.title(f'Scenario-analyse 2026: {cat}\nEffekt på nødvendig lagernivå (Order-up-to)')
-    plt.xlabel('Måned')
-    plt.ylabel('Enheter på lager')
-    plt.legend()
+
+    plt.title(f'Scenario-analyse 2026: {cat}\nEffekt på nødvendig lagernivå', fontsize=13, fontweight='bold')
+    plt.xlabel('Måned', fontsize=12)
+    plt.ylabel('Enheter på lager', fontsize=12)
+    plt.tick_params(axis='both', labelsize=11)
+    plt.legend(fontsize=11, loc='upper left')
     plt.grid(True, linestyle='--', alpha=0.5)
-    
-    plt.savefig(f"{OUTPUT_DIR}/scenario_plot_{cat.replace(' ', '_')}.png")
+    plt.tight_layout()
+
+    plt.savefig(f"{OUTPUT_DIR}/scenario_plot_{cat.replace(' ', '_')}.png", dpi=150)
     plt.close()
 
 # Samle og lagre

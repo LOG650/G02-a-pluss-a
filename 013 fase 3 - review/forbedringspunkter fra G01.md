@@ -67,9 +67,29 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## G. Kapittel 7 & 8 – Analyse og resultat
 
-- [ ] **Flytt forklaringen av Norske barnebøker tidligere.** Kategorien skiller seg ut – nevn det allerede tidlig i 8.1 i stedet for først i 8.1.3, slik at leseren vet hva som kommer.
-- [ ] **Kort ned repetitive figurforklaringer.** Gå gjennom 8.1.1–8.1.3 og 8.2.1–8.2.3 og fjern gjentakelser; én tydelig forklaring per figur er nok.
-- [ ] **Forbedre lesbarheten på Figur 16–23.** Større skrift, tydeligere akseforklaringer, og rydd opp i figurer som har for mye informasjon.
+- [x] **Flytt forklaringen av Norske barnebøker tidligere.** ~~Kategorien skiller seg ut – nevn det allerede tidlig i 8.1 i stedet for først i 8.1.3, slik at leseren vet hva som kommer.~~ Gjort: innledningsavsnittet i 8.1 er utvidet med en foregripende setning som signaliserer hovedfunnet før kategorigjennomgangen — Norsk krim (+38,1 %) og Engelsk fiksjon (+19,6 %) gir gevinst, mens Norske barnebøker er unntaket (−7,9 %). Krysshenviser til 8.1.3 (detaljer), 8.2 (sensitivitetsanalyse) og 9.3/9.5 (drøfting), slik at leseren vet hvor full forklaring kommer.
+- [x] **Kort ned repetitive figurforklaringer.** ~~Gå gjennom 8.1.1–8.1.3 og 8.2.1–8.2.3 og fjern gjentakelser; én tydelig forklaring per figur er nok.~~ Gjort: gjennomgikk hele 8.1.1–8.1.3 og 8.2.1–8.2.3. Identifiserte to konkrete gjentakelser i 8.1.1 (Norsk krim) og fjernet dem; resten av kapitlet hadde allerede stramme figurtekster.
+
+  **Endringer (begge i 8.1.1):**
+  1. *Figur 8.1*: figurteksten "Legg merke til hvordan prediksjonen fanger opp de kraftige svingningene i testdataene" gjentok body-teksten ("Prophet-modellen treffer svært godt på de ekstreme sesongtoppene"). Figurteksten kortet ned til kun "Forecast vs. Actual for Norsk krim."
+  2. *Figur 8.3*: body-teksten "Figur 8.3 viser fordelingen mellom lagerholdskostnader ($C_h$) og stockout-kostnader ($C_s$) for baseline og Prophet-modellen" gjentok figurteksten "Kostnadsfordeling for Norsk krim (Baseline vs. Prophet)". Body-teksten endret til å fokusere på funnet i stedet: "Netto reduksjon i totalkostnad er på over 26 000 NOK, hovedsakelig drevet av lavere $C_s$ (Figur 8.3)."
+
+  **Beholdt uten endring:** 8.1.2, 8.1.3, og alle 8.2-underseksjoner — figurtekstene der er allerede minimalistiske labels, og body-teksten bærer analysen uten overlapp.
+- [x] **Forbedre lesbarheten på Figur 16–23.** ~~Større skrift, tydeligere akseforklaringer, og rydd opp i figurer som har for mye informasjon.~~ Gjort: G01 brukte gammel nummerering — etter renummereringen tilsvarer dette figurene i §8.1–§8.2 (Figur 8.1–8.10). Sjekket også Figur 8.11–8.16. Identifiserte tre konkrete kvalitetsproblemer og rettet alle:
+
+  **1. Utdaterte figurnumre i bilde-titlene (gjaldt Figur 8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 8.10):** Skriptene `generate_m6_visualisations.py` og `sensitivity_analysis.py` hardkodet titler som "Figur 10:", "Figur 11:", "Figur 12:", "Figur 13:", "Figur 14:" — som ikke matchet den nye nummereringen. Løsning: fjernet figurnummerprefiksene fra bilde-titlene helt (markdown-figurteksten håndterer nummereringen), så titlene viser nå bare beskrivelse + kategori, f.eks. "Forecast vs. Actual – Norsk krim".
+
+  **2. Engelsk legendetekst i sensitivitetsfigurene (Figur 8.5, 8.6, 8.7, 8.8, 8.9, 8.10):** `test_configs`-listen i `sensitivity_analysis.py` brukte "Stockout Cost", "Holding Cost", "Safety Margin Factor" som ble vist direkte som legendetekst via seaborn `hue`-parameter. Endret til norske termer: "Stockout-kostnad", "Lagerholdskostnad", "Sikkerhetsmargin-faktor". Tilsvarende oppdatering i `scenario_analysis_3_12.py` ("−20 % Safety Stock" → "−20 % sikkerhetslager").
+
+  **3. Ch ikke synlig i kostnadsfordeling (Figur 8.3, 8.4):** Stablede søyler ble dominert av $C_s$ (60-80k NOK) slik at $C_h$ (100-1500 NOK) ble nesten usynlig. Endret til **grupperte søyler side-ved-side** med verdiannoteringer over hver søyle, slik at både $C_h$ og $C_s$ er sammenlignbare og leselige uavhengig av størrelsesforhold.
+
+  **Andre lesbarhetsforbedringer på samme skript-kjøring:**
+  - X-aksetitler lagt til der de manglet (Figur 8.1: "Måned (testperiode 2025)"; Figur 8.5–8.10: "Multiplikator på basisverdi").
+  - Font-størrelser eksplisitt satt: tittel 14 pt fet, aksetitler 12 pt, tick-labels 11 pt, legend 11 pt.
+  - DPI hevet til 150 ved lagring (var default 100) for skarpere PDF-eksport.
+  - Rutenett aktivert med `alpha=0.3` for alle figurer som manglet det.
+
+  **Skript modifisert og kjørt på nytt:** `generate_m6_visualisations.py` (8.1–8.4), `sensitivity_analysis.py` (8.5–8.10), `scenario_analysis_3_12.py` (8.14–8.16). Modellparametere og output-CSV-er er ikke endret. Figur 8.11–8.13 (prognose 2026) hadde allerede god lesbarhet og er ikke endret.
 
 ## H. Kapittel 9 – Diskusjon
 

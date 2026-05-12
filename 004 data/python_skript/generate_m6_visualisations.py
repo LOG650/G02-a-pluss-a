@@ -95,31 +95,35 @@ for kat, params in KATEGORI_INFO.items():
     future = te[['ds']].copy()
     forecast = m.predict(future)
     
-    # 1. FIGUR 10: Forecast vs Actual
+    # 1. Forecast vs Actual (refereres i rapporten som Figur 8.1)
     plt.figure(figsize=(12, 6))
     plt.plot(te['ds'], te['Etterspørsel'], label='Faktisk etterspørsel', color='black', marker='o')
     plt.plot(forecast['ds'], forecast['yhat'], label='Predikert (Prophet)', color='blue', linestyle='--')
     plt.fill_between(forecast['ds'], forecast['yhat_lower'], forecast['yhat_upper'], color='blue', alpha=0.2, label='Usikkerhetsintervall')
-    plt.title(f'Figur 10: Forecast vs Actual - {kat}', fontsize=14, fontweight='bold')
-    plt.ylabel('Etterspørsel (enheter)')
-    plt.legend()
+    plt.title(f'Forecast vs. Actual – {kat}', fontsize=14, fontweight='bold')
+    plt.xlabel('Måned (testperiode 2025)', fontsize=12)
+    plt.ylabel('Etterspørsel (enheter)', fontsize=12)
+    plt.tick_params(axis='both', labelsize=11)
+    plt.legend(fontsize=11)
+    plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, f'10_forecast_vs_actual_{kat.replace(" ", "_")}.png'))
+    plt.savefig(os.path.join(OUTPUT_DIR, f'10_forecast_vs_actual_{kat.replace(" ", "_")}.png'), dpi=150)
     plt.close()
 
-    # 2. FIGUR 11: Residual Analysis
+    # 2. Residual Analysis (refereres i rapporten som Figur 8.2)
     residualer = forecast['yhat'].values - te['Etterspørsel'].values
     plt.figure(figsize=(10, 6))
     sns.histplot(residualer, kde=True, color='purple')
     plt.axvline(0, color='red', linestyle='--')
-    plt.title(f'Figur 11: Distribusjon av residualer - {kat}', fontsize=14, fontweight='bold')
-    plt.xlabel('Prognosefeil (Predikert - Faktisk)')
-    plt.ylabel('Frekvens')
+    plt.title(f'Distribusjon av residualer – {kat}', fontsize=14, fontweight='bold')
+    plt.xlabel('Prognosefeil (Predikert − Faktisk)', fontsize=12)
+    plt.ylabel('Frekvens', fontsize=12)
+    plt.tick_params(axis='both', labelsize=11)
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, f'11_residualer_{kat.replace(" ", "_")}.png'))
+    plt.savefig(os.path.join(OUTPUT_DIR, f'11_residualer_{kat.replace(" ", "_")}.png'), dpi=150)
     plt.close()
 
-    # 3. FIGUR 12: Cost Breakdown
+    # 3. Cost Breakdown (refereres i rapporten som Figur 8.3/8.4)
     # Baseline
     snitt_ettersp = tr['Etterspørsel'].mean()
     snitt_lt = tr['Supp_Ledetid (dager)'].mean() / 30
@@ -141,17 +145,35 @@ for kat, params in KATEGORI_INFO.items():
     }
     cost_df = pd.DataFrame(cost_data)
     
-    plt.figure(figsize=(10, 6))
-    # Bruker bar_plot for stablede søyler manuelt for bedre kontroll
-    bottom_val = [0, 0]
-    plt.bar(['Baseline', 'Prophet'], [h_b, h_p], label='Lagerholdskostnad (Ch)', color='skyblue')
-    plt.bar(['Baseline', 'Prophet'], [s_b, s_p], bottom=[h_b, h_p], label='Stockoutkostnad (Cs)', color='salmon')
-    
-    plt.title(f'Figur 12: Kostnadsfordeling (Ch vs Cs) - {kat}', fontsize=14, fontweight='bold')
-    plt.ylabel('Totalkostnad (NOK)')
-    plt.legend()
-    plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, f'12_cost_breakdown_{kat.replace(" ", "_")}.png'))
-    plt.close()
+    # Grupperte søyler (side-ved-side) i stedet for stablede, slik at Ch og Cs
+    # er sammenlignbare selv når Cs dominerer størrelsen.
+    fig, ax = plt.subplots(figsize=(10, 6))
+    import numpy as _np
+    x = _np.arange(2)  # Baseline, Prophet
+    bw = 0.38
+    ch_vals = [h_b, h_p]
+    cs_vals = [s_b, s_p]
+    bars_ch = ax.bar(x - bw / 2, ch_vals, bw, label='Lagerholdskostnad ($C_h$)', color='#6FB1E3')
+    bars_cs = ax.bar(x + bw / 2, cs_vals, bw, label='Stockoutkostnad ($C_s$)', color='#E8826F')
+
+    # Verdiannotering på hver søyle
+    for bars in (bars_ch, bars_cs):
+        for b in bars:
+            h = b.get_height()
+            ax.text(b.get_x() + b.get_width() / 2, h + max(cs_vals) * 0.01,
+                    f'{h:,.0f}'.replace(',', ' '),
+                    ha='center', va='bottom', fontsize=10)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(['Baseline', 'Prophet'], fontsize=12)
+    ax.set_title(f'Kostnadsfordeling ($C_h$ vs $C_s$) – {kat}', fontsize=14, fontweight='bold')
+    ax.set_ylabel('Kostnad (NOK)', fontsize=12)
+    ax.tick_params(axis='y', labelsize=11)
+    ax.set_ylim(0, max(cs_vals) * 1.18)
+    ax.grid(True, axis='y', alpha=0.3)
+    ax.legend(fontsize=11, loc='upper right')
+    fig.tight_layout()
+    fig.savefig(os.path.join(OUTPUT_DIR, f'12_cost_breakdown_{kat.replace(" ", "_")}.png'), dpi=150)
+    plt.close(fig)
 
 print("Nye visualiseringer for M6 er generert!")
