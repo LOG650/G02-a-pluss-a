@@ -93,8 +93,19 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## H. Kapittel 9 – Diskusjon
 
-- [ ] **Løft frem det viktigste funnet eksplisitt.** Start 9.1 (eller lag et kort innledende avsnitt) med én tydelig setning om hva som er hovedfunnet.
-- [ ] **Reduser parallelle refleksjoner.** Slå sammen overlappende resonnementer i 9.1–9.4 slik at hver underseksjon har et tydelig poeng.
+- [x] **Løft frem det viktigste funnet eksplisitt.** ~~Start 9.1 (eller lag et kort innledende avsnitt) med én tydelig setning om hva som er hovedfunnet.~~ Gjort: 9.1 åpner nå med en fet hovedfunn-setning som forener de tre nøkkelfunnene i én linje — 20,26 % kostnadsreduksjon, CSL fra 84,7 % til 87,2 %, og det avgjørende forbeholdet om at hele gevinsten kommer fra de to volatile kategoriene mens baseline slår Prophet for *Norske barnebøker*. Etterfølgende setning presiserer at modellens merverdi er betinget av etterspørselsstrukturen, ikke en universell egenskap. Det opprinnelige fire-nivå-avsnittet er beholdt, men koblet til den nye åpningen via "Resultatene i kapittel 8 bekrefter dermed …".
+- [x] **Reduser parallelle refleksjoner.** ~~Slå sammen overlappende resonnementer i 9.1–9.4 slik at hver underseksjon har et tydelig poeng.~~ Gjort: Kartla resonnement-overlapp på tvers av 9.1–9.4. Den klareste parallellen var **trippel-referansen til Goltsos et al. (2022)** om at prognose- og lagerstyring må behandles som én integrert prosess — den dukket opp tre ganger: (1) 9.1 bullet 3 (Bias-korreksjonen), (2) 9.1 bullet 4 (Parametervalget), og (3) 9.3 paragraf 1. Konsolidert ved å la **9.3 være kanonisk hjem** (litteraturkapittelet er det naturlige stedet for den teoretiske rammen) og fjerne restatementene i 9.1:
+
+  **Endring 1 (9.1 bullet 3):** Avsluttende setning "Dette understreker Goltsos et al. (2022) sin observasjon om at prognose- og lagerbeslutninger må behandles som én integrert tilbakekoblingssløyfe — uten backtestingen ville biasen forplantet seg uhindret inn i bestillingspunktene." → "...særlig for *Norsk krim* der modellen ellers ville underbestilt systematisk i høysesong **og spist opp store deler av den realiserte gevinsten**." Goltsos-namechecken er flyttet (implisitt) til 9.3.
+
+  **Endring 2 (9.1 bullet 4):** Avsluttende setning "...parametervalget er like viktig som metoden – en observasjon som også støtter Goltsos et al. (2022) sitt argument om integrert behandling av prognose- og lagerstyringsbeslutninger." → "...parametervalget er like viktig som metoden." (full stopp). Hovedpoenget i bulleten — at samme rammeverk kalibreres ulikt mellom kategorier — står like sterkt uten Goltsos-restatementen.
+
+  **Andre vurderte overlapp som ble *beholdt* (med begrunnelse):**
+  - 9.1 bullet 2 og 9.4 paragraf 1 nevner begge $\sigma_d$, men fra ulike vinkler (bedre prognose → lavere $\sigma_d$ vs. metning der $\sigma_d$ blir bindende skranke) — komplementære, ikke parallelle.
+  - 9.2 paragraf 1 gjentar barnebok-funnet fra 9.1-åpningen, men dette er bevisst seksjonsåpning som setter konteksten for utdypingen i 9.2 (lesere som hopper rett til 9.2 trenger orienteringen).
+  - To Kirmizi (2024)-referanser (9.1 bullet 2 om $\sigma_d$ og 9.2 om hybridtilnærminger) siterer ulike poenger fra samme kilde — ikke parallelle.
+
+  **Resultat:** Goltsos-integrasjonsargumentet står nå én gang, i 9.3 hvor det hører hjemme. 9.1 bullet 3 og 4 har fått skarpere "tydelig poeng" uten å miste substans.
 
 ## I. Kapittel 10 – Konklusjon
 
