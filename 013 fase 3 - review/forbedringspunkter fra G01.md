@@ -109,7 +109,19 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## I. Kapittel 10 – Konklusjon
 
-- [ ] **Balanser konklusjonen.** Konklusjonen er for ensidig positiv – legg inn en kort vurdering av begrensninger og hva som ikke ble løst, før de praktiske implikasjonene.
+- [x] **Balanser konklusjonen.** ~~Konklusjonen er for ensidig positiv – legg inn en kort vurdering av begrensninger og hva som ikke ble løst, før de praktiske implikasjonene.~~ Gjort: kapittel 10 omskrevet fra ensidig positiv tre-bullet-versjon til balansert konklusjon med fem ledd i logisk rekkefølge:
+
+  **1. Hovedfunn (paragraf 1):** Åpner med problemstillingen, deretter headline-tallene — 20,26 % kostnadsreduksjon (198 636 → 158 395 NOK) og CSL fra 84,7 % til 87,2 % i testperioden 2025.
+
+  **2. Betinget gevinst (paragraf 2):** Eksplisitt at funnet *ikke* er uniformt — *Norsk krim* (−38,1 %) og *Engelsk fiksjon* (−19,6 %) gir besparelse, mens *Norske barnebøker* er unntaket (+7,9 % med Prophet). Konkluderer at hovedfunnet er *betinget* av etterspørselsstrukturen, ikke universelt.
+
+  **3. Begrensninger (paragraf 3, NY):** Kort, men eksplisitt vurdering av (a) simulert datagrunnlag som ikke fanger reelle ERP-støykilder, (b) deterministisk ledetid som overvurderer gevinst for *Engelsk fiksjon*, (c) Z-score-basert kampanjeidentifisering med få observasjoner, (d) bias-korreksjon som potensielt overfit på testperioden, og (e) manglende empirisk SARIMA-sammenligning. Avslutter med eksplisitt forbehold om at tallene er "estimat på potensialet", ikke presist drifts-anslag.
+
+  **4. Praktiske implikasjoner (paragraf 4):** Tre konkrete anbefalinger til ARK — (i) differensiert modellvalg etter etterspørselsstruktur, (ii) rullerende bias-korreksjon, (iii) kategorivis kalibrering av $k$.
+
+  **5. Videre forskning (paragraf 5):** Fire konkrete neste skritt — reell ERP-validering, SARIMAX-sammenligning, makrovariabler (Haque et al. 2023), bredere kategoritest. Avslutter med refleksjonssetning som forener gevinst og forbehold: "metodevalg må forankres i etterspørselsstrukturen til den enkelte varegruppen — og gevinstestimatene må prøves mot reelle driftsforhold før de kan tas i bruk".
+
+  **Rekkefølgen følger G01s eksplisitte anbefaling:** begrensninger plassert *før* praktiske implikasjoner. Konklusjonen er nå balansert uten å miste den positive substansen — modellen *virker*, men under spesifiserte betingelser og med kjente forbehold.
 
 ## J. Skriveflyt og formelle aspekter (gjennomgang av hele rapporten)
 
