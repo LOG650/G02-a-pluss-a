@@ -125,8 +125,61 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
 
 ## J. Skriveflyt og formelle aspekter (gjennomgang av hele rapporten)
 
-- [ ] **Kvalitetssikre APA-formatering.** Gå gjennom alle inntekstreferanser og bibliografien (kapittel 11) for konsistent APA-stil.
-- [ ] **Vær konsistent på språk.** Velg norsk eller engelsk for fagbegreper og bruk valget konsekvent (unngå å blande "forecasting"/"prognosering" om hverandre).
+- [x] **Kvalitetssikre APA-formatering.** ~~Gå gjennom alle inntekstreferanser og bibliografien (kapittel 11) for konsistent APA-stil.~~ Gjort: Auditert alle 40+ inntekstreferanser og alle 12 bibliografi-oppføringer mot APA 7.
+
+  **Allerede konsistent (ikke endret):**
+  - Narrativ/parentetisk konjunktor: "og" i narrativ form ("Taylor og Letham (2018)", "Adeyemi og Onanuga (2014)"), "&" i parentetisk form ("(Taylor & Letham, 2018)", "(Adeyemi & Onanuga, 2014)"). Brukt konsistent i alle 6+6 forekomster.
+  - "et al."-bruk for 3+ forfattere (Park, Ensafi, Haque, Goltsos, Kirmizi, Douaioui): korrekt narrativt og parentetisk.
+  - Multipel-sitering med semikolon: "(Lewis, 1997; Adeyemi & Onanuga, 2014)" — APA-korrekt.
+  - Alfabetisk rekkefølge i bibliografien.
+  - Italik på journaltitler og volumnummer, ikke på utgavenummer eller sidetall.
+  - Forfatterinitialer med punktum og mellomrom ("A. A.", "S. H.").
+  - DOI-format "https://doi.org/..." brukt konsistent.
+
+  **Inkonsistenser rettet:**
+
+  **1. Possessiv-konstruksjon "Forfatter (Årstall) sitt …" (5 instanser i kapittel 9):** Resten av rapporten bruker ikke-possessiv narrativ form ("X (Y) påpeker/argumenterer/studerer ..."), men kapittel 9 hadde 5 lokale instanser med possessiv "sitt". Standardisert alle til ikke-possessiv:
+    - Linje 928: "Kirmizi et al. (2024) sitt poeng om at ..." → "Kirmizi et al. (2024), som påpeker at ..."
+    - Linje 940: "Chen (2021) sitt arbeid om datadrevet lagerstyring ... hviler implisitt ..." → "Chen (2021) studerer datadrevet lagerstyring ... — en kontekst som implisitt forutsetter ..."
+    - Linje 942: "Kirmizi et al. (2024) sitt argument om at hybridtilnærminger overgår ..." → "Kirmizi et al. (2024), som argumenterer for at hybridtilnærminger overgår ..."
+    - Linje 946: "Goltsos et al. (2022) sitt hovedpoeng ..." → "Hovedpoenget hos Goltsos et al. (2022) ..."
+    - Linje 948: "Taylor og Letham (2018) sitt \"analyst-in-the-loop\"-paradigme ..." → "\"Analyst-in-the-loop\"-paradigmet beskrevet av Taylor og Letham (2018) ..."
+
+  **2. Haque et al. (2023) arXiv-oppføring i bibliografien:** Den gamle formen "*arXiv preprint arXiv:2308.11939*" hadde feil italikbruk (italik skal på paper-tittel, ikke på "arXiv preprint"-stempel) og blandet to APA-stiler. Rettet til moderne APA 7-form for preprints: "*Retail demand forecasting: A comparative study for multivariate time series* (arXiv:2308.11939). arXiv. https://arxiv.org/abs/2308.11939" — paper-tittel i italik, arXiv som archive-navn uten italik, arXiv-ID i parentes etter tittel.
+
+  **Beholdt med forbehold (kunne ikke verifiseres uten kildesjekk):**
+  - *Adeyemi & Onanuga (2014):* Mangler sidetall i bibliografien (kun "*5*(22)"). Research Journal of Finance and Accounting bruker artikkelnummer-stil i noen utgaver, men uten verifisering legges ikke sidetall til.
+  - *Park et al. (2020):* Mangler DOI. International Journal of Computing and Digital Systems tildeler DOI-er, men uten verifisert lookup legges det ikke til.
+  - Em-dash (—) i tittelundertekst på enkelte oppføringer (Adeyemi & Onanuga; Kirmizi et al.) er beholdt slik originaltitlene foreligger; APA krever ikke konvertering til kolon hvis em-dash er originalformatet.
+- [x] **Vær konsistent på språk.** ~~Velg norsk eller engelsk for fagbegreper og bruk valget konsekvent (unngå å blande "forecasting"/"prognosering" om hverandre).~~ Gjort: Auditert rapporten for blandet bruk av norske/engelske fagbegreper.
+
+  **Allerede konsistent (ikke endret):**
+  - **"prognose"/"prognosering"** brukes konsekvent norsk gjennom hele rapporten (40+ forekomster); ingen "forecasting" i brødtekst.
+  - **"stockout"** brukes som lånt engelsk fagbegrep konsekvent (logistikk-jargon i Norge); kun definert med norsk forklaring i 1.4 ("Ved 'stockouts' (utsolgt-situasjoner) antas det at salget går permanent tapt").
+  - **"backtesting"** brukes som lånt engelsk fagbegrep konsekvent (også vanlig i norsk finans/logistikk).
+  - **"feature engineering"**, **"lost-sales"**, **"shifting demand"**, **"analyst-in-the-loop"** brukes som engelske termer i sitater eller direkte referanse til kilder — konsekvent.
+  - **Norsk komma som desimalskilletegn** brukes i de aller fleste tall (20,26 %; 84,7 %; 1,8; −11,78; osv.).
+  - **Kategorinavn** ("Norsk krim", "Engelsk fiksjon", "Norske barnebøker") er stor forbokstav på alle ord — konsistent som "merkenavn" for kategoriene.
+  - **$C_h$ "(holding cost)" og $C_s$ "(stockout cost)"** i kapittel 6 er parentetisk engelsk glossing av norsk hovedtekst — symmetrisk og konsistent.
+
+  **Inkonsistenser rettet (5 instanser):**
+
+  **1. "restordrer (stockouts)" på linje 708:** Dette var både en terminologi-inkonsistens OG en teknisk feil — modellantagelsen (1.4, 5.2) er lost-sales, ikke restordre-baserte, så ordet "restordrer" motsier modellrammeverket. Rettet til "stockouts" alene: "Historikken viser hyppige og omfattende stockouts, spesielt i juni 2021 ...".
+
+  **2. "(Safety Margin Factor)" på linje 782:** Engelsk parentetisk merkelapp etter "sikkerhetsmarginfaktoren". Denne dukket opp i et tidligere stadium da figurlabels var engelske; etter figurnorskifiseringen (jf. seksjon G/forbedringspunkt 3) er den overflødig og bare introduserer engelsk-norsk-blanding. Fjernet — teksten leser nå "...en økning i sikkerhetsmarginfaktoren til 1,5...".
+
+  **3. Engelsk desimalpunktum (tre instanser):** Lokalt blandet med engelsk decimal-konvensjon mens resten av rapporten bruker norsk komma:
+    - Linje 782: "1.5" → "1,5"
+    - Linje 798: "0.8" → "0,8"
+    - Linje 814: "1.2" → "1,2"
+
+  **4. "engelsk fiksjon" liten forbokstav (to instanser):** I 46 forekomster brukes stor forbokstav som proper-noun-stil ("Engelsk fiksjon"), men to instanser hadde liten forbokstav:
+    - Linje 372: "...økt etterspørsel etter engelsk fiksjon..." → "Engelsk fiksjon"
+    - Linje 782: "For engelsk fiksjon observeres..." → "For Engelsk fiksjon observeres..."
+
+  **Beholdt med forbehold:**
+  - "forecast vs. actual" på linje 723 er beholdt fordi det refererer eksplisitt til en analysepakke-filsti og PNG-filnavn (`10_forecast_vs_actual_*.png`), ikke bruk av engelsk i selvstendig brødtekst.
+  - "shifting demand" er beholdt i sitater fordi det refererer til Chen (2021) som bruker dette som teknisk term i originaltittelen.
 - [ ] **Forklar alle forkortelser ved første forekomst.** Gå gjennom rapporten og legg til full betegnelse første gang en forkortelse brukes (EOQ, MAPE, ADF osv.).
 - [ ] **Vurder/fjern interne filhenvisninger.** Henvisninger til interne filer virker lite akademiske – erstatt dem med referanser til vedlegg eller fjern dem.
 - [ ] **Standardiser figurer og tabeller.** Lik formatering, fontstørrelse, fargepalett og figurtekst på tvers av rapporten (jf. malen i CLAUDE.md: midtstilt, `width: 70%`, kursiv figurtekst).

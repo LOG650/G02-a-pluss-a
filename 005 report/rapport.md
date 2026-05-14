@@ -369,7 +369,7 @@ Dataene viser sterke sesongsvingninger på tvers av alle kategorier. Prophet er 
 Salgsmønstrene for spesielt "Norsk krim" og "Norske barnebøker" viser tydelige topper knyttet til påske, sommerferie og jul. Prophet tillater direkte inkludering av disse effektene, noe som er kritisk for å unngå "stockouts" i perioder med unormalt høy etterspørsel.
 
 **3. Automatisk trenddeteksjon:**
-Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant for å fange opp skift i popularitet for ulike sjangre, for eksempel økt etterspørsel etter engelsk fiksjon drevet av sosiale medier (BookTok).
+Modellen identifiserer automatisk endringspunkter i trenden. Dette er relevant for å fange opp skift i popularitet for ulike sjangre, for eksempel økt etterspørsel etter Engelsk fiksjon drevet av sosiale medier (BookTok).
 
 **4. Prediksjon på faktisk etterspørsel:**
 Ved å trene modellen på feltet "Etterspørsel" i stedet for kun "Salg", sikrer vi at modellen lærer det reelle behovet i markedet, uavhengig av historiske lagerbegrensninger.
@@ -705,7 +705,7 @@ Analysen viser at modellen for *Engelsk fiksjon* har en positiv bias (overestime
 Gjennomgangen av det vaskede datasettet (2021-2025) har avdekket distinkte mønstre for de tre bokkategoriene som er kritiske for valget av prognosemodell:
 
 **Engelsk fiksjon:**
-Denne kategorien preges av en relativt stabil etterspørsel gjennom året, men med markerte topper i **juni/juli** (sommerlesing) og **desember** (julesalg). Historikken viser hyppige og omfattende restordrer (stockouts), spesielt i juni 2021 hvor etterspørselen oversteg salget med nesten 300 enheter. Dette indikerer et stort forbedringspotensial ved mer nøyaktige prognoser.
+Denne kategorien preges av en relativt stabil etterspørsel gjennom året, men med markerte topper i **juni/juli** (sommerlesing) og **desember** (julesalg). Historikken viser hyppige og omfattende stockouts, spesielt i juni 2021 hvor etterspørselen oversteg salget med nesten 300 enheter. Dette indikerer et stort forbedringspotensial ved mer nøyaktige prognoser.
 
 **Norsk krim:**
 Krim-kategorien har de mest utpregede sesongtoppene. Toppene er i stor grad knyttet til **juli/august** (feriekrim) og **desember**. I tillegg ser vi en merkbar økning rundt påsketider (mars/april). Dataene viser at etterspørselen ofte bikker 500 enheter i disse periodene, og det er identifisert en svak økende trend i totalvolumet mot slutten av perioden (2024-2025).
@@ -779,7 +779,7 @@ For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanaly
 
 #### 8.2.1 Engelsk fiksjon
 
-For engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og totalkostnad, mens servicenivået forblir stabilt. Dette indikerer en robust modell, men som vist i Figur 8.6, gir en økning i sikkerhetsmarginfaktoren (Safety Margin Factor) til 1.5 en dramatisk forbedring i både kostnad og service.
+For Engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og totalkostnad, mens servicenivået forblir stabilt. Dette indikerer en robust modell, men som vist i Figur 8.6, gir en økning i sikkerhetsmarginfaktoren til 1,5 en dramatisk forbedring i både kostnad og service.
 
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
@@ -795,7 +795,7 @@ For engelsk fiksjon observeres en lineær sammenheng mellom stockout-kostnad og 
 
 #### 8.2.2 Norske barnebøker
 
-Barnebøker viser høyere sensitivitet for lagerholdskostnad. En reduksjon i denne kostnaden (faktor 0.8) muliggjør et betydelig hopp i servicenivået, da modellen velger å holde mer bufferlager strategisk før sesongtopper.
+Barnebøker viser høyere sensitivitet for lagerholdskostnad. En reduksjon i denne kostnaden (faktor 0,8) muliggjør et betydelig hopp i servicenivået, da modellen velger å holde mer bufferlager strategisk før sesongtopper.
 
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Norske_barnebøker.png" style="width: 70%; height: auto;">
@@ -811,7 +811,7 @@ Barnebøker viser høyere sensitivitet for lagerholdskostnad. En reduksjon i den
 
 #### 8.2.3 Norsk krim
 
-Norsk krim fremstår som den mest stabile kategorien. Som vist i Figur 8.10, oppnår modellen et "metningspunkt" ved en sikkerhetsmarginfaktor på 1.2, hvor ytterligere lagerbeholdning ikke gir gevinst i servicenivå. Dette tyder på at de resterende manglene skyldes uforutsigbare sjokk som faller utenfor modellens rekkevidde gitt ledetiden.
+Norsk krim fremstår som den mest stabile kategorien. Som vist i Figur 8.10, oppnår modellen et "metningspunkt" ved en sikkerhetsmarginfaktor på 1,2, hvor ytterligere lagerbeholdning ikke gir gevinst i servicenivå. Dette tyder på at de resterende manglene skyldes uforutsigbare sjokk som faller utenfor modellens rekkevidde gitt ledetiden.
 
 <div align="center">
   <img src="../006%20analysis/figures/13_sensitivitet_kost_Norsk_krim.png" style="width: 70%; height: auto;">
@@ -925,7 +925,7 @@ Resultatene i kapittel 8 bekrefter dermed at modellen leverer på problemstillin
 
 **Gevinstens drivere er konsistent med kostnadsasymmetrien.** For *Norsk krim* (−38,10 %) og *Engelsk fiksjon* (−19,57 %) kommer besparelsen hovedsakelig fra en kraftig reduksjon i mangelkostnaden $C_s$, delvis på bekostning av en moderat økning i lagerholdskostnaden $C_h$ (jf. Figur 8.3 og 8.4). Dette er i tråd med den teoretiske forventningen i seksjon 3.3.3: når mangelkostnaden er vesentlig høyere enn lagerholdskostnaden — som er tilfellet i bokbransjen med permanent tapt salg (seksjon 1.4) — forskyves det optimale servicenivået oppover, og en dynamisk allokering av lager mot sesongtoppene blir lønnsom. Omfordelingen mellom $C_h$ og $C_s$ er altså ikke en bivirkning av modellen, men en rasjonell respons på asymmetrien mellom de to kostnadstypene.
 
-**Servicegraden øker samtidig som kostnadene faller.** At CSL for *Norsk krim* stiger fra 85,8 % til 91,5 % viser at gevinsten ikke hentes ut ved å akseptere flere stockouts, men ved at modellen bestiller mer presist når behovet faktisk oppstår. Dette er konsistent med Kirmizi et al. (2024) sitt poeng om at bedre prognoser reduserer residualvariansen $\sigma_d$ og dermed kravet til sikkerhetslager for et gitt servicenivå.
+**Servicegraden øker samtidig som kostnadene faller.** At CSL for *Norsk krim* stiger fra 85,8 % til 91,5 % viser at gevinsten ikke hentes ut ved å akseptere flere stockouts, men ved at modellen bestiller mer presist når behovet faktisk oppstår. Dette er konsistent med Kirmizi et al. (2024), som påpeker at bedre prognoser reduserer residualvariansen $\sigma_d$ og dermed kravet til sikkerhetslager for et gitt servicenivå.
 
 **Bias-korreksjonen er en undervurdert gevinstdriver.** Backtestingen i 6.5 avdekket systematisk skjevhet i to av tre kategorier: +15,96 for *Engelsk fiksjon* og −11,78 for *Norsk krim*. Korreksjonen anvendt i 8.3 var trolig et av de enkeltstående viktigste bidragene til besparelsen, særlig for *Norsk krim* der modellen ellers ville underbestilt systematisk i høysesong og spist opp store deler av den realiserte gevinsten.
 
@@ -937,15 +937,15 @@ Det mest overraskende funnet er at Prophet-modellen gir et *dårligere* resultat
 
 Barnebokkategorien kjennetegnes av svært regelmessige og forutsigbare sesongtopper (skolestart i august, jul i desember) og en marginalt negativ trend (−0,10 %) som i praksis kan betraktes som flat. I en slik kategori har en statisk baseline med fast sikkerhetsmargin en innebygget fordel: den "betaler" lite for å overdimensjonere lageret, og mønstrene som skal fanges opp er få og lett identifiserbare. Prophet-modellens dynamiske tilnærming, som søker å minimere lageret i lavsesong for deretter å bygge det opp før topper, blir mer sårbar for små timing-feil og usikkerhetsestimering rundt de korte, intensive toppene.
 
-Funnet plasserer seg godt i litteraturen: Borucka (2023) påpeker at valget av prognosemetode må tilpasses etterspørselsstrukturen, og Chen (2021) sitt arbeid om datadrevet lagerstyring under "shifting demand" hviler implisitt på at etterspørselen *faktisk* skifter. Når etterspørselen i stedet er tilnærmet stasjonær med stabil sesongstruktur — slik den er for *Norske barnebøker* — er det lite rom for en modell som er designet for å fange nettopp skift.
+Funnet plasserer seg godt i litteraturen: Borucka (2023) påpeker at valget av prognosemetode må tilpasses etterspørselsstrukturen, mens Chen (2021) studerer datadrevet lagerstyring under "shifting demand" — en kontekst som implisitt forutsetter at etterspørselen *faktisk* skifter. Når etterspørselen i stedet er tilnærmet stasjonær med stabil sesongstruktur — slik den er for *Norske barnebøker* — er det lite rom for en modell som er designet for å fange nettopp skift.
 
-Den praktiske implikasjonen er viktig: en "én-modell-passer-alle"-strategi ville her gitt 3 231 NOK i merkostnad for barnebøker som delvis nøytraliserer gevinsten i de to andre kategoriene. Et mer realistisk driftsregime er å la Prophet håndtere volatile eller trendbasert kategorier og beholde en enklere regelbasert (s, Q)-politikk for stabile kategorier. Dette er i tråd med Kirmizi et al. (2024) sitt argument om at hybridtilnærminger overgår enkeltmetoder.
+Den praktiske implikasjonen er viktig: en "én-modell-passer-alle"-strategi ville her gitt 3 231 NOK i merkostnad for barnebøker som delvis nøytraliserer gevinsten i de to andre kategoriene. Et mer realistisk driftsregime er å la Prophet håndtere volatile eller trendbasert kategorier og beholde en enklere regelbasert (s, Q)-politikk for stabile kategorier. Dette er i tråd med Kirmizi et al. (2024), som argumenterer for at hybridtilnærminger overgår enkeltmetoder.
 
 ### 9.3 Sammenheng med eksisterende litteratur
 
-Resultatene plasserer seg tydelig i det forskningslandskapet som ble kartlagt i kapittel 2. Goltsos et al. (2022) sitt hovedpoeng — at prognose- og lagerstyringsforskning har utviklet seg fragmentert — materialiserer seg konkret i dette prosjektet ved at *integrasjonen* (Prophet-prognose → bias-korreksjon → sikkerhetslager → bestillingspunkt) er der mesteparten av gevinsten skapes. En god prognose alene er ikke tilstrekkelig; den må konverteres til handlingsrettede bestillingsparametere for å gi verdi i drift.
+Resultatene plasserer seg tydelig i det forskningslandskapet som ble kartlagt i kapittel 2. Hovedpoenget hos Goltsos et al. (2022) — at prognose- og lagerstyringsforskning har utviklet seg fragmentert — materialiserer seg konkret i dette prosjektet ved at *integrasjonen* (Prophet-prognose → bias-korreksjon → sikkerhetslager → bestillingspunkt) er der mesteparten av gevinsten skapes. En god prognose alene er ikke tilstrekkelig; den må konverteres til handlingsrettede bestillingsparametere for å gi verdi i drift.
 
-Taylor og Letham (2018) sitt "analyst-in-the-loop"-paradigme manifesterer seg i den utvidede feature engineering-prosessen (6.1.4), der Z-score-basert kampanjeidentifisering ble brukt til å skille ordinær sesongvariasjon fra diskrete markedsføringssjokk. Uten dette skillet ville kampanjeeffektene blitt feilaktig absorbert i den årlige sesongkomponenten $s(t)$ og forplantet seg som systematiske overestimeringer i 2026-prognosen. Det er et konkret eksempel på at Prophets fleksibilitet er dobbeltkantet — den må temmes med domenekunnskap for å unngå overfitting til tilfeldige hendelser.
+"Analyst-in-the-loop"-paradigmet beskrevet av Taylor og Letham (2018) manifesterer seg i den utvidede feature engineering-prosessen (6.1.4), der Z-score-basert kampanjeidentifisering ble brukt til å skille ordinær sesongvariasjon fra diskrete markedsføringssjokk. Uten dette skillet ville kampanjeeffektene blitt feilaktig absorbert i den årlige sesongkomponenten $s(t)$ og forplantet seg som systematiske overestimeringer i 2026-prognosen. Det er et konkret eksempel på at Prophets fleksibilitet er dobbeltkantet — den må temmes med domenekunnskap for å unngå overfitting til tilfeldige hendelser.
 
 Haque et al. (2023) argumenterer for å inkludere eksterne makroøkonomiske variabler (KPI, forbrukertillit, arbeidsledighet) i prognosemodeller. Dette prosjektet har ikke inkludert slike variabler, men den eksplisitte modelleringen av helligdager og kampanjer ivaretar mye av den samme rollen — å gi modellen informasjon om eksogene sjokk som ikke følger av interne salgsmønstre. En naturlig videreutvikling er å teste om makrovariabler kan gi ytterligere forklaringskraft, særlig for *Engelsk fiksjon* der MAPE på 17,43 % indikerer at en vesentlig del av variansen fortsatt er uforklart.
 
@@ -1023,7 +1023,7 @@ Ensafi, Y., Amin, S. H., Zhang, G., & Shah, B. (2022). Time-series forecasting o
 
 Goltsos, T. E., Syntetos, A. A., Glock, C. H., & Ioannou, G. (2022). Inventory–forecasting: Mind the gap. *European Journal of Operational Research*, *299*(2), 397–419. https://doi.org/10.1016/j.ejor.2021.07.040
 
-Haque, M. S., Amin, M. S., & Miah, J. (2023). Retail demand forecasting: A comparative study for multivariate time series. *arXiv preprint arXiv:2308.11939*. https://arxiv.org/abs/2308.11939
+Haque, M. S., Amin, M. S., & Miah, J. (2023). *Retail demand forecasting: A comparative study for multivariate time series* (arXiv:2308.11939). arXiv. https://arxiv.org/abs/2308.11939
 
 Kirmizi, S. D., Ceylan, Z., & Bulkan, S. (2024). Enhancing inventory management through safety-stock strategies — A case study. *Systems*, *12*(7), 260. https://doi.org/10.3390/systems12070260
 
