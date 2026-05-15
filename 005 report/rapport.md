@@ -64,7 +64,7 @@ I tråd med Høgskolen i Moldes retningslinjer for ansvarlig bruk av KI-verktøy
 Studiepoeng: 30
 Veileder: Bård Inge Austigard Pettersen / Per Kristian Rekdal
 
-Jeg/vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering: [ ] ja [ ] nei
+Vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering: [ ] ja [ ] nei
 
 Er oppgaven båndlagt (konfidensiell)? [ ] ja [ ] nei
 
@@ -101,7 +101,7 @@ Dato: 28. mars 2026
   - [5.2 Data](#52-data) — s. _
 - [**6.0 Modellering**](#60-modellering) — s. _
   - [6.1 Prophet-modellen for etterspørselsprognosering](#61-prophet-modellen-for-etterspørselsprognosering) — s. _
-  - [6.2 Baseline](#62-baseline-løsning)[-løsning](#62-baseline-løsning) — s. _
+  - [6.2 Baseline-løsning](#62-baseline-løsning) — s. _
   - [6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)](#63-kvantitativ-bestillingsmodell-optimaliseringsmodell) — s. _
   - [6.4 Modellforutsetninger og antagelser](#64-modellforutsetninger-og-antagelser) — s. _
   - [6.5 Modellvalidering og Bias-justering (Backtesting)](#65-modellvalidering-og-bias-justering-backtesting) — s. _
@@ -710,7 +710,7 @@ Før modellen tas i bruk for fremtidige prognoser (2026), er den validert gjenno
 | **Norsk krim**         | 23,89 | 30,63 |  5,93 %  | -11,78 |
 | **Norske barnebøker** | 25,47 | 32,10 |  8,68 %  | +0,69 |
 
-Analysen viser at modellen for *Engelsk fiksjon* har en positiv bias (overestimering), mens *Norsk krim* har en negativ bias (underestimering). For å sikre optimale bestillinger i 2026, er det i aktivitet 3.10 implementert automatiske bias-korreksjoner som nøytraliserer disse systematiske feilene før bestillingsmengden beregnes.
+Analysen viser at modellen for *Engelsk fiksjon* har en positiv bias (overestimering), mens *Norsk krim* har en negativ bias (underestimering). For å sikre optimale bestillinger i 2026, er det i seksjon 8.3 implementert automatiske bias-korreksjoner som nøytraliserer disse systematiske feilene før bestillingsmengden beregnes.
 
 ---
 
@@ -981,7 +981,7 @@ Analysen har fem hovedbegrensninger som bør påvirke hvor sterkt resultatene ka
 
 **4. Tilsynelatende motsetning mellom stasjonaritetstester og visuell sesongstruktur:** ADF- og KPSS-testene i 6.4.1 indikerer at alle tre serier er stasjonære, mens komponentanalysene i Figur 6.1–6.3 viser tydelige periodiske svingninger. Dette er ikke en selvmotsigelse — testene måler om serien svinger rundt et stabilt gjennomsnitt, ikke om den er fri for sesongstruktur — men det innebærer at tradisjonelle modeller som SARIMA i prinsippet kunne vært anvendt. Valget av Prophet er begrunnet praktisk i 6.1.5, men en komparativ evaluering mot SARIMAX er et naturlig neste steg for å kvantifisere hvor mye Prophet faktisk tilfører.
 
-**5. Bias-korreksjon som potensielt overfit:** Bias-justeringen i 3.10 er estimert på 2025-testdataene og applisert på 2026-prognosen. Dersom bias ikke er konstant over tid — noe som er sannsynlig i en kategori med skiftende trend som *Norsk krim* — vil korreksjonen delvis være en overtilpasning til testperioden. En mer robust tilnærming er rullerende backtesting som kan fange endringer i bias over tid, og som bør vurderes ved operativ implementering.
+**5. Bias-korreksjon som potensielt overfit:** Bias-justeringen i 8.3 er estimert på 2025-testdataene og applisert på 2026-prognosen. Dersom bias ikke er konstant over tid — noe som er sannsynlig i en kategori med skiftende trend som *Norsk krim* — vil korreksjonen delvis være en overtilpasning til testperioden. En mer robust tilnærming er rullerende backtesting som kan fange endringer i bias over tid, og som bør vurderes ved operativ implementering.
 
 ### 9.6 Implikasjoner for næringslivet og ARKs driftspraksis
 
