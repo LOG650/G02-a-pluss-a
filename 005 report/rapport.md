@@ -30,12 +30,12 @@ Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte 
 
 ### Personvern
 
-Har oppgaven vært vurdert av NSD? [ ] ja [ ] nei
+Har oppgaven vært vurdert av NSD (Norsk senter for forskningsdata)? [ ] ja [ ] nei
 
 - Hvis ja: Referansenummer:      
 - Hvis nei: Vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: [x]
 
-Har oppgaven vært til behandling hos REK? [ ] ja [ ] nei
+Har oppgaven vært til behandling hos REK (Regionale komiteer for medisinsk og helsefaglig forskningsetikk)? [ ] ja [ ] nei
 
 - Hvis ja: Referansenummer:      
 
@@ -178,7 +178,7 @@ Litteraturen som danner grunnlaget for denne rapporten spenner fra klassiske teo
 
 Park et al. (2020) belyser utfordringene med etterspørselsprognosering spesifikt for forlags- og bokbransjen. De understreker viktigheten av å identifisere faktorer som påvirker salgsvolum for å redusere svinn og lagerholdskostnader, og viser hvordan maskinlæringsmodeller kan fange opp komplekse mønstre som tradisjonelle metoder ofte overser. Luo (2019) diskuterer i forlengelsen av dette hvordan tradisjonelle bokhandler må reformeres gjennom nye styringssystemer som utnytter stordata og nettskybaserte løsninger for å holde tritt med markedsendringer.
 
-Taylor og Letham (2018) introduserer Prophet-modellen, en modulær additiv tidsseriemodell designet for prognosering «i stor skala». Modellen dekomponerer tidsserien i trend, sesongvariasjon og helligdagseffekter, og er utviklet for å gi intuitive parametere som analytikere uten spesialisert statistisk bakgrunn kan justere. Modellens evne til å håndtere manglende data, uteliggere og trendskift automatisk gjør den særlig egnet for detaljhandelsdata med uregelmessige sesongmønstre — som er tilfellet for ARK Bokhandel. Ensafi et al. (2022) gir nyere empirisk støtte til dette valget: i en komparativ analyse av SARIMA, eksponensiell utjevning, Prophet, LSTM og CNN på sesongbasert detaljsalg viste Prophet og LSTM høyest treffsikkerhet, og Prophet ble anbefalt som den mest kostnadseffektive løsningen for operativ bruk.
+Taylor og Letham (2018) introduserer Prophet-modellen, en modulær additiv tidsseriemodell designet for prognosering «i stor skala». Modellen dekomponerer tidsserien i trend, sesongvariasjon og helligdagseffekter, og er utviklet for å gi intuitive parametere som analytikere uten spesialisert statistisk bakgrunn kan justere. Modellens evne til å håndtere manglende data, uteliggere og trendskift automatisk gjør den særlig egnet for detaljhandelsdata med uregelmessige sesongmønstre — som er tilfellet for ARK Bokhandel. Ensafi et al. (2022) gir nyere empirisk støtte til dette valget: i en komparativ analyse av SARIMA (Seasonal AutoRegressive Integrated Moving Average), eksponensiell utjevning, Prophet, LSTM (Long Short-Term Memory) og CNN (Convolutional Neural Network) på sesongbasert detaljsalg viste Prophet og LSTM høyest treffsikkerhet, og Prophet ble anbefalt som den mest kostnadseffektive løsningen for operativ bruk.
 
 Haque et al. (2023) gjennomfører en komparativ studie av ulike prognosemodeller for etterspørsel i detaljhandelen, inkludert regresjonsmodeller og maskinlæringsmetoder. Et sentralt bidrag er inkluderingen av makroøkonomiske variabler — som konsumprisindeks (KPI), forbrukertillitsindeks og arbeidsledighetsrate — som forklaringsvariabler i tillegg til historiske salgsdata. Deres funn viser at modeller som kombinerer tidsseriedata med eksterne faktorer gir bedre prognosenøyaktighet, noe som støtter tilnærmingen i dette prosjektet der sesong- og helligdagseffekter inkluderes eksplisitt i Prophet-modellen. Borucka (2023) sammenligner matematiske metoder for kortsiktig etterspørselsprognosering for produkter med sterke sesongvariasjoner og utviklingstrender. Studien viser at valg av prognosemetode har direkte konsekvenser for forsyningskjeden, og at sesongbaserte metoder gir et vesentlig bedre beslutningsgrunnlag enn enkle gjennomsnitt. Denne innsikten er direkte overførbar til ARK Bokhandels situasjon, der sesongsvingningene er en av de største utfordringene for lagerstyring.
 
@@ -186,15 +186,15 @@ Haque et al. (2023) gjennomfører en komparativ studie av ulike prognosemodeller
 
 Lewis (1997) gir et klassisk rammeverk for sammenhengen mellom etterspørselsprognoser og lagerstyring. Han skiller mellom ulike typer etterspørsel (stasjonær, sesongavhengig, trendbasert) og hvordan disse krever ulike kontrollstrategier. Chen (2021) bygger videre på dette i en moderne kontekst ved å studere datadrevet lagerstyring i miljøer med «shifting demand». Hans arbeid er særlig relevant for dette prosjektet, da det adresserer situasjoner hvor etterspørselsfordelingen endres over tid — noe som er typisk for sesongvarene hos ARK Bokhandel.
 
-Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet mellom etterspørselsprognoser og lagerstyring, og påpeker at de to forskningsfeltene i stor grad har utviklet seg fragmentert. Prognosestudier ignorerer ofte de nedstrøms konsekvensene for lagerbeslutninger, mens lagermodeller gjerne forutsetter at etterspørselen er kjent. Forfatterne foreslår et integrasjonsrammeverk som binder de to disiplinene sammen. Denne innsikten er bærende for strukturen i vårt prosjekt, som eksplisitt kobler Prophet-prognoser til bestillingsparametere som bestillingspunkt (ROP), sikkerhetslager og servicegrad.
+Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet mellom etterspørselsprognoser og lagerstyring, og påpeker at de to forskningsfeltene i stor grad har utviklet seg fragmentert. Prognosestudier ignorerer ofte de nedstrøms konsekvensene for lagerbeslutninger, mens lagermodeller gjerne forutsetter at etterspørselen er kjent. Forfatterne foreslår et integrasjonsrammeverk som binder de to disiplinene sammen. Denne innsikten er bærende for strukturen i vårt prosjekt, som eksplisitt kobler Prophet-prognoser til bestillingsparametere som bestillingspunkt (Reorder Point, ROP), sikkerhetslager og servicegrad.
 
-Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
+Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller (Economic Order Quantity) og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
 
 ### Sammenliknende styrker og svakheter ved modellene
 
 For å plassere prosjektets metodevalg i et kritisk perspektiv vurderes her styrker og svakheter ved de sentrale modellgruppene som litteraturen omtaler.
 
-**Klassiske statistiske tidsseriemodeller (SARIMA, eksponensiell utjevning):** Sterk teoretisk forankring, tolkbare parametere og god prognosenøyaktighet når serien er tilnærmet stasjonær og residualene viser tydelig autokorrelasjonsstruktur. Svakhetene er kravet til omfattende pre-prosessering (differensiering, log-transformering), sårbarhet for uteliggere, og at additive sjokk som kampanjer og bevegelige helligdager må håndteres via SARIMAX med eksterne regressorer (Taylor & Letham, 2018).
+**Klassiske statistiske tidsseriemodeller (SARIMA, eksponensiell utjevning):** Sterk teoretisk forankring, tolkbare parametere og god prognosenøyaktighet når serien er tilnærmet stasjonær og residualene viser tydelig autokorrelasjonsstruktur. Svakhetene er kravet til omfattende pre-prosessering (differensiering, log-transformering), sårbarhet for uteliggere, og at additive sjokk som kampanjer og bevegelige helligdager må håndteres via SARIMAX (SARIMA utvidet med eksogene regressorer) (Taylor & Letham, 2018).
 
 **Additive modeller (Prophet):** Eksplisitt dekomponering i trend, sesong og helligdager, robusthet mot manglende observasjoner og et intuitivt parameterapparat som muliggjør "analyst-in-the-loop"-justering. Svakhetene er at modellen ikke modellerer korttidsavhengigheter (autokorrelasjon) eksplisitt, kan overtilpasse flate kategorier med stabile mønstre (jf. drøftingen av *Norske barnebøker* i kapittel 9), og krever ekstra arbeid for å integrere eksogene kovariater.
 
@@ -206,13 +206,13 @@ Avveiningen i dette prosjektet er gjort ut fra ARKs operative kontekst: tolkbarh
 
 ### Oppsummering og kunnskapsgap
 
-Samlet sett viser litteraturen en bevegelse fra klassiske analytiske modeller (Lewis, 1997; Adeyemi & Onanuga, 2014) mot datadrevne og maskinlæringsbaserte tilnærminger (Taylor & Letham, 2018; Ensafi et al., 2022; Haque et al., 2023; Borucka, 2023). En nyere systematisk gjennomgang av 119 ML- og DL-baserte prognosestudier i forsyningskjeden (Douaioui et al., 2024) bekrefter at feltet de siste fem årene domineres av modeller som integrerer eksogene variabler og eksplisitte sesongkomponenter — i tråd med tilnærmingen i dette prosjektet. Samtidig avdekkes det et vedvarende gap mellom prognoseforskning og lagerstyringsforskning (Goltsos et al., 2022). Dette prosjektet søker å adressere dette gapet ved å integrere en moderne prognosemodell (Prophet) direkte med kvantitative bestillingsbeslutninger for ARK Bokhandel AS, og dermed binde prognosekvalitet til konkrete lagerstyringsbeslutninger i en kontekst preget av sterke sesongvariasjoner.
+Samlet sett viser litteraturen en bevegelse fra klassiske analytiske modeller (Lewis, 1997; Adeyemi & Onanuga, 2014) mot datadrevne og maskinlæringsbaserte tilnærminger (Taylor & Letham, 2018; Ensafi et al., 2022; Haque et al., 2023; Borucka, 2023). En nyere systematisk gjennomgang av 119 maskinlærings- (ML) og dyplærings- (DL) baserte prognosestudier i forsyningskjeden (Douaioui et al., 2024) bekrefter at feltet de siste fem årene domineres av modeller som integrerer eksogene variabler og eksplisitte sesongkomponenter — i tråd med tilnærmingen i dette prosjektet. Samtidig avdekkes det et vedvarende gap mellom prognoseforskning og lagerstyringsforskning (Goltsos et al., 2022). Dette prosjektet søker å adressere dette gapet ved å integrere en moderne prognosemodell (Prophet) direkte med kvantitative bestillingsbeslutninger for ARK Bokhandel AS, og dermed binde prognosekvalitet til konkrete lagerstyringsbeslutninger i en kontekst preget av sterke sesongvariasjoner.
 
 ---
 
 ## 3.0 Teori
 
-For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og trender, kreves teorier som kan dekomponere tidsserier. Tradisjonelle modeller som SARIMA (Seasonal AutoRegressive Integrated Moving Average) krever stasjonære data og ofte manuell parameterinnstilling, noe som kan være utfordrende med data preget av kraftige salgstopper og uregelmessige hendelser.
+For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og trender, kreves teorier som kan dekomponere tidsserier. Tradisjonelle modeller som SARIMA krever stasjonære data og ofte manuell parameterinnstilling, noe som kan være utfordrende med data preget av kraftige salgstopper og uregelmessige hendelser.
 
 ### 3.1 Stasjonaritet og differensiering
 
@@ -350,7 +350,7 @@ Som vist i Figur 4.1 og 4.2, oppstår de mest kritiske situasjonene i de faste s
   <em>Figur 4.4: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene som utgjør kjernen i denne analysen.</em>
 </div>
 
-Siden direkte tilgang til ARKs interne ERP-data ikke var tilgjengelig for dette prosjektet, benyttes et simulert datasett som er designet for å etterligne disse spesifikke markedsforholdene. Modelleringen vil ta hensyn til kostnadsparametere som lagerhold og mangelkostnader for å identifisere den mest lønnsomme bestillingsstrategien.
+Siden direkte tilgang til ARKs interne ERP-data (Enterprise Resource Planning) ikke var tilgjengelig for dette prosjektet, benyttes et simulert datasett som er designet for å etterligne disse spesifikke markedsforholdene. Modelleringen vil ta hensyn til kostnadsparametere som lagerhold og mangelkostnader for å identifisere den mest lønnsomme bestillingsstrategien.
 
 ---
 
@@ -408,7 +408,7 @@ De tre bokkategoriene er valgt fordi de representerer ulike markedsdynamikker, n
 Bruken av et simulert datagrunnlag er en bevisst metodisk avveining. Styrken er at vi kjenner det sanne underliggende signalet (sesong, trend, støy) og dermed kan måle hvor godt modellen rekonstruerer det — et eksperiment som er vanskelig å gjennomføre på reelle ERP-data hvor det ikke finnes en kjent "fasit". Samtidig er kontrollen også en begrensning: simulerte data fanger ikke opp den uregelmessige støyen i reelle driftsdata, som leverandørforsinkelser, kampanjeeffekter utenfor vår parameterisering, makroøkonomiske skift, registreringsfeil eller plutselige BookTok-drevne etterspørselssjokk. Inkonsistenser oppdaget under datavasking (datoformater, manglende verdier) er håndtert for å sikre et konsistent analysegrunnlag. Implikasjonen er at modellen testes under kontrollerte betingelser, og overførbarheten av resultatene til ARKs faktiske drift må derfor vurderes med forsiktighet. Denne begrensningen diskuteres mer inngående i kapittel 9.
 
 **Datapreparering og validering:**
-Valideringsstrategien har to ledd som henger sammen. Først splittes datasettet kronologisk i en treningsdel (80 %, ca. 2021–2024) og en testdel (20 %, ca. 2025), slik at modellen kan evalueres på data den ikke har sett under trening. Treningssettet brukes til å estimere Prophet-modellens parametere, mens testsettet brukes til *backtesting* — en empirisk sammenligning av predikert mot faktisk etterspørsel i 2025. Backtestingen tjener to formål: (1) den kvantifiserer modellens treffsikkerhet (MAE, RMSE, MAPE), og (2) den identifiserer eventuell systematisk skjevhet (bias) per kategori, som korrigeres før prognosene mates inn i bestillingsmodellen for 2026. Selve resultatene av backtestingen og den påfølgende bias-justeringen presenteres i 6.5.
+Valideringsstrategien har to ledd som henger sammen. Først splittes datasettet kronologisk i en treningsdel (80 %, ca. 2021–2024) og en testdel (20 %, ca. 2025), slik at modellen kan evalueres på data den ikke har sett under trening. Treningssettet brukes til å estimere Prophet-modellens parametere, mens testsettet brukes til *backtesting* — en empirisk sammenligning av predikert mot faktisk etterspørsel i 2025. Backtestingen tjener to formål: (1) den kvantifiserer modellens treffsikkerhet (Mean Absolute Error (MAE), Root Mean Squared Error (RMSE) og Mean Absolute Percentage Error (MAPE)), og (2) den identifiserer eventuell systematisk skjevhet (bias) per kategori, som korrigeres før prognosene mates inn i bestillingsmodellen for 2026. Selve resultatene av backtestingen og den påfølgende bias-justeringen presenteres i 6.5.
 
 **Oppsummering — datagrunnlag vs. antagelser:**
 
@@ -537,11 +537,11 @@ Resultatet av denne dekomponeringen er visualisert i Figur 6.1, 6.2 og 6.3:
 
 #### 6.1.5 Valg av Prophet fremfor SARIMA
 
-Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering opp mot den tradisjonelle SARIMA-modellen (Seasonal AutoRegressive Integrated Moving Average). Selv om begge modellene er stokastiske og kan håndtere sesongvariasjoner, anses Prophet som et mer naturlig valg for denne typen logistikkprosjekt av følgende årsaker:
+Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering opp mot den tradisjonelle SARIMA-modellen. Selv om begge modellene er stokastiske og kan håndtere sesongvariasjoner, anses Prophet som et mer naturlig valg for denne typen logistikkprosjekt av følgende årsaker:
 
 1. **Håndtering av flere sesongmønstre og helligdager:** Bokbransjen preges av komplekse kalendereffekter, som "bevegelige" helligdager (påske) og faste salgstopper (jul, skolestart). Prophet inkluderer en dedikert komponent for helligdager ($h(t)$) som enkelt fanger opp disse additive sjokkene. I en SARIMA-modell ville dette krevd omfattende bruk av eksterne variabler (SARIMAX) og manuell koding av datoer.
 2. **Robusthet mot ikke-stasjonaritet:** SARIMA krever streng stasjonaritet, noe som ofte fordrer flere runder med differensiering og statistisk testing for å transformere dataene. Prophet er en additiv modell som håndterer trender og sesongvariasjoner internt uten behov for omfattende pre-prosessering, noe som reduserer risikoen for feil ved modellspesifisering.
-3. **Praktisk tolkbarhet:** Prophet dekomponerer tidsserien i visuelle komponenter (trend, årstid, helligdager). Dette gir et langt mer intuitivt beslutningsgrunnlag for en logistikkansvarlig enn de mer abstrakte matematiske parameterne i en SARIMA-modell (AR- og MA-ordener).
+3. **Praktisk tolkbarhet:** Prophet dekomponerer tidsserien i visuelle komponenter (trend, årstid, helligdager). Dette gir et langt mer intuitivt beslutningsgrunnlag for en logistikkansvarlig enn de mer abstrakte matematiske parameterne i en SARIMA-modell (AR- (autoregressive) og MA- (moving average) ordener).
 4. **Håndtering av uregelmessige data:** Prophet er robust mot manglende observasjoner og store uteliggere, noe som ofte forekommer i reelle salgsdata fra ERP-systemer.
 
 Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
@@ -565,11 +565,11 @@ Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabe
 | **Norske barnebøker** |          -0,10 %          |       105,3 enheter       |
 | **Norsk krim**         |          +12,70 %          |       114,8 enheter       |
 
-Full dokumentasjon av basisversjonen av Prophet-modellen, inkludert komponentfigurer for alle tre kategorier, finnes i `006 analysis/milestones/M5 - Kvantitativ analyse/3.5 kvantitativ modell/3.5_Kvantitativ_Modell.md`. Implementasjonen ligger i `004 data/python_skript/prophet_analysis.py`.
+Komponentfigurene for alle tre kategorier er presentert i Figur 6.1–6.4. Implementasjonen av basisversjonen av Prophet-modellen er dokumentert i vedlegg B.
 
 ### 6.2 Baseline-løsning
 
-Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (`train_data.csv`). Parameterne beregnes kategorivis som:
+Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (jf. seksjon 5.2 og vedlegg D). Parameterne beregnes kategorivis som:
 
 - **Forventet etterspørsel:** $\hat{D} = \frac{1}{n} \sum_{i=1}^{n} D_i$ (historisk månedssnitt).
 - **Bestillingspunkt:** $s = \hat{D} \cdot \bar{L} \cdot 1{,}10$, hvor $\bar{L}$ er gjennomsnittlig ledetid omregnet til måneder og 10 % er en fast sikkerhetsmargin.
@@ -609,7 +609,7 @@ For **Norsk krim** (Figur 6.5c) er ubalansen mest ekstrem: $Q = 365$ ligger unde
   <em>Figur 6.5c: Baseline (s, Q)-sykel for Norsk krim.</em>
 </div>
 
-Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen ligger i `004 data/python_skript/baseline_vs_optimization.py`, som kjører simuleringen og genererer Figur 6.5a–6.5c for alle tre kategorier.
+Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen som genererer Figur 6.5a–6.5c for alle tre kategorier, er dokumentert i vedlegg B.
 
 ### 6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)
 
@@ -653,9 +653,9 @@ For å sikre modellens validitet og tolkbarhet er følgende forutsetninger lagt 
 
 #### 6.4.1 Stasjonaritet og trendhåndtering
 
-I motsetning til tradisjonelle tidsseriemodeller (som ARIMA), forutsetter ikke Prophet at dataene er stasjonære. Modellen håndterer ikke-stasjonaritet ved å modellere trenden som en stykkevis lineær funksjon.
+I motsetning til tradisjonelle tidsseriemodeller (som ARIMA — AutoRegressive Integrated Moving Average), forutsetter ikke Prophet at dataene er stasjonære. Modellen håndterer ikke-stasjonaritet ved å modellere trenden som en stykkevis lineær funksjon.
 
-For å dokumentere serienes egenskaper er det gjennomført både en **Augmented Dickey-Fuller (ADF) test** og en **KPSS-test** på etterspørselsdataene for de tre kategoriene. Resultatene er gjengitt i tabellen under:
+For å dokumentere serienes egenskaper er det gjennomført både en **Augmented Dickey-Fuller (ADF) test** og en **Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test** på etterspørselsdataene for de tre kategoriene. Resultatene er gjengitt i tabellen under:
 
 | Kategori                     | ADF p-verdi | KPSS p-verdi | ADF Konklusjon | KPSS Konklusjon | Samlet Vurdering      |
 | :--------------------------- | :---------: | :----------: | :------------- | :-------------- | :-------------------- |
@@ -720,7 +720,7 @@ Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å
 
 ## 8.0 Resultat
 
-Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-baserte modellen mot baseline-løsningen over testperioden. Den samlede analysepakken (forecast vs. actual, residualer og kostnadsfordeling for alle tre kategorier) er dokumentert i `006 analysis/milestones/M5 - Kvantitativ analyse/3.6 analysepakke/3.6_Analysepakke.md`, og figurene er generert av `004 data/python_skript/generate_m6_visualisations.py`.
+Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-baserte modellen mot baseline-løsningen over testperioden. Den samlede analysepakken (forecast vs. actual, residualer og kostnadsfordeling for alle tre kategorier) presenteres i seksjon 8.1.1–8.1.3 nedenfor; det tilhørende analyseskriptet er gjengitt i vedlegg C.
 
 | Kategori                     |   Kostnad Baseline   |    Kostnad Prophet    |  Besparelse (%)  |   SL Baseline   |    SL Prophet    |
 | :--------------------------- | :-------------------: | :-------------------: | :---------------: | :--------------: | :--------------: |
@@ -775,7 +775,7 @@ For Norske barnebøker gir Prophet-modellen et negativt resultat (−7,86 %), ti
 
 ### 8.2 Sensitivitetsanalyse og robusthet
 
-For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere (stockout-kostnad $C_s$, lagerholdskostnad $C_h$ og sikkerhetsmarginfaktor) varieres én om gangen rundt basisverdien. Den fullstendige analysen – med metodikk, nøkkelfunn per kategori og eksplisitte koblinger til 3.5, 3.6, 3.10 og 3.12 – er dokumentert i `006 analysis/milestones/M5 - Kvantitativ analyse/3.7 sensitivitetsanalyse/3.7_Sensitivitetsanalyse.md`, og figurene (jf. Figur 8.5–8.10) er generert av `004 data/python_skript/sensitivity_analysis.py`. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
+For å vurdere modellens pålitelighet er det gjennomført en sensitivitetsanalyse hvor sentrale parametere (stockout-kostnad $C_s$, lagerholdskostnad $C_h$ og sikkerhetsmarginfaktor) varieres én om gangen rundt basisverdien. Metodikk og kategorivise nøkkelfunn presenteres i seksjon 8.2.1–8.2.3 nedenfor, med tilhørende figurer i Figur 8.5–8.10. Dette er avgjørende for å forstå hvordan modellen håndterer usikkerhet i kostnadsestimater og operasjonelle marginer.
 
 #### 8.2.1 Engelsk fiksjon
 

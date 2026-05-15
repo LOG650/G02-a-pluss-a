@@ -180,7 +180,40 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
   **Beholdt med forbehold:**
   - "forecast vs. actual" på linje 723 er beholdt fordi det refererer eksplisitt til en analysepakke-filsti og PNG-filnavn (`10_forecast_vs_actual_*.png`), ikke bruk av engelsk i selvstendig brødtekst.
   - "shifting demand" er beholdt i sitater fordi det refererer til Chen (2021) som bruker dette som teknisk term i originaltittelen.
-- [ ] **Forklar alle forkortelser ved første forekomst.** Gå gjennom rapporten og legg til full betegnelse første gang en forkortelse brukes (EOQ, MAPE, ADF osv.).
-- [ ] **Vurder/fjern interne filhenvisninger.** Henvisninger til interne filer virker lite akademiske – erstatt dem med referanser til vedlegg eller fjern dem.
+- [x] **Forklar alle forkortelser ved første forekomst.** ~~Gå gjennom rapporten og legg til full betegnelse første gang en forkortelse brukes (EOQ, MAPE, ADF osv.).~~ Gjort: Auditert alle forkortelser i `rapport.md`. ADF (linje 229), CSL (linje 287), KI (linje 42) og KPI (linje 183) var allerede forklart ved første forekomst. Lagt til full betegnelse ved første forekomst for:
+
+  - **NSD** → "Norsk senter for forskningsdata" (linje 33, front matter)
+  - **REK** → "Regionale komiteer for medisinsk og helsefaglig forskningsetikk" (linje 38, front matter)
+  - **SARIMA** → "Seasonal AutoRegressive Integrated Moving Average" (linje 181, kap. 2 — første forekomst). Dupliserte ekspansjoner i 3.0 (linje 215) og 6.1.5 (linje 540) fjernet.
+  - **LSTM** → "Long Short-Term Memory" (linje 181)
+  - **CNN** → "Convolutional Neural Network" (linje 181)
+  - **ROP** → "Reorder Point" (linje 189, første forekomst i kap. 2 — flyttet definisjonen frem fra 3.3.1)
+  - **EOQ** → "Economic Order Quantity" (linje 191)
+  - **SARIMAX** → "SARIMA utvidet med eksogene regressorer" (linje 197). Erstattet redundant "med eksterne regressorer".
+  - **ML** → "maskinlæring" / **DL** → "dyplæring" (linje 209)
+  - **ERP** → "Enterprise Resource Planning" (linje 353, første forekomst i kap. 4)
+  - **MAE** → "Mean Absolute Error", **RMSE** → "Root Mean Squared Error", **MAPE** → "Mean Absolute Percentage Error" (linje 411, første forekomst i kap. 5.2)
+  - **AR** → "autoregressive" / **MA** → "moving average" (linje 544, 6.1.5 — eksplisitt parentetisk ekspansjon ved første standalone bruk)
+  - **ARIMA** → "AutoRegressive Integrated Moving Average" (linje 656, 6.4.1)
+  - **KPSS** → "Kwiatkowski-Phillips-Schmidt-Shin" (linje 658, 6.4.1)
+
+  **Ikke forklart (vurdert som ikke nødvendig):** BookTok (egennavn på sosialt medie-fenomen, ikke akronym); $C_h$/$C_s$ (matematiske symboler definert med engelsk parentes "holding cost"/"stockout cost" der de introduseres i 6.3, ikke akronymer); ISBN (linje 153, etablert internasjonalt standardakronym i bokbransjen — ikke forklart).
+- [x] **Vurder/fjern interne filhenvisninger.** ~~Henvisninger til interne filer virker lite akademiske – erstatt dem med referanser til vedlegg eller fjern dem.~~ Gjort: Identifiserte fem inntekst-henvisninger til milestone-dokumenter og Python-skript i kap. 6–8 (linje 568, 572, 612, 723, 778). Alle er nå enten erstattet med vedleggsreferanse eller fjernet:
+
+  **Endringer:**
+
+  1. **Linje 568 (slutt av 6.1):** Sletning av "Full dokumentasjon … finnes i `006 analysis/milestones/M5 …/3.5_Kvantitativ_Modell.md`. Implementasjonen ligger i `004 data/python_skript/prophet_analysis.py`." → "Komponentfigurene for alle tre kategorier er presentert i Figur 6.1–6.4. Implementasjonen av basisversjonen av Prophet-modellen er dokumentert i vedlegg B."
+
+  2. **Linje 572 (6.2):** Erstattet "fra treningsdatasettet (`train_data.csv`)" → "fra treningsdatasettet (jf. seksjon 5.2 og vedlegg D)".
+
+  3. **Linje 612 (slutt av 6.2):** Erstattet "Implementasjonen ligger i `004 data/python_skript/baseline_vs_optimization.py`, som kjører simuleringen og genererer Figur 6.5a–6.5c …" → "Implementasjonen som genererer Figur 6.5a–6.5c for alle tre kategorier, er dokumentert i vedlegg B."
+
+  4. **Linje 723 (åpning av kap. 8):** Erstattet "…dokumentert i `006 analysis/milestones/M5 …/3.6_Analysepakke.md`, og figurene er generert av `004 data/python_skript/generate_m6_visualisations.py`." → "…presenteres i seksjon 8.1.1–8.1.3 nedenfor; det tilhørende analyseskriptet er gjengitt i vedlegg C."
+
+  5. **Linje 778 (åpning av 8.2):** Fjernet både milestone-stien og de interne milestone-seksjonsreferansene "(3.5, 3.6, 3.10 og 3.12)" som ikke matchet rapportens egne kapittelnumre. Erstattet med ren rapport-intern krysshenvisning: "Metodikk og kategorivise nøkkelfunn presenteres i seksjon 8.2.1–8.2.3 nedenfor, med tilhørende figurer i Figur 8.5–8.10."
+
+  **Beholdt med begrunnelse:** Vedleggslisten i kap. 12 (linje 1044–1047) nevner spesifikke filnavn (`vask_og_strukturer.py`, `final_simulation.py`, `generate_m6_visualisations.py`, `master_data_vasket.csv`) i parentes. Disse er beholdt som de er, fordi de utgjør den kanoniske vedleggsmerkingen — det er nettopp her interne filer hører hjemme i en akademisk rapport, ikke i brødteksten.
+
+  **Verifisering:** Grep etter `\.py`, `\.csv`, `\.md\`` og mappestier (`004 data/`, `006 analysis/`, `python_skript/`) i `rapport.md` returnerer nå kun de fire vedleggsoppføringene på linje 1044–1047.
 - [ ] **Standardiser figurer og tabeller.** Lik formatering, fontstørrelse, fargepalett og figurtekst på tvers av rapporten (jf. malen i CLAUDE.md: midtstilt, `width: 70%`, kursiv figurtekst).
 - [ ] **Bryt opp teksttunge avsnitt.** Identifiser særlig tunge passasjer (kap. 3 og 6) og del dem opp med lister, figurer eller mellomtitler.
