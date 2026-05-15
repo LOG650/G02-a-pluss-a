@@ -325,13 +325,13 @@ Casen fokuserer på tre spesifikke kategorier:
 Utfordringene knyttet til disse sesongvariasjonene er tydelige når vi analyserer det historiske forholdet mellom etterspørsel og faktisk tilgjengelighet for ARK:
 
 <div align="center">
-  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" alt="Figur 4.1: Etterspørsel, salg og lager" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/01_ettersporsel_salg_lager.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 4.1: Sammenheng mellom etterspørsel, faktisk salg og lagerbeholdning over tid, aggregert på tvers av de tre kategoriene (Norske barnebøker, Norsk krim og Engelsk fiksjon). Legg merke til gapet mellom etterspørsel og salg i toppene.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" alt="Figur 4.2: Stockouts over tid" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/02_stockouts_over_tid.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 4.2: Oversikt over perioder der etterspørselen ikke kunne dekkes av tilgjengelig lager (stockouts), aggregert på tvers av de tre kategoriene.</em>
 </div>
@@ -339,13 +339,13 @@ Utfordringene knyttet til disse sesongvariasjonene er tydelige når vi analysere
 Som vist i Figur 4.1 og 4.2, oppstår de mest kritiske situasjonene i de faste salgstoppene gjennom året. Dette mønsteret gjentas på tvers av kategoriene, men med ulik timing og intensitet, noe som krever en modell som kan fange opp disse mønstrene:
 
 <div align="center">
-  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" alt="Figur 4.3: Gjennomsnittlig salg fordelt på måneder" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/08_gjennomsnittlig_salg_per_maaned.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 4.3: Gjennomsnittlig salg fordelt på måneder for å identifisere faste sesongsvingninger i casen.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" alt="Figur 4.4: Sesongvariasjoner salg" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/09_sesongvariasjoner_salg.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 4.4: Detaljert sammenligning av sesongmønstre på tvers av de tre kategoriene som utgjør kjernen i denne analysen.</em>
 </div>
@@ -427,25 +427,25 @@ For å gjøre skillet mellom det simulerte datagrunnlaget og antagelsene som lig
 **Beskrivelse av datagrunnlaget og tekniske visualiseringer:**
 
 <div align="center">
-  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" alt="Figur 5.1: Kategorifordeling totalt" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/03_kategori_fordeling_total.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 5.1: Fordeling av salgsvolum per kategori i det benyttede datasettet.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" alt="Figur 5.2: Kostnads-tradeoff" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/04_kostnads_tradeoff.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 5.2: Teknisk analyse av forholdet mellom lagerholdskostnader og mangelkostnader.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" alt="Figur 5.3: Svinn total oversikt" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/05_svinn_total_oversikt.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 5.3: Total oversikt over registrert svinn i datagrunnlaget.</em>
 </div>
 
 <div align="center">
-  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" alt="Figur 5.4: Totalt salg per år" style="width: 70%; height: auto;">
+  <img src="../006%20analysis/figures/07_totalt_salg_per_aar.png" style="width: 70%; height: auto;">
   <br>
   <em>Figur 5.4: Utvikling i totalt salgsvolum per år i treningsdataene.</em>
 </div>
@@ -843,11 +843,11 @@ Som det siste steget i den kvantitative analysen er det generert endelige etters
 
 Tabellen nedenfor viser de forventede gjennomsnittlige verdiene per måned for 2026, som danner grunnlaget for ARKs taktiske lagerplanlegging:
 
-| Kategori           | Justert etterspørsel (snitt) | Sikkerhetslager (snitt) | Bestillingspunkt (snitt) |
-| :----------------- | :---------------------------: | :---------------------: | :----------------------: |
-| Engelsk fiksjon    |            283,82            |          75,60          |          359,42          |
-| Norsk krim         |            418,90            |          35,10          |          454,00          |
-| Norske barnebøker |            290,59            |          30,26          |          320,85          |
+| Kategori                     | Justert etterspørsel (snitt) | Sikkerhetslager (snitt) | Bestillingspunkt (snitt) |
+| :--------------------------- | :---------------------------: | :---------------------: | :----------------------: |
+| **Engelsk fiksjon**    |            283,82            |          75,60          |          359,42          |
+| **Norsk krim**         |            418,90            |          35,10          |          454,00          |
+| **Norske barnebøker** |            290,59            |          30,26          |          320,85          |
 
 Sikkerhetslageret er beregnet ved å estimere prognosens standardavvik fra Prophets 90 %-usikkerhetsintervall ($\sigma \approx (\hat{y}_{upper} - \hat{y})/1{,}645$) og deretter multiplisere med den kategoritilpassede k-faktoren fra 8.3, slik at $SS = k \cdot \sigma$.
 
@@ -896,19 +896,19 @@ De visuelle forskjellene i lagernivå for de ulike scenariene er presentert i Fi
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Engelsk_fiksjon.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 8.14: Scenario-sammenligning for Engelsk fiksjon i 2026</em>
+  <em>Figur 8.14: Scenario-sammenligning for Engelsk fiksjon i 2026.</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norsk_krim.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 8.15: Scenario-sammenligning for Norsk krim i 2026</em>
+  <em>Figur 8.15: Scenario-sammenligning for Norsk krim i 2026.</em>
 </div>
 
 <div align="center">
   <img src="../006%20analysis/milestones/M5%20-%20Kvantitativ%20analyse/3.12%20scenario-analyse/scenario_plot_Norske_barnebøker.png" style="width: 70%; height: auto;">
   <br>
-  <em>Figur 8.16: Scenario-sammenligning for Norske barnebøker i 2026</em>
+  <em>Figur 8.16: Scenario-sammenligning for Norske barnebøker i 2026.</em>
 </div>
 
 ---

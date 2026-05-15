@@ -215,5 +215,29 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
   **Beholdt med begrunnelse:** Vedleggslisten i kap. 12 (linje 1044–1047) nevner spesifikke filnavn (`vask_og_strukturer.py`, `final_simulation.py`, `generate_m6_visualisations.py`, `master_data_vasket.csv`) i parentes. Disse er beholdt som de er, fordi de utgjør den kanoniske vedleggsmerkingen — det er nettopp her interne filer hører hjemme i en akademisk rapport, ikke i brødteksten.
 
   **Verifisering:** Grep etter `\.py`, `\.csv`, `\.md\`` og mappestier (`004 data/`, `006 analysis/`, `python_skript/`) i `rapport.md` returnerer nå kun de fire vedleggsoppføringene på linje 1044–1047.
-- [ ] **Standardiser figurer og tabeller.** Lik formatering, fontstørrelse, fargepalett og figurtekst på tvers av rapporten (jf. malen i CLAUDE.md: midtstilt, `width: 70%`, kursiv figurtekst).
+- [x] **Standardiser figurer og tabeller.** ~~Lik formatering, fontstørrelse, fargepalett og figurtekst på tvers av rapporten (jf. malen i CLAUDE.md: midtstilt, `width: 70%`, kursiv figurtekst).~~ Gjort: Auditert alle 32 figurblokker og 11 tabeller i rapporten mot malen i CLAUDE.md (`<div align="center">` + `width: 70%; height: auto;` + `<br>` + `<em>` figurtekst).
+
+  **Status før audit:**
+  - **Bredde/midtstilling/kursiv:** Allerede konsistent på tvers av alle 32 figurer (en tidligere standardisering må ha fanget dette).
+  - **Fontstørrelse og fargepalett:** Allerede håndtert i seksjon F-3 ("Forstørre figurer med liten tekst") og G-3 ("Forbedre lesbarheten på Figur 16–23") — DPI hevet til 150–160, tittel 14 pt fet, aksetitler 12 pt, tick-labels 11 pt, rutenett `alpha=0.3`, norsk legende-tekst. Ingen ytterligere skript-kjøring nødvendig.
+
+  **Inkonsistenser identifisert og rettet:**
+
+  **1. `alt`-attributt på `<img>`:** 8 av 32 figurer (Figur 4.1–5.4 i kap. 4 og 5) hadde `alt="Figur X.Y: ..."`-attributt; de resterende 24 (Figur 6.1–8.16 i kap. 6 og 8) hadde det ikke. CLAUDE.md-malen inkluderer ikke `alt`. For å matche malen eksakt og oppnå full konsistens, fjernet `alt` fra de 8 figurene i kap. 4 og 5. Alle 32 figurer har nå identisk `<img>`-format: `<img src="..." style="width: 70%; height: auto;">`. **Trade-off:** Mister litt tilgjengelighetsmetadata, men malen i CLAUDE.md er det reviewer eksplisitt peker på, og figurnummer + figurtekst i `<em>` under bildet ivaretar samme informasjon.
+
+  **2. Periode på slutten av figurtekst:** 3 av 32 figurtekster manglet avsluttende periode:
+  - Figur 8.14: "Scenario-sammenligning for Engelsk fiksjon i 2026" → "...i 2026."
+  - Figur 8.15: "Scenario-sammenligning for Norsk krim i 2026" → "...i 2026."
+  - Figur 8.16: "Scenario-sammenligning for Norske barnebøker i 2026" → "...i 2026."
+
+  De resterende 29 figurtekstene hadde allerede konsekvent avsluttende periode. Alle 32 har nå periode.
+
+  **3. Bold-formatering på kategorinavn i tabell (linje 846–850 før, 848–852 nå):** Tabellen "Justert etterspørsel, sikkerhetslager og bestillingspunkt per kategori" hadde rene tekstnavn (`Engelsk fiksjon`), mens alle åtte andre kategoritabeller (Trend-endring, Baseline-parametre, Stasjonaritet, MAE/RMSE/MAPE, Kostnadsbesparelse, Etterspørselsjustering, Scenario) brukte fet skrift (`**Engelsk fiksjon**`). Endret til bold for konsistens. Også justert kolonnebredder i header-raden så de matcher de andre kategoritabellene visuelt.
+
+  **Beholdt uten endring:**
+  - **Tabellnummerering:** Rapporten har ikke "Tabell 6.1: ..."-numre eller tabellbildetekster — alle tabeller introduseres i brødtekst rett over. CLAUDE.md-malen spesifiserer kun figurtekst, ikke tabelltekst. Akademisk konvensjon foretrekker eksplisitt tabellnummerering, men dette er en rapport-omfattende restrukturering som ligger utenfor "standardiser eksisterende"-mandatet. Markert som mulig fremtidig forbedring.
+  - **Datatabellenes alignment:** Mest brukte mønster er `:---` for kategori-kolonne og `:---:` for tallkolonner — allerede konsistent på tvers av tabellene.
+  - **Datatabellenes type-bredde:** Variasjon i kolonnebredde (whitespace-padding i markdown-kildene) er kosmetisk og påvirker ikke renderet utseende.
+
+  **Verifisering:** `grep -c '<img '` → 32, `grep -c 'alt="'` → 0. `grep '<em>Figur' | grep -vE '\.</em>'` → ingen treff (alle figurtekster ender med periode).
 - [ ] **Bryt opp teksttunge avsnitt.** Identifiser særlig tunge passasjer (kap. 3 og 6) og del dem opp med lister, figurer eller mellomtitler.
