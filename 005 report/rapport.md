@@ -255,7 +255,13 @@ I praksis betyr dette at salgsverdien på et gitt tidspunkt splittes i fire tolk
 Til forskjell fra SARIMA-modeller, som krever at dataene er stasjonære (jf. seksjon 3.1), opererer Prophet direkte på de opprinnelige verdiene uten behov for differensiering. Modellen er designet som et «analyst-in-the-loop»-verktøy (Taylor & Letham, 2018), der intuitive parametere — som styrken på sesongkomponenten og plasseringen av trendskift — kan justeres av analytikere uten spesialisert statistikkbakgrunn. Denne egenskapen gjør Prophet egnet for praktisk beslutningsstøtte i logistikkoperasjoner, som er det overordnede målet for dette prosjektet. De matematiske detaljene for hver komponent presenteres i seksjon 6.1.
 
 **Teoretiske avveininger mellom Prophet og SARIMA:**
-Prophet er strukturelt enklere å spesifisere og krever ikke at dataene transformeres til stasjonær form. SARIMA kan til gjengjeld gi marginalt bedre prognosenøyaktighet for serier som faktisk er nær stasjonære og uten kraftige helligdagseffekter, fordi modellen utnytter autokorrelasjonsstrukturen direkte (Lewis, 1997). Prophets svakhet er at den ikke modellerer korttidsavhengigheter (autokorrelasjon) eksplisitt, og kan derfor underprestere på serier der residualene viser tydelige autokorrelerte mønstre. For dette prosjektet — der både trendskift og helligdager er sentrale — vurderes Prophets fleksibilitet som mer verdifull enn SARIMAs autokorrelasjonsmodellering. Begrunnelsen for valget i operativ kontekst, samt en drøfting av hvorfor de to modellene ikke er sammenlignet empirisk på datasettet, er gitt i seksjon 6.1.5 og 9.5.
+
+De to modellene har komplementære styrker og svakheter:
+
+- **Prophet:** Strukturelt enklere å spesifisere og krever ikke at dataene transformeres til stasjonær form. Svakheten er at modellen ikke fanger korttidsavhengigheter (autokorrelasjon) eksplisitt, og kan derfor underprestere på serier der residualene viser tydelige autokorrelerte mønstre.
+- **SARIMA:** Kan gi marginalt bedre prognosenøyaktighet for serier som er nær stasjonære og uten kraftige helligdagseffekter, fordi modellen utnytter autokorrelasjonsstrukturen direkte (Lewis, 1997). Svakheten er kravet til stasjonaritet og at additive sjokk som helligdager må håndteres manuelt via eksogene regressorer.
+
+For dette prosjektet — der både trendskift og helligdager er sentrale — vurderes Prophets fleksibilitet som mer verdifull enn SARIMAs autokorrelasjonsmodellering. Begrunnelsen for valget i operativ kontekst, samt en drøfting av hvorfor de to modellene ikke er sammenlignet empirisk på datasettet, er gitt i seksjon 6.1.5 og 9.5.
 
 ### 3.3 Lagerstyringsteori
 
@@ -278,7 +284,12 @@ Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvi
 
 $SS = z_\alpha \cdot \sigma_L$
 
-Hvor $z_\alpha$ er normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$, og $\sigma_L = \sigma_d \cdot \sqrt{L}$ er standardavviket for etterspørselen i ledetiden. Her er $\sigma_d$ standardavviket for etterspørselen per periode. I praksis vokser sikkerhetslageret både med ønsket servicegrad (høyere $z_\alpha$) og med hvor uforutsigbar etterspørselen er ($\sigma_L$) — strenge tilgjengelighetskrav og volatil etterspørsel krever altså begge en større buffer. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 6.4.
+Hvor:
+
+- $z_\alpha$: Normalfordelingens fraktil (z-verdi) som svarer til ønsket servicenivå $\alpha$.
+- $\sigma_L = \sigma_d \cdot \sqrt{L}$: Standardavviket for etterspørselen i ledetiden, der $\sigma_d$ er standardavviket for etterspørselen per periode.
+
+I praksis vokser sikkerhetslageret både med ønsket servicegrad (høyere $z_\alpha$) og med hvor uforutsigbar etterspørselen er ($\sigma_L$) — strenge tilgjengelighetskrav og volatil etterspørsel krever altså begge en større buffer. Denne formuleringen forutsetter at etterspørselen er tilnærmet normalfordelt og at ledetiden er deterministisk — antagelser som er spesifisert i seksjon 6.4.
 
 Kirmizi et al. (2024) demonstrerer at etterspørselsvariabilitet ($\sigma_d$) er den mest kritiske faktoren for dimensjonering av sikkerhetslageret. Dette understreker viktigheten av nøyaktige prognoser: jo bedre prognosene fanger opp sesongvariasjoner og trender, desto lavere blir residualvariansen, og desto mindre sikkerhetslager kreves for å oppnå samme servicenivå.
 
@@ -547,7 +558,10 @@ Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering
 Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
 
 **Hvorfor en empirisk sammenligning mot SARIMA ikke ble gjennomført:**
-Prosjektets primære forskningsspørsmål handler om å integrere prognose med lagerstyring (jf. Goltsos et al., 2022), ikke om å rangere prognosemodeller mot hverandre. En direkte komparativ evaluering av Prophet mot SARIMAX ville krevd et separat eksperimentelt oppsett med konsistent feature engineering, hyperparametertuning og kryssvalidering for begge modeller — noe som ligger utenfor prosjektets ramme. Vurderingen i listen over er derfor metodisk og kvalitativ, ikke empirisk. Dette er en reell begrensning for hvor sterkt valget av Prophet kan rettferdiggjøres på prognosenøyaktighet alene, og en komparativ benchmarking mot SARIMAX og utvalgte maskinlæringsmodeller er løftet frem som et naturlig neste steg i seksjon 9.5 og 9.7.
+
+Prosjektets primære forskningsspørsmål handler om å integrere prognose med lagerstyring (jf. Goltsos et al., 2022), ikke om å rangere prognosemodeller mot hverandre. En direkte komparativ evaluering av Prophet mot SARIMAX ville krevd et separat eksperimentelt oppsett med konsistent feature engineering, hyperparametertuning og kryssvalidering for begge modeller — noe som ligger utenfor prosjektets ramme.
+
+Vurderingen i listen over er derfor metodisk og kvalitativ, ikke empirisk. Dette er en reell begrensning for hvor sterkt valget av Prophet kan rettferdiggjøres på prognosenøyaktighet alene. En komparativ benchmarking mot SARIMAX og utvalgte maskinlæringsmodeller er løftet frem som et naturlig neste steg i seksjon 9.5 og 9.7.
 
 For å illustrere hvordan Prophet dekomponerer etterspørselen, viser Figur 6.4 komponentene for kategorien "Norsk krim" før utvidet feature engineering:
 

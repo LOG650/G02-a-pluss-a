@@ -240,4 +240,20 @@ Disse er hentet fra "Hovedfunn" i G01s helhetsinntrykk og påvirker flere kapitl
   - **Datatabellenes type-bredde:** Variasjon i kolonnebredde (whitespace-padding i markdown-kildene) er kosmetisk og påvirker ikke renderet utseende.
 
   **Verifisering:** `grep -c '<img '` → 32, `grep -c 'alt="'` → 0. `grep '<em>Figur' | grep -vE '\.</em>'` → ingen treff (alle figurtekster ender med periode).
-- [ ] **Bryt opp teksttunge avsnitt.** Identifiser særlig tunge passasjer (kap. 3 og 6) og del dem opp med lister, figurer eller mellomtitler.
+- [x] **Bryt opp teksttunge avsnitt.** ~~Identifiser særlig tunge passasjer (kap. 3 og 6) og del dem opp med lister, figurer eller mellomtitler.~~ Gjort: Gjennomgikk hele kap. 3 (3.0–3.3.4) og kap. 6 (6.0–6.5) for tette tekstblokker. Det meste av kapitlene er allerede strukturert med formel-blokker, bullet-baserte symboldefinisjoner og kortfattede avsnitt (2–4 setninger). Identifiserte tre konkrete passasjer som var unødvendig tette, og brøt dem opp:
+
+  **Endring 1 (3.2 — "Teoretiske avveininger mellom Prophet og SARIMA"):** Lange enkeltavsnitt på 5 setninger som blandet sammenligning av styrker/svakheter ved Prophet og SARIMA med konkluderende valgbegrunnelse. Konvertert til en kort innledningssetning + topunkts bullet-liste (Prophet vs. SARIMA) + et separat avsluttende avsnitt med valgbegrunnelse og krysshenvisning til 6.1.5/9.5. Leseren ser nå styrker/svakheter visuelt parallelt i stedet for å måtte parse en lang prosatekst.
+
+  **Endring 2 (3.3.1 — symboler i sikkerhetslager-formelen $SS = z_\alpha \cdot \sigma_L$):** Tett enkeltavsnitt som blandet symboldefinisjoner ($z_\alpha$, $\sigma_L$, $\sigma_d$) med intuitiv tolkning ("i praksis vokser sikkerhetslageret…") og modellforutsetninger. Endret slik at symboldefinisjonene står som en bullet-liste rett under formelen (matcher mønsteret brukt for andre formler i kap. 3 og hele 6.1), mens den intuitive tolkningen + forutsetningene står som et separat avsnitt etter listen.
+
+  **Endring 3 (6.1.5 — "Hvorfor en empirisk sammenligning mot SARIMA ikke ble gjennomført"):** Tett enkeltavsnitt på 4 setninger som dekket både (a) forskningsspørsmålets ramme, (b) hva en empirisk evaluering ville krevd, (c) at vurderingen er kvalitativ, og (d) krysshenvisning til 9.5/9.7. Delt i to avsnitt: første avsnitt (a + b) etablerer hvorfor sammenligningen ikke ble gjort; andre avsnitt (c + d) presenterer dette eksplisitt som en begrensning og peker til diskusjonen.
+
+  **Vurderte men beholdt uten endring:**
+  - **3.1.1 ADF-test (linje 235):** Allerede strukturert med formel i midten + intuisjonsforklaring i 4 korte setninger. Ikke for tett.
+  - **3.1.2 Log-transformering (linje 239):** Enkelt avsnitt på 3 setninger; akseptabel tetthet.
+  - **3.3.1 Bestillingspunkt-formelen (linje 268–275):** Allerede strukturert med formel + bullet-symboldefinisjoner + kort prosa.
+  - **6.1.1–6.1.3 (Prophet-komponentene $g(t)$, $s(t)$, $h(t)$):** Allerede strukturert med formel + symboldefinisjon-bullet-lister. Tradisjonelt matematisk format, ikke teksttungt.
+  - **6.1.4 Feature Engineering (linje 514, 516):** To medium-lange avsnitt brutt med figurene 6.1–6.3 rett etter. Akseptabel struktur.
+  - **6.4.1 ADF/KPSS-tolkning (linje 666, 668):** Allerede splittet i to korte avsnitt (2–3 setninger hver).
+
+  **Effekt:** De tre kjerneavsnittene som tidligere var tyngst å lese (3.2-sammenligningen, 3.3.1-symbolforklaringen og 6.1.5-sammenligningsbegrensningen) er nå strukturert slik at leseren raskt kan parse innholdet uten å miste tråden. Resten av kap. 3 og 6 var allerede tilstrekkelig oppdelt med mellomtitler, formler, figurer og symboldefinisjons-lister.
