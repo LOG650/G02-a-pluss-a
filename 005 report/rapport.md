@@ -136,7 +136,7 @@ Denne rapporten undersøker hvordan kvantitative metoder kan brukes til å beste
 
 Hvordan kan ARK Bokhandel AS bestemme optimal bestillingsmengde for utvalgte bokkategorier, basert på historisk etterspørsel, for å redusere lagerkostnader og samtidig begrense risikoen for utsolgte varer i kortsiktig planlegging?
 
-### 1.2 Delproblemer (valgfri)
+### 1.2 Delproblemer
 
 For å svare på hovedproblemstillingen, er prosjektet delt inn i følgende delproblemer:
 
