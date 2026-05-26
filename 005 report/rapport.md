@@ -76,7 +76,23 @@ Dato: 28. mars 2026
 
 ## Sammendrag
 
+ARK Bokhandel AS opererer i et marked preget av sterke sesongsvingninger, der både underbestilling og overbestilling gir betydelige kostnader. Denne rapporten undersøker hvordan en prognosedrevet, kvantitativ bestillingsmodell kan redusere lagerkostnader og samtidig opprettholde høy servicegrad, gjennom en analyse av tre bokkategorier med ulik etterspørselsdynamikk: Norsk krim, Engelsk fiksjon og Norske barnebøker.
+
+Metoden kombinerer Prophet-modellen for etterspørselsprognosering med en kvantitativ bestillingsregel basert på dynamisk sikkerhetslager, bias-korreksjon og kategorivis sikkerhetsfaktor. Modellen er trent på et simulert datasett som dekker perioden 2021–2025, og evaluert mot en baseline basert på historisk gjennomsnitt.
+
+Resultatene viser at den prognosedrevne modellen reduserer total lagerkostnad med 20,26 % (fra 198 636 NOK til 158 395 NOK) og hever gjennomsnittlig servicegrad fra 84,7 % til 87,2 % i testperioden 2025. Gevinsten er imidlertid ikke jevnt fordelt: For Norsk krim og Engelsk fiksjon gir modellen betydelige besparelser (henholdsvis 38,1 % og 19,6 %), mens for Norske barnebøker — der etterspørselen er stabil og sesongmønsteret forutsigbart — er en enkel baseline overlegen (−7,9 %).
+
+Hovedkonklusjonen er at en prognosedrevet modell skaper merverdi når etterspørselen har en struktur modellen er designet for å utnytte, men ikke som et universalmiddel. Studien anbefaler et tolags driftsregime der Prophet brukes for volatile eller trenddrevne kategorier, og enklere regelbaserte rutiner beholdes for stabile kategorier. Resultatene er basert på simulert data og bør valideres mot reelle ERP-data før operativ implementering.
+
 ## Abstract
+
+ARK Bokhandel AS operates in a market characterised by strong seasonal fluctuations, where both under- and over-ordering incur substantial costs. This report investigates how a forecast-driven, quantitative ordering model can reduce inventory costs while maintaining a high service level, through an analysis of three book categories with distinct demand dynamics: Norwegian crime fiction, English fiction, and Norwegian children's books.
+
+The method combines the Prophet model for demand forecasting with a quantitative ordering rule based on dynamic safety stock, bias correction, and category-specific safety factors. The model is trained on a simulated dataset spanning 2021–2025, and evaluated against a baseline derived from historical averages.
+
+The results show that the forecast-driven model reduces total inventory costs by 20.26 % (from NOK 198,636 to NOK 158,395) and raises the average service level from 84.7 % to 87.2 % over the 2025 test period. The gains are, however, not evenly distributed: For Norwegian crime fiction and English fiction the model delivers substantial savings (38.1 % and 19.6 %, respectively), whereas for Norwegian children's books — where demand is stable and the seasonal pattern predictable — a simple baseline outperforms the model (−7.9 %).
+
+The main conclusion is that a forecast-driven model creates value when demand has a structure the model is designed to exploit, but not as a universal solution. The study recommends a two-tier operating regime in which Prophet is used for volatile or trend-driven categories, while simpler rule-based procedures are retained for stable categories. The results are based on simulated data and should be validated against real ERP data prior to operational deployment.
 
 ---
 
