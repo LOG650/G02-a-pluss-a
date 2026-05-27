@@ -72,7 +72,7 @@ Er oppgaven båndlagt (konfidensiell)? [ ] ja [x] nei
 
 Dato: 28. mars 2026
 
----
+<div style="page-break-after: always;"></div>
 
 ## Sammendrag
 
@@ -94,9 +94,9 @@ The results show that the forecast-driven model reduces total inventory costs by
 
 The main conclusion is that a forecast-driven model creates value when demand has a structure the model is designed to exploit, but not as a universal solution. The study recommends a two-tier operating regime in which Prophet is used for volatile or trend-driven categories, while simpler rule-based procedures are retained for stable categories. The results are based on simulated data and should be validated against real ERP data prior to operational deployment.
 
----
+<div style="page-break-after: always;"></div>
 
-## Innhold
+## Innholdsfortegnelse
 
 - [**1.0 Innledning**](#10-innledning) — s. 1
   - [1.1 Problemstilling](#11-problemstilling) — s. 2
