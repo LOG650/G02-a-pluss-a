@@ -92,8 +92,6 @@ The method combines the Prophet model for demand forecasting with a quantitative
 
 The results show that the forecast-driven model reduces total inventory costs by 20.26 % (from NOK 198,636 to NOK 158,395) and raises the average service level from 84.7 % to 87.2 % over the 2025 test period. The gains are, however, not evenly distributed: For Norwegian crime fiction and English fiction the model delivers substantial savings (38.1 % and 19.6 %, respectively), whereas for Norwegian children's books — where demand is stable and the seasonal pattern predictable — a simple baseline outperforms the model (−7.9 %).
 
-<div style="page-break-after: always;"></div>
-
 The main conclusion is that a forecast-driven model creates value when demand has a structure the model is designed to exploit, but not as a universal solution. The study recommends a two-tier operating regime in which Prophet is used for volatile or trend-driven categories, while simpler rule-based procedures are retained for stable categories. The results are based on simulated data and should be validated against real ERP data prior to operational deployment.
 
 <div style="page-break-after: always;"></div>
@@ -209,6 +207,8 @@ Lewis (1997) gir et klassisk rammeverk for sammenhengen mellom etterspørselspro
 Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet mellom etterspørselsprognoser og lagerstyring, og påpeker at de to forskningsfeltene i stor grad har utviklet seg fragmentert. Prognosestudier ignorerer ofte de nedstrøms konsekvensene for lagerbeslutninger, mens lagermodeller gjerne forutsetter at etterspørselen er kjent. Forfatterne foreslår et integrasjonsrammeverk som binder de to disiplinene sammen. Denne innsikten er bærende for strukturen i vårt prosjekt, som eksplisitt kobler Prophet-prognoser til bestillingsparametere som bestillingspunkt (Reorder Point, ROP), sikkerhetslager og servicegrad.
 
 Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller (Economic Order Quantity) og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
+
+<div style="page-break-after: always;"></div>
 
 ### Sammenliknende styrker og svakheter ved modellene
 
