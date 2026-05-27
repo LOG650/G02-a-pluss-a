@@ -17,7 +17,8 @@
       "Bash(python3 \"004 data/python_skript/sensitivity_analysis.py\")",
       "Bash(python3 \"004 data/python_skript/scenario_analysis_3_12.py\")",
       "Bash(grep -n -E '`[0-9]{3} [^`]+`|\\\\.py|\\\\.csv|\\\\.md`|\\\\.png`' \"/Users/astridgrepstad/Desktop/logistikk studie/År 3/2. semester/LOG650/Oppgave fra github/G02-a-pluss-a/005 report/rapport.md\")",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(python3 -c ' *)"
     ]
   }
 }

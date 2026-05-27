@@ -609,9 +609,9 @@ Strategien representerer en «status quo»-situasjon hvor innkjøper bestiller f
 
 | Kategori                     | Gj.sn. etterspørsel | Gj.sn. ledetid | Bestillingspunkt ($s$) | Bestillingsmengde ($Q$) |
 | :--------------------------- | :------------------: | :------------: | :----------------------: | :-----------------------: |
-| **Engelsk fiksjon**    |     338 enheter     |    8 dager    |       100 enheter       |        338 enheter        |
-| **Norske barnebøker** |     253 enheter     |    3 dager    |        28 enheter        |        253 enheter        |
-| **Norsk krim**         |     348 enheter     |    3 dager    |        38 enheter        |        348 enheter        |
+| **Engelsk fiksjon**    |     338 enheter     |    7 dager    |        88 enheter        |        338 enheter        |
+| **Norske barnebøker** |     286 enheter     |    3 dager    |        31 enheter        |        286 enheter        |
+| **Norsk krim**         |     365 enheter     |    3 dager    |        40 enheter        |        365 enheter        |
 
 Figur 6.5a–6.5c illustrerer den karakteristiske (s, Q)-sykelen for hver av de tre kategoriene over testperioden (2025). I hver figur er blå linje lagerbeholdning etter salg, rød stiplet linje markerer bestillingspunktet $s$, oransje søyler viser faktisk etterspørsel, og grønne trekanter markerer månedene hvor en bestilling på $Q$ enheter legges.
 
