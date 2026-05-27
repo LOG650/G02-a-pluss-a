@@ -4,7 +4,7 @@
 
 Anne Helene Moen Hagen & Astrid Alexandra Grepstad
 
-Totalt antall sider inkludert forsiden:      
+Totalt antall sider inkludert forsiden: 44
 
 Molde, Innleveringsdato
 
