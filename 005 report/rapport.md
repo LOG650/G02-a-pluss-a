@@ -595,11 +595,11 @@ Modellens estimerte nøkkelparametre for de tre kategoriene er oppsummert i tabe
 | **Norske barnebøker** |          -0,10 %          |       105,3 enheter       |
 | **Norsk krim**         |          +12,70 %          |       114,8 enheter       |
 
-Komponentfigurene for alle tre kategorier er presentert i Figur 6.1–6.4. Implementasjonen av basisversjonen av Prophet-modellen er dokumentert i vedlegg B.
+Komponentfigurene for alle tre kategorier er presentert i Figur 6.1–6.4.
 
 ### 6.2 Baseline-løsning
 
-Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (jf. seksjon 5.2 og vedlegg D). Parameterne beregnes kategorivis som:
+Baseline-strategien fungerer som et sammenligningsgrunnlag for å vurdere merverdien av Prophet-modellen, og er implementert som en enkel **(s, Q)-politikk** basert på historiske gjennomsnittstall fra treningsdatasettet (jf. seksjon 5.2 og vedlegg A). Parameterne beregnes kategorivis som:
 
 - **Forventet etterspørsel:** $\hat{D} = \frac{1}{n} \sum_{i=1}^{n} D_i$ (historisk månedssnitt).
 - **Bestillingspunkt:** $s = \hat{D} \cdot \bar{L} \cdot 1{,}10$, hvor $\bar{L}$ er gjennomsnittlig ledetid omregnet til måneder og 10 % er en fast sikkerhetsmargin.
@@ -639,7 +639,7 @@ For **Norsk krim** (Figur 6.5c) er ubalansen mest ekstrem: $Q = 365$ ligger unde
   <em>Figur 6.5c: Baseline (s, Q)-sykel for Norsk krim.</em>
 </div>
 
-Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. Implementasjonen som genererer Figur 6.5a–6.5c for alle tre kategorier, er dokumentert i vedlegg B.
+Ved å holde denne baselinen konstant gjennom hele testperioden fanger den verken trendendringer eller sesongeffekter, og forventes derfor å generere stockouts i høysesong – særlig for Norsk krim og Engelsk fiksjon. Dette gjør den til et strengt, men rettferdig sammenligningsgrunnlag for den kvantitative optimaliseringsmodellen i kapittel 6.3. 
 
 ### 6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)
 
@@ -750,7 +750,7 @@ Analysen bekrefter at de viktigste faktorene for en god prognose er evnen til å
 
 ## 8.0 Resultat
 
-Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-baserte modellen mot baseline-løsningen over testperioden. Den samlede analysepakken (forecast vs. actual, residualer og kostnadsfordeling for alle tre kategorier) presenteres i seksjon 8.1.1–8.1.3 nedenfor; det tilhørende analyseskriptet er gjengitt i vedlegg C.
+Resultatene fra den kvantitative analysen sammenligner ytelsen til den Prophet-baserte modellen mot baseline-løsningen over testperioden. Den samlede analysepakken (forecast vs. actual, residualer og kostnadsfordeling for alle tre kategorier) presenteres i seksjon 8.1.1–8.1.3 nedenfor.
 
 | Kategori                     |   Kostnad Baseline   |    Kostnad Prophet    |  Besparelse (%)  |   SL Baseline   |    SL Prophet    |
 | :--------------------------- | :-------------------: | :-------------------: | :---------------: | :--------------: | :--------------: |
@@ -1071,8 +1071,5 @@ Taylor, S. J., & Letham, B. (2018). Forecasting at scale. *The American Statisti
 
 Følgende vedlegg dokumenterer det tekniske arbeidet og datagrunnlaget:
 
-* **Vedlegg A:** Python-skript for datavask og visualisering (`vask_og_strukturer.py`).
-* **Vedlegg B:** Modellkode for Prophet-prognoser og kostnadsoptimalisering (`final_simulation.py`).
-* **Vedlegg C:** Skript for avansert resultatanalyse og visualisering (`generate_m6_visualisations.py`).
-* **Vedlegg D:** Vasket masterdatasett (`master_data_vasket.csv`).
-* **Vedlegg E:** Detaljerte figurer over sesongvariasjoner, residualer og kostnadsfordeling per kategori.
+* **Vedlegg A:** Vasket masterdatasett kan fremvises ved behov.
+
