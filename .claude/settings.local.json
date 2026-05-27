@@ -24,7 +24,8 @@
       "Bash(python3 -c \"import fitz; print\\('fitz available'\\)\")",
       "Bash(pip3 install *)",
       "Bash(python3 *)",
-      "Bash(xxd)"
+      "Bash(xxd)",
+      "Bash(brew list *)"
     ]
   }
 }

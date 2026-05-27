@@ -6,7 +6,7 @@ Anne Helene Moen Hagen & Astrid Alexandra Grepstad
 
 Totalt antall sider inkludert forsiden: 44
 
-Molde, Innleveringsdato
+Molde, Innleveringsdato: 31. mai 2026
 
 ## Obligatorisk egenerklæring/gruppeerklæring
 
@@ -92,6 +92,8 @@ The method combines the Prophet model for demand forecasting with a quantitative
 
 The results show that the forecast-driven model reduces total inventory costs by 20.26 % (from NOK 198,636 to NOK 158,395) and raises the average service level from 84.7 % to 87.2 % over the 2025 test period. The gains are, however, not evenly distributed: For Norwegian crime fiction and English fiction the model delivers substantial savings (38.1 % and 19.6 %, respectively), whereas for Norwegian children's books — where demand is stable and the seasonal pattern predictable — a simple baseline outperforms the model (−7.9 %).
 
+<div style="page-break-after: always;"></div>
+
 The main conclusion is that a forecast-driven model creates value when demand has a structure the model is designed to exploit, but not as a universal solution. The study recommends a two-tier operating regime in which Prophet is used for volatile or trend-driven categories, while simpler rule-based procedures are retained for stable categories. The results are based on simulated data and should be validated against real ERP data prior to operational deployment.
 
 <div style="page-break-after: always;"></div>
@@ -99,46 +101,46 @@ The main conclusion is that a forecast-driven model creates value when demand ha
 ## Innholdsfortegnelse
 
 - [**1.0 Innledning**](#10-innledning) — s. 1
-  - [1.1 Problemstilling](#11-problemstilling) — s. 2
-  - [1.2 Delproblemer (valgfri)](#12-delproblemer-valgfri) — s. 2
-  - [1.3 Avgrensinger](#13-avgrensinger) — s. 2
+  - [1.1 Problemstilling](#11-problemstilling) — s. 1
+  - [1.2 Delproblemer](#12-delproblemer) — s. 1
+  - [1.3 Avgrensinger](#13-avgrensinger) — s. 1
   - [1.4 Antagelser](#14-antagelser) — s. 2
-- [**2.0 Litteratur**](#20-litteratur) — s. 3
-  - [Etterspørselsprognosering i detaljhandel og bokbransjen](#etterspørselsprognosering-i-detaljhandel-og-bokbransjen) — s. 3
-  - [Lagerstyring og kostnadsoptimalisering](#lagerstyring-og-kostnadsoptimalisering) — s. 4
-  - [Oppsummering og kunnskapsgap](#oppsummering-og-kunnskapsgap) — s. 5
-- [**3.0 Teori**](#30-teori) — s. 5
-  - [3.1 Stasjonaritet og differensiering](#31-stasjonaritet-og-differensiering) — s. 5
-  - [3.2 Additive modeller og Prophet](#32-additive-modeller-og-prophet) — s. 6
-  - [3.3 Lagerstyringsteori](#33-lagerstyringsteori) — s. 7
+- [**2.0 Litteratur**](#20-litteratur) — s. 2
+  - [Etterspørselsprognosering i detaljhandel og bokbransjen](#etterspørselsprognosering-i-detaljhandel-og-bokbransjen) — s. 2
+  - [Lagerstyring og kostnadsoptimalisering](#lagerstyring-og-kostnadsoptimalisering) — s. 3
+  - [Oppsummering og kunnskapsgap](#oppsummering-og-kunnskapsgap) — s. 4
+- [**3.0 Teori**](#30-teori) — s. 4
+  - [3.1 Stasjonaritet og differensiering](#31-stasjonaritet-og-differensiering) — s. 4
+  - [3.2 Additive modeller og Prophet](#32-additive-modeller-og-prophet) — s. 5
+  - [3.3 Lagerstyringsteori](#33-lagerstyringsteori) — s. 6
 - [**4.0 Casebeskrivelse**](#40-casebeskrivelse) — s. 8
 - [**5.0 Metode og data**](#50-metode-og-data) — s. 10
   - [5.1 Metode](#51-metode) — s. 10
-  - [5.2 Data](#52-data) — s. 11
+  - [5.2 Data](#52-data) — s. 10
 - [**6.0 Modellering**](#60-modellering) — s. 14
   - [6.1 Prophet-modellen for etterspørselsprognosering](#61-prophet-modellen-for-etterspørselsprognosering) — s. 14
   - [6.2 Baseline-løsning](#62-baseline-løsning) — s. 19
   - [6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)](#63-kvantitativ-bestillingsmodell-optimaliseringsmodell) — s. 21
-  - [6.4 Modellforutsetninger og antagelser](#64-modellforutsetninger-og-antagelser) — s. 23
-  - [6.5 Modellvalidering og Bias-justering (Backtesting)](#65-modellvalidering-og-bias-justering-backtesting) — s. 24
+  - [6.4 Modellforutsetninger og antagelser](#64-modellforutsetninger-og-antagelser) — s. 22
+  - [6.5 Modellvalidering og Bias-justering (Backtesting)](#65-modellvalidering-og-bias-justering-backtesting) — s. 23
 - [**7.0 Analyse**](#70-analyse) — s. 24
-- [**8.0 Resultat**](#80-resultat) — s. 25
+- [**8.0 Resultat**](#80-resultat) — s. 24
   - [8.1 Detaljert analyse per kategori](#81-detaljert-analyse-per-kategori) — s. 25
-  - [8.2 Sensitivitetsanalyse og robusthet](#82-sensitivitetsanalyse-og-robusthet) — s. 27
-  - [8.3 Optimalisering av styringsparametere](#83-optimalisering-av-styringsparametere) — s. 30
-  - [8.4 Prognoser for 2026 (Operasjonell Planlegging)](#84-prognoser-for-2026-operasjonell-planlegging) — s. 31
-  - [8.5 Scenario-analyse (Robusthetstesting)](#85-scenario-analyse-robusthetstesting) — s. 32
-- [**9.0 Diskusjon**](#90-diskusjon) — s. 34
-  - [9.1 Tolkning av hovedfunnene](#91-tolkning-av-hovedfunnene) — s. 34
-  - [9.2 Når fungerer ikke den avanserte modellen? Tilfellet Norske barnebøker](#92-når-fungerer-ikke-den-avanserte-modellen-tilfellet-norske-barnebøker) — s. 35
-  - [9.3 Sammenheng med eksisterende litteratur](#93-sammenheng-med-eksisterende-litteratur) — s. 35
-  - [9.4 Robusthet og modellens grenser](#94-robusthet-og-modellens-grenser) — s. 36
-  - [9.5 Begrensninger ved datagrunnlag og metode](#95-begrensninger-ved-datagrunnlag-og-metode) — s. 36
-  - [9.6 Implikasjoner for næringslivet og ARKs driftspraksis](#96-implikasjoner-for-næringslivet-og-arks-driftspraksis) — s. 37
-  - [9.7 Generaliserbarhet og videre arbeid](#97-generaliserbarhet-og-videre-arbeid) — s. 38
-- [**10.0 Konklusjon**](#100-konklusjon) — s. 38
-- [**11.0 Bibliografi**](#110-bibliografi) — s. 39
-- [**12.0 Vedlegg**](#120-vedlegg) — s. 40
+  - [8.2 Sensitivitetsanalyse og robusthet](#82-sensitivitetsanalyse-og-robusthet) — s. 26
+  - [8.3 Optimalisering av styringsparametere](#83-optimalisering-av-styringsparametere) — s. 29
+  - [8.4 Prognoser for 2026 (Operasjonell Planlegging)](#84-prognoser-for-2026-operasjonell-planlegging) — s. 30
+  - [8.5 Scenario-analyse (Robusthetstesting)](#85-scenario-analyse-robusthetstesting) — s. 31
+- [**9.0 Diskusjon**](#90-diskusjon) — s. 33
+  - [9.1 Tolkning av hovedfunnene](#91-tolkning-av-hovedfunnene) — s. 33
+  - [9.2 Når fungerer ikke den avanserte modellen? Tilfellet Norske barnebøker](#92-når-fungerer-ikke-den-avanserte-modellen-tilfellet-norske-barnebøker) — s. 34
+  - [9.3 Sammenheng med eksisterende litteratur](#93-sammenheng-med-eksisterende-litteratur) — s. 34
+  - [9.4 Robusthet og modellens grenser](#94-robusthet-og-modellens-grenser) — s. 35
+  - [9.5 Begrensninger ved datagrunnlag og metode](#95-begrensninger-ved-datagrunnlag-og-metode) — s. 35
+  - [9.6 Implikasjoner for næringslivet og ARKs driftspraksis](#96-implikasjoner-for-næringslivet-og-arks-driftspraksis) — s. 36
+  - [9.7 Generaliserbarhet og videre arbeid](#97-generaliserbarhet-og-videre-arbeid) — s. 37
+- [**10.0 Konklusjon**](#100-konklusjon) — s. 37
+- [**11.0 Bibliografi**](#110-bibliografi) — s. 38
+- [**12.0 Vedlegg**](#120-vedlegg) — s. 39
 
 ---
 
@@ -236,6 +238,8 @@ For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og t
 
 Et sentralt begrep i tidsserieanalyse er **stasjonaritet**. En tidsserie $\{y_t\}$ sies å være strengt stasjonær dersom dens statistiske egenskaper ikke endrer seg over tid. I praksis fokuserer man ofte på svak stasjonaritet (eller "covariance stationarity"), som krever:
 
+<div style="page-break-after: always;"></div>
+
 1. Konstant forventningsverdi: $E[y_t] = \mu$ for alle $t$.
 2. Konstant varians: $Var(y_t) = \sigma^2$ for alle $t$.
 3. Autokovarians som kun avhenger av tidsforskyvningen (lag) $k$, ikke selve tidspunktet $t$.
@@ -297,6 +301,8 @@ Hvor:
 - $SS$ er sikkerhetslageret.
 
 Praktisk talt utløses en ny bestilling så snart det er akkurat nok på lager til å dekke ventet salg under ledetiden, pluss en sikkerhetsmargin.
+
+<div style="page-break-after: always;"></div>
 
 Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvingninger og beregnes som:
 
@@ -481,6 +487,8 @@ For å gjøre skillet mellom det simulerte datagrunnlaget og antagelsene som lig
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## 6.0 Modellering
 
 Modelleringen i dette prosjektet følger en todelt tilnærming. Først benyttes en avansert tidsseriemodell (Prophet) for å generere nøyaktige etterspørselsprognoser. Deretter benyttes disse prognosene som input i en kvantitativ bestillingsmodell for å optimere lagerbeholdningen.
@@ -538,6 +546,8 @@ Hvor:
 - $D_i$: Mengden av datoer som faller inn under helligdag $i$.
 - $\mathbb{1}(\cdot)$: Una indikatorfunksjon som er $1$ dersom tidspunkt $t$ er en del av hendelsen $D_i$.
 
+<div style="page-break-after: always;"></div>
+
 #### 6.1.4 Utvidet Feature Engineering og identifisering av kampanjer
 
 En kritisk utfordring i etterspørselsprognosering er å skille mellom regelmessig sesongvariasjon og diskrete sjokk forårsaket av markedsføringstiltak (kampanjer). Dersom kampanjer ikke identifiseres og isoleres, vil modellen feilaktig inkludere disse toppene i den årlige sesongkomponenten, noe som fører til systematiske overestimeringer i fremtidige perioder uten tilsvarende kampanjer.
@@ -571,6 +581,9 @@ Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering
 1. **Håndtering av flere sesongmønstre og helligdager:** Bokbransjen preges av komplekse kalendereffekter, som "bevegelige" helligdager (påske) og faste salgstopper (jul, skolestart). Prophet inkluderer en dedikert komponent for helligdager ($h(t)$) som enkelt fanger opp disse additive sjokkene. I en SARIMA-modell ville dette krevd omfattende bruk av eksterne variabler (SARIMAX) og manuell koding av datoer.
 2. **Robusthet mot ikke-stasjonaritet:** SARIMA krever streng stasjonaritet, noe som ofte fordrer flere runder med differensiering og statistisk testing for å transformere dataene. Prophet er en additiv modell som håndterer trender og sesongvariasjoner internt uten behov for omfattende pre-prosessering, noe som reduserer risikoen for feil ved modellspesifisering.
 3. **Praktisk tolkbarhet:** Prophet dekomponerer tidsserien i visuelle komponenter (trend, årstid, helligdager). Dette gir et langt mer intuitivt beslutningsgrunnlag for en logistikkansvarlig enn de mer abstrakte matematiske parameterne i en SARIMA-modell (AR- (autoregressive) og MA- (moving average) ordener).
+
+<div style="page-break-after: always;"></div>
+
 4. **Håndtering av uregelmessige data:** Prophet er robust mot manglende observasjoner og store uteliggere, noe som ofte forekommer i reelle salgsdata fra ERP-systemer.
 
 Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
