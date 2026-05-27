@@ -26,7 +26,7 @@ def create_page_number_overlay(page_width, page_height, display_number, total):
     c.setFont("Helvetica", 9)
     c.setFillColorRGB(0.4, 0.4, 0.4)
     text = f"{display_number} / {total}"
-    c.drawCentredString(page_width / 2, 30, text)
+    c.drawCentredString(page_width / 2, 15, text)
     c.save()
     packet.seek(0)
     return PdfReader(packet).pages[0]

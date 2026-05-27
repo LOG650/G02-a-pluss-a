@@ -208,8 +208,6 @@ Goltsos et al. (2022) gjennomfører en omfattende litteraturstudie av samspillet
 
 Kirmizi et al. (2024) undersøker sikkerhetslagerstrategier gjennom en casestudie og demonstrerer at etterspørselsvariabilitet er den mest kritiske faktoren for dimensjonering av sikkerhetslager. Deres funn om at hybridtilnærminger overgår enkeltmetoder i å redusere totale lagerkostnader, forsterker argumentet for å bruke nøyaktige prognoser som input til lagermodellen — slik det gjøres i dette prosjektet. Adeyemi og Onanuga (2014) gir i tillegg en teoretisk gjennomgang av EOQ-modeller (Economic Order Quantity) og sikkerhetslagerberegninger under både deterministisk og stokastisk etterspørsel, og danner dermed et supplerende grunnlag for kostnadsvurderingene i denne rapporten.
 
-<div style="page-break-after: always;"></div>
-
 ### Sammenliknende styrker og svakheter ved modellene
 
 For å plassere prosjektets metodevalg i et kritisk perspektiv vurderes her styrker og svakheter ved de sentrale modellgruppene som litteraturen omtaler.
@@ -237,8 +235,6 @@ For å håndtere etterspørselsprognosering med komplekse sesongvariasjoner og t
 ### 3.1 Stasjonaritet og differensiering
 
 Et sentralt begrep i tidsserieanalyse er **stasjonaritet**. En tidsserie $\{y_t\}$ sies å være strengt stasjonær dersom dens statistiske egenskaper ikke endrer seg over tid. I praksis fokuserer man ofte på svak stasjonaritet (eller "covariance stationarity"), som krever:
-
-<div style="page-break-after: always;"></div>
 
 1. Konstant forventningsverdi: $E[y_t] = \mu$ for alle $t$.
 2. Konstant varians: $Var(y_t) = \sigma^2$ for alle $t$.
@@ -301,8 +297,6 @@ Hvor:
 - $SS$ er sikkerhetslageret.
 
 Praktisk talt utløses en ny bestilling så snart det er akkurat nok på lager til å dekke ventet salg under ledetiden, pluss en sikkerhetsmargin.
-
-<div style="page-break-after: always;"></div>
 
 Sikkerhetslageret dimensjoneres ut fra ønsket beskyttelse mot etterspørselssvingninger og beregnes som:
 
@@ -487,8 +481,6 @@ For å gjøre skillet mellom det simulerte datagrunnlaget og antagelsene som lig
 
 ---
 
-<div style="page-break-after: always;"></div>
-
 ## 6.0 Modellering
 
 Modelleringen i dette prosjektet følger en todelt tilnærming. Først benyttes en avansert tidsseriemodell (Prophet) for å generere nøyaktige etterspørselsprognoser. Deretter benyttes disse prognosene som input i en kvantitativ bestillingsmodell for å optimere lagerbeholdningen.
@@ -546,8 +538,6 @@ Hvor:
 - $D_i$: Mengden av datoer som faller inn under helligdag $i$.
 - $\mathbb{1}(\cdot)$: Una indikatorfunksjon som er $1$ dersom tidspunkt $t$ er en del av hendelsen $D_i$.
 
-<div style="page-break-after: always;"></div>
-
 #### 6.1.4 Utvidet Feature Engineering og identifisering av kampanjer
 
 En kritisk utfordring i etterspørselsprognosering er å skille mellom regelmessig sesongvariasjon og diskrete sjokk forårsaket av markedsføringstiltak (kampanjer). Dersom kampanjer ikke identifiseres og isoleres, vil modellen feilaktig inkludere disse toppene i den årlige sesongkomponenten, noe som fører til systematiske overestimeringer i fremtidige perioder uten tilsvarende kampanjer.
@@ -581,9 +571,6 @@ Valget av Prophet som primær prognosemodell er basert på en metodisk vurdering
 1. **Håndtering av flere sesongmønstre og helligdager:** Bokbransjen preges av komplekse kalendereffekter, som "bevegelige" helligdager (påske) og faste salgstopper (jul, skolestart). Prophet inkluderer en dedikert komponent for helligdager ($h(t)$) som enkelt fanger opp disse additive sjokkene. I en SARIMA-modell ville dette krevd omfattende bruk av eksterne variabler (SARIMAX) og manuell koding av datoer.
 2. **Robusthet mot ikke-stasjonaritet:** SARIMA krever streng stasjonaritet, noe som ofte fordrer flere runder med differensiering og statistisk testing for å transformere dataene. Prophet er en additiv modell som håndterer trender og sesongvariasjoner internt uten behov for omfattende pre-prosessering, noe som reduserer risikoen for feil ved modellspesifisering.
 3. **Praktisk tolkbarhet:** Prophet dekomponerer tidsserien i visuelle komponenter (trend, årstid, helligdager). Dette gir et langt mer intuitivt beslutningsgrunnlag for en logistikkansvarlig enn de mer abstrakte matematiske parameterne i en SARIMA-modell (AR- (autoregressive) og MA- (moving average) ordener).
-
-<div style="page-break-after: always;"></div>
-
 4. **Håndtering av uregelmessige data:** Prophet er robust mot manglende observasjoner og store uteliggere, noe som ofte forekommer i reelle salgsdata fra ERP-systemer.
 
 Samlet sett gir Prophet en bedre balanse mellom statistisk presisjon og praktisk anvendelighet for ARK Bokhandel, da modellen er skreddersydd for tidsserier med sterke menneskeskapte mønstre.
