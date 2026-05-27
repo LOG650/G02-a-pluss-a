@@ -99,46 +99,46 @@ The main conclusion is that a forecast-driven model creates value when demand ha
 ## Innholdsfortegnelse
 
 - [**1.0 Innledning**](#10-innledning) — s. 1
-  - [1.1 Problemstilling](#11-problemstilling) — s. 1
-  - [1.2 Delproblemer](#12-delproblemer) — s. 1
-  - [1.3 Avgrensinger](#13-avgrensinger) — s. 1
+  - [1.1 Problemstilling](#11-problemstilling) — s. 2
+  - [1.2 Delproblemer](#12-delproblemer) — s. 2
+  - [1.3 Avgrensinger](#13-avgrensinger) — s. 2
   - [1.4 Antagelser](#14-antagelser) — s. 2
-- [**2.0 Litteratur**](#20-litteratur) — s. 2
-  - [Etterspørselsprognosering i detaljhandel og bokbransjen](#etterspørselsprognosering-i-detaljhandel-og-bokbransjen) — s. 2
-  - [Lagerstyring og kostnadsoptimalisering](#lagerstyring-og-kostnadsoptimalisering) — s. 3
-  - [Oppsummering og kunnskapsgap](#oppsummering-og-kunnskapsgap) — s. 4
-- [**3.0 Teori**](#30-teori) — s. 4
-  - [3.1 Stasjonaritet og differensiering](#31-stasjonaritet-og-differensiering) — s. 4
-  - [3.2 Additive modeller og Prophet](#32-additive-modeller-og-prophet) — s. 5
-  - [3.3 Lagerstyringsteori](#33-lagerstyringsteori) — s. 6
+- [**2.0 Litteratur**](#20-litteratur) — s. 3
+  - [Etterspørselsprognosering i detaljhandel og bokbransjen](#etterspørselsprognosering-i-detaljhandel-og-bokbransjen) — s. 3
+  - [Lagerstyring og kostnadsoptimalisering](#lagerstyring-og-kostnadsoptimalisering) — s. 4
+  - [Oppsummering og kunnskapsgap](#oppsummering-og-kunnskapsgap) — s. 5
+- [**3.0 Teori**](#30-teori) — s. 5
+  - [3.1 Stasjonaritet og differensiering](#31-stasjonaritet-og-differensiering) — s. 5
+  - [3.2 Additive modeller og Prophet](#32-additive-modeller-og-prophet) — s. 6
+  - [3.3 Lagerstyringsteori](#33-lagerstyringsteori) — s. 7
 - [**4.0 Casebeskrivelse**](#40-casebeskrivelse) — s. 8
 - [**5.0 Metode og data**](#50-metode-og-data) — s. 10
   - [5.1 Metode](#51-metode) — s. 10
-  - [5.2 Data](#52-data) — s. 10
+  - [5.2 Data](#52-data) — s. 11
 - [**6.0 Modellering**](#60-modellering) — s. 14
   - [6.1 Prophet-modellen for etterspørselsprognosering](#61-prophet-modellen-for-etterspørselsprognosering) — s. 14
   - [6.2 Baseline-løsning](#62-baseline-løsning) — s. 19
   - [6.3 Kvantitativ bestillingsmodell (Optimaliseringsmodell)](#63-kvantitativ-bestillingsmodell-optimaliseringsmodell) — s. 21
-  - [6.4 Modellforutsetninger og antagelser](#64-modellforutsetninger-og-antagelser) — s. 22
-  - [6.5 Modellvalidering og Bias-justering (Backtesting)](#65-modellvalidering-og-bias-justering-backtesting) — s. 23
+  - [6.4 Modellforutsetninger og antagelser](#64-modellforutsetninger-og-antagelser) — s. 23
+  - [6.5 Modellvalidering og Bias-justering (Backtesting)](#65-modellvalidering-og-bias-justering-backtesting) — s. 24
 - [**7.0 Analyse**](#70-analyse) — s. 24
-- [**8.0 Resultat**](#80-resultat) — s. 24
+- [**8.0 Resultat**](#80-resultat) — s. 25
   - [8.1 Detaljert analyse per kategori](#81-detaljert-analyse-per-kategori) — s. 25
-  - [8.2 Sensitivitetsanalyse og robusthet](#82-sensitivitetsanalyse-og-robusthet) — s. 26
-  - [8.3 Optimalisering av styringsparametere](#83-optimalisering-av-styringsparametere) — s. 29
-  - [8.4 Prognoser for 2026 (Operasjonell Planlegging)](#84-prognoser-for-2026-operasjonell-planlegging) — s. 30
-  - [8.5 Scenario-analyse (Robusthetstesting)](#85-scenario-analyse-robusthetstesting) — s. 31
-- [**9.0 Diskusjon**](#90-diskusjon) — s. 33
-  - [9.1 Tolkning av hovedfunnene](#91-tolkning-av-hovedfunnene) — s. 33
-  - [9.2 Når fungerer ikke den avanserte modellen? Tilfellet Norske barnebøker](#92-når-fungerer-ikke-den-avanserte-modellen-tilfellet-norske-barnebøker) — s. 34
-  - [9.3 Sammenheng med eksisterende litteratur](#93-sammenheng-med-eksisterende-litteratur) — s. 34
-  - [9.4 Robusthet og modellens grenser](#94-robusthet-og-modellens-grenser) — s. 35
-  - [9.5 Begrensninger ved datagrunnlag og metode](#95-begrensninger-ved-datagrunnlag-og-metode) — s. 35
-  - [9.6 Implikasjoner for næringslivet og ARKs driftspraksis](#96-implikasjoner-for-næringslivet-og-arks-driftspraksis) — s. 36
-  - [9.7 Generaliserbarhet og videre arbeid](#97-generaliserbarhet-og-videre-arbeid) — s. 37
-- [**10.0 Konklusjon**](#100-konklusjon) — s. 37
-- [**11.0 Bibliografi**](#110-bibliografi) — s. 38
-- [**12.0 Vedlegg**](#120-vedlegg) — s. 39
+  - [8.2 Sensitivitetsanalyse og robusthet](#82-sensitivitetsanalyse-og-robusthet) — s. 27
+  - [8.3 Optimalisering av styringsparametere](#83-optimalisering-av-styringsparametere) — s. 30
+  - [8.4 Prognoser for 2026 (Operasjonell Planlegging)](#84-prognoser-for-2026-operasjonell-planlegging) — s. 31
+  - [8.5 Scenario-analyse (Robusthetstesting)](#85-scenario-analyse-robusthetstesting) — s. 32
+- [**9.0 Diskusjon**](#90-diskusjon) — s. 34
+  - [9.1 Tolkning av hovedfunnene](#91-tolkning-av-hovedfunnene) — s. 34
+  - [9.2 Når fungerer ikke den avanserte modellen? Tilfellet Norske barnebøker](#92-når-fungerer-ikke-den-avanserte-modellen-tilfellet-norske-barnebøker) — s. 35
+  - [9.3 Sammenheng med eksisterende litteratur](#93-sammenheng-med-eksisterende-litteratur) — s. 35
+  - [9.4 Robusthet og modellens grenser](#94-robusthet-og-modellens-grenser) — s. 36
+  - [9.5 Begrensninger ved datagrunnlag og metode](#95-begrensninger-ved-datagrunnlag-og-metode) — s. 36
+  - [9.6 Implikasjoner for næringslivet og ARKs driftspraksis](#96-implikasjoner-for-næringslivet-og-arks-driftspraksis) — s. 37
+  - [9.7 Generaliserbarhet og videre arbeid](#97-generaliserbarhet-og-videre-arbeid) — s. 38
+- [**10.0 Konklusjon**](#100-konklusjon) — s. 38
+- [**11.0 Bibliografi**](#110-bibliografi) — s. 39
+- [**12.0 Vedlegg**](#120-vedlegg) — s. 40
 
 ---
 

@@ -25,7 +25,8 @@
       "Bash(pip3 install *)",
       "Bash(python3 *)",
       "Bash(xxd)",
-      "Bash(brew list *)"
+      "Bash(brew list *)",
+      "Bash(open *)"
     ]
   }
 }
