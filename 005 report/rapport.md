@@ -14,28 +14,28 @@ Den enkelte student er selv ansvarlig for å sette seg inn i hva som er lovlige 
 
 Du/dere fyller ut erklæringen ved å klikke i ruten til høyre for den enkelte del 1-6:
 
-1. Vi erklærer herved at vår besvarelse er vårt eget arbeid, og at vi ikke har brukt andre kilder eller har mottatt annen hjelp enn det som er nevnt i besvarelsen. [ ]
+1. Vi erklærer herved at vår besvarelse er vårt eget arbeid, og at vi ikke har brukt andre kilder eller har mottatt annen hjelp enn det som er nevnt i besvarelsen. [x]
 2. Vi erklærer videre at denne besvarelsen:
 
-- ikke har vært brukt til annen eksamen ved annen avdeling/universitet/høgskole innenlands eller utenlands.
-- ikke refererer til andres arbeid uten at det er oppgitt.
-- ikke refererer til eget tidligere arbeid uten at det er oppgitt.
-- har alle referansene oppgitt i litteraturlisten.
-- ikke er en kopi, duplikat eller avskrift av andres arbeid eller besvarelse. [ ]
+- ikke har vært brukt til annen eksamen ved annen avdeling/universitet/høgskole innenlands eller utenlands. [x]
+- ikke refererer til andres arbeid uten at det er oppgitt. [x]
+- ikke refererer til eget tidligere arbeid uten at det er oppgitt. [x]
+- har alle referansene oppgitt i litteraturlisten. [x]
+- ikke er en kopi, duplikat eller avskrift av andres arbeid eller besvarelse. [x]
 
-3. Vi er kjent med at brudd på ovennevnte er å betrakte som fusk og kan medføre annullering av eksamen og utestengelse fra universiteter og høgskoler i Norge, jf. Universitets- og høgskoleloven §§4-7 og 4-8 og Forskrift om eksamen §§14 og 15. [ ]
-4. Vi er kjent med at alle innlevere oppgaver kan bli plagiatkontrollert i URKUND, se Retningslinjer for elektronisk innlevering og publisering av studiepoenggivende studentoppgaver [ ]
-5. Vi er kjent med at høgskolen vil behandle alle saker hvor det forligger mistanke om fusk etter høgskolens retningslinjer for behandling av saker om fusk [ ]
-6. Vi har satt oss inn i regler og retningslinjer i bruk av kilder og referanser på biblioteket sine nettsider [ ]
+3. Vi er kjent med at brudd på ovennevnte er å betrakte som fusk og kan medføre annullering av eksamen og utestengelse fra universiteter og høgskoler i Norge, jf. Universitets- og høgskoleloven §§4-7 og 4-8 og Forskrift om eksamen §§14 og 15. [x]
+4. Vi er kjent med at alle innlevere oppgaver kan bli plagiatkontrollert i URKUND, se Retningslinjer for elektronisk innlevering og publisering av studiepoenggivende studentoppgaver [x]
+5. Vi er kjent med at høgskolen vil behandle alle saker hvor det forligger mistanke om fusk etter høgskolens retningslinjer for behandling av saker om fusk [x]
+6. Vi har satt oss inn i regler og retningslinjer i bruk av kilder og referanser på biblioteket sine nettsider [x]
 
 ### Personvern
 
-Har oppgaven vært vurdert av NSD (Norsk senter for forskningsdata)? [ ] ja [ ] nei
+Har oppgaven vært vurdert av NSD (Norsk senter for forskningsdata)? [ ] ja [x] nei
 
 - Hvis ja: Referansenummer:      
 - Hvis nei: Vi erklærer at oppgaven ikke omfattes av Personopplysningsloven: [x]
 
-Har oppgaven vært til behandling hos REK (Regionale komiteer for medisinsk og helsefaglig forskningsetikk)? [ ] ja [ ] nei
+Har oppgaven vært til behandling hos REK (Regionale komiteer for medisinsk og helsefaglig forskningsetikk)? [ ] ja [x] nei
 
 - Hvis ja: Referansenummer:      
 
@@ -64,9 +64,9 @@ I tråd med Høgskolen i Moldes retningslinjer for ansvarlig bruk av KI-verktøy
 Studiepoeng: 30
 Veileder: Bård Inge Austigard Pettersen / Per Kristian Rekdal
 
-Vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering: [ ] ja [ ] nei
+Vi gir herved Høgskolen i Molde en vederlagsfri rett til å gjøre oppgaven tilgjengelig for elektronisk publisering: [ ] ja [x] nei
 
-Er oppgaven båndlagt (konfidensiell)? [ ] ja [ ] nei
+Er oppgaven båndlagt (konfidensiell)? [ ] ja [x] nei
 
 - Hvis ja: Kan oppgaven publiseres når båndleggingsperioden er over? [ ] ja [ ] nei
 
